@@ -1,11 +1,11 @@
 package models
 
 type (
-	// EnterprisesProfile - EnterprisesProfile
-	EnterprisesProfile struct {
+	// EnterpriseProfile - EnterpriseProfile
+	EnterpriseProfile struct {
 		ProfileName      string `json:"profileName"`
 		AccessPermission string `json:"accessPermission"`
-		LastUpdated      string `json:"lastUpdated`
+		LastUpdated      string `json:"lastUpdated"`
 	}
 )
 
@@ -38,9 +38,9 @@ type (
 )
 
 type (
-	// Enterprises - Enterprises
-	Enterprises struct {
-		EnterprisesProfile     EnterprisesProfile     `json:"profile"`
+	// Enterprise - Enterprise
+	Enterprise struct {
+		EnterpriseProfile      EnterpriseProfile      `json:"profile"`
 		EnterpriseConfigParams EnterpriseConfigParams `json:"enterpriseConfigParams"`
 	}
 )
