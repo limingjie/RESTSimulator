@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"time"
 
 	"./models"
 	"github.com/julienschmidt/httprouter"
@@ -43,6 +44,7 @@ func PostEnterprise(w http.ResponseWriter, r *http.Request, ps httprouter.Params
 			w.WriteHeader(409)
 			fmt.Fprintf(w, "Error: Duplicate Profile.")
 		} else {
+			ent.EnterpriseProfile.LastUpdated = time.Now().Format("2006/01/02 15:04:05")
 			dataEnterprises[ent.EnterpriseProfile.ProfileName] = ent
 
 			w.WriteHeader(201)
