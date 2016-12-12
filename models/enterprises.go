@@ -1,16 +1,14 @@
 package models
 
 type (
-	// EnterpriseProfile - EnterpriseProfile
+	// EnterpriseProfile struct
 	EnterpriseProfile struct {
 		ProfileName      string `json:"profileName"`
 		AccessPermission string `json:"accessPermission"`
 		LastUpdated      string `json:"lastUpdated"`
 	}
-)
 
-type (
-	// EnterpriseConfigParams - EnterpriseConfigParams
+	// EnterpriseConfigParams struct
 	EnterpriseConfigParams struct {
 		DatabasePlatform     string `json:"databasePlatform"`
 		ConnectString        string `json:"connectString"`
@@ -35,10 +33,8 @@ type (
 		ServerFileSystem     string `json:"serverFileSystem"`
 		CloudRegistryAddress string `json:"cloudRegistryAddress"`
 	}
-)
 
-type (
-	// Enterprise - Enterprise
+	// Enterprise struct
 	Enterprise struct {
 		EnterpriseProfile      EnterpriseProfile      `json:"profile"`
 		EnterpriseConfigParams EnterpriseConfigParams `json:"enterpriseConfigParams"`

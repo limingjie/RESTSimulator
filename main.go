@@ -33,7 +33,7 @@ func GetEnterprise(w http.ResponseWriter, r *http.Request, ps httprouter.Params)
 }
 
 // PostEnterprise - POST /profiles/enterprises
-func PostEnterprise(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+func PostEnterprise(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	ent := models.Enterprise{}
 
 	json.NewDecoder(r.Body).Decode(&ent)
