@@ -24,20 +24,35 @@
 ## Example
 
 ```sh
-$ curl -H "Content-Type: application/json" \
+$ curl -i -H "Content-Type: application/json" \
 >      -d '{"profile": {"profileName": "bar"}, "enterpriseConfigParams": {"dbUsername": "barbar"}}' \
 >      -X POST http://localhost:8888/profiles/enterprises
+HTTP/1.1 201 Created
+Date: Mon, 12 Dec 2016 16:41:01 GMT
+Content-Length: 8
+Content-Type: text/plain; charset=utf-8
+
 Succeed.
 
-$ curl -H "Content-Type: application/json" \
+$ curl -i -H "Content-Type: application/json" \
 >      -d '{"profile": {"profileName": "foo"}, "enterpriseConfigParams": {"dbUsername": "foofoo"}}' \
 >      -X POST http://localhost:8888/profiles/enterprises
-Error: Duplicate Profile.
+HTTP/1.1 201 Created
+Date: Mon, 12 Dec 2016 16:41:01 GMT
+Content-Length: 8
+Content-Type: text/plain; charset=utf-8
 
-$ curl -H "Content-Type: application/json" \
+Succeed.
+
+$ curl -i -H "Content-Type: application/json" \
 >      -d '{"profile": {"profileName": "bar"}, "enterpriseConfigParams": {"dbUsername": "barbar"}}' \
 >      -X POST http://localhost:8888/profiles/enterprises
-Succeed.
+HTTP/1.1 409 Conflict
+Date: Mon, 12 Dec 2016 16:41:02 GMT
+Content-Length: 25
+Content-Type: text/plain; charset=utf-8
+
+Error: Duplicate Profile.
 
 $ curl -i -H "Accept: application/json" -H "Content-Type: application/json" \
 >      -X GET http://localhost:8888/profiles/enterprises/foo
