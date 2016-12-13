@@ -14,8 +14,8 @@ import (
 // ServerProfile map
 var ServerProfiles = make(map[string]models.ServerProfile)
 
-// PostServer - POST /profiles/servers
-func PostServer(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+// PostServerProfile - POST /profiles/servers
+func PostServerProfile(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	profile := models.ServerProfile{}
 	json.NewDecoder(r.Body).Decode(&profile)
 
@@ -27,6 +27,9 @@ func PostServer(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 			fmt.Fprintf(w, "Error: Server profile with same name already exists.")
 		} else {
 			profile.Profile.LastUpdated = time.Now().Format("2006/01/02 15:04:05")
+			if len(profile.Profile.AccessPermission) == 0 {
+				profile.Profile.AccessPermission = "READWRITE"
+			}
 			ServerProfiles[profileName] = profile
 
 			w.WriteHeader(201)
@@ -38,8 +41,8 @@ func PostServer(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	}
 }
 
-// GetServers - GET /profiles/servers
-func GetServers(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+// GetServerProfiles - GET /profiles/servers
+func GetServerProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	var profilesJSON bytes.Buffer
 	profilesJSON.WriteString("{\"serverProfile\":[")
 
@@ -61,8 +64,8 @@ func GetServers(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	fmt.Fprintf(w, "%s", profilesJSON.String())
 }
 
-// GetServer - GET /profiles/servers/:profilename
-func GetServer(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+// GetServerProfile - GET /profiles/servers/:profilename
+func GetServerProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profile, ok := ServerProfiles[ps.ByName("profilename")]
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -75,8 +78,8 @@ func GetServer(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	}
 }
 
-// PutServer - PUT /profiles/servers/:profilename
-func PutServer(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+// PutServerProfile - PUT /profiles/servers/:profilename
+func PutServerProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profile := models.ServerProfile{}
 	json.NewDecoder(r.Body).Decode(&profile)
 
@@ -85,6 +88,9 @@ func PutServer(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	if ok {
 		if profile.Profile.ProfileName == profileName {
 			profile.Profile.LastUpdated = time.Now().Format("2006/01/02 15:04:05")
+			if len(profile.Profile.AccessPermission) == 0 {
+				profile.Profile.AccessPermission = "READWRITE"
+			}
 			ServerProfiles[profileName] = profile
 			w.WriteHeader(200)
 			fmt.Fprintf(w, "Succeed.")
@@ -98,8 +104,8 @@ func PutServer(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	}
 }
 
-// DeleteServer - DELETE /profiles/servers/:profilename
-func DeleteServer(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+// DeleteServerProfile - DELETE /profiles/servers/:profilename
+func DeleteServerProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profileName := ps.ByName("profilename")
 	_, ok := ServerProfiles[profileName]
 	if ok {

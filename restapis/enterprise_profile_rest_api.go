@@ -14,8 +14,8 @@ import (
 // EnterpriseProfiles map
 var EnterpriseProfiles = make(map[string]models.EnterpriseProfile)
 
-// PostEnterprise - POST /profiles/enterprises
-func PostEnterprise(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+// PostEnterpriseProfile - POST /profiles/enterprises
+func PostEnterpriseProfile(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	profile := models.EnterpriseProfile{}
 	json.NewDecoder(r.Body).Decode(&profile)
 
@@ -27,6 +27,9 @@ func PostEnterprise(w http.ResponseWriter, r *http.Request, _ httprouter.Params)
 			fmt.Fprintf(w, "Error: Enterprise profile with same name already exists.")
 		} else {
 			profile.Profile.LastUpdated = time.Now().Format("2006/01/02 15:04:05")
+			if len(profile.Profile.AccessPermission) == 0 {
+				profile.Profile.AccessPermission = "READWRITE"
+			}
 			EnterpriseProfiles[profileName] = profile
 
 			w.WriteHeader(201)
@@ -38,8 +41,8 @@ func PostEnterprise(w http.ResponseWriter, r *http.Request, _ httprouter.Params)
 	}
 }
 
-// GetEnterprises - GET /profiles/enterprises
-func GetEnterprises(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+// GetEnterpriseProfiles - GET /profiles/enterprises
+func GetEnterpriseProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	var profilesJSON bytes.Buffer
 	profilesJSON.WriteString("{\"enterpriseProfile\":[")
 
@@ -61,8 +64,8 @@ func GetEnterprises(w http.ResponseWriter, r *http.Request, _ httprouter.Params)
 	fmt.Fprintf(w, "%s", profilesJSON.String())
 }
 
-// GetEnterprise - GET /profiles/enterprises/:profilename
-func GetEnterprise(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+// GetEnterpriseProfile - GET /profiles/enterprises/:profilename
+func GetEnterpriseProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profile, ok := EnterpriseProfiles[ps.ByName("profilename")]
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -75,8 +78,8 @@ func GetEnterprise(w http.ResponseWriter, r *http.Request, ps httprouter.Params)
 	}
 }
 
-// PutEnterprise - PUT /profiles/enterprises/:profilename
-func PutEnterprise(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+// PutEnterpriseProfile - PUT /profiles/enterprises/:profilename
+func PutEnterpriseProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profile := models.EnterpriseProfile{}
 	json.NewDecoder(r.Body).Decode(&profile)
 
@@ -85,6 +88,9 @@ func PutEnterprise(w http.ResponseWriter, r *http.Request, ps httprouter.Params)
 	if ok {
 		if profile.Profile.ProfileName == profileName {
 			profile.Profile.LastUpdated = time.Now().Format("2006/01/02 15:04:05")
+			if len(profile.Profile.AccessPermission) == 0 {
+				profile.Profile.AccessPermission = "READWRITE"
+			}
 			EnterpriseProfiles[profileName] = profile
 			w.WriteHeader(200)
 			fmt.Fprintf(w, "Succeed.")
@@ -98,8 +104,8 @@ func PutEnterprise(w http.ResponseWriter, r *http.Request, ps httprouter.Params)
 	}
 }
 
-// DeleteEnterprise - DELETE /profiles/enterprises/:profilename
-func DeleteEnterprise(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+// DeleteEnterpriseProfile - DELETE /profiles/enterprises/:profilename
+func DeleteEnterpriseProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profileName := ps.ByName("profilename")
 	_, ok := EnterpriseProfiles[profileName]
 	if ok {
