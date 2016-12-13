@@ -5,7 +5,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strconv"
 
+	"../logger"
 	"../models"
 	"github.com/julienschmidt/httprouter"
 )
@@ -17,6 +19,9 @@ var ServerDeployments = make(map[string]models.ServerDeployment)
 func PostServerDeployment(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	deployment := models.ServerDeployment{}
 	json.NewDecoder(r.Body).Decode(&deployment)
+
+	msg, _ := json.Marshal(deployment)
+	logger.Logger("PostServerDeployment", string(msg))
 
 	siebelServer := deployment.ServerDeployParams.SiebelServer
 	if len(siebelServer) > 0 {
@@ -41,6 +46,8 @@ func GetServerDeployments(w http.ResponseWriter, r *http.Request, _ httprouter.P
 	var deploymentsJSON bytes.Buffer
 	deploymentsJSON.WriteString("{\"serverDeployment\":[")
 
+	logger.Logger("GetServerDeployments", strconv.Itoa(len(ServerDeployments)))
+
 	ok := false
 	for _, deployment := range ServerDeployments {
 		if ok {
@@ -62,6 +69,9 @@ func GetServerDeployments(w http.ResponseWriter, r *http.Request, _ httprouter.P
 // GetServerDeployment - GET /deployments/servers/:deploymentname
 func GetServerDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	deployment, ok := ServerDeployments[ps.ByName("deploymentname")]
+
+	logger.Logger("GetServerDeployment", ps.ByName("deploymentname"))
+
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(200)
@@ -77,6 +87,9 @@ func GetServerDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.P
 func PutServerDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	deployment := models.ServerDeployment{}
 	json.NewDecoder(r.Body).Decode(&deployment)
+
+	msg, _ := json.Marshal(deployment)
+	logger.Logger("PutServerDeployment", string(msg))
 
 	siebelServer := ps.ByName("deploymentname")
 	_, ok := ServerDeployments[siebelServer]
@@ -98,6 +111,9 @@ func PutServerDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.P
 // DeleteServerDeployment - DELETE /deployments/servers/:deploymentname
 func DeleteServerDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	siebelServer := ps.ByName("deploymentname")
+
+	logger.Logger("DeleteServerDeployment", siebelServer)
+
 	_, ok := ServerDeployments[siebelServer]
 	if ok {
 		delete(ServerDeployments, siebelServer)

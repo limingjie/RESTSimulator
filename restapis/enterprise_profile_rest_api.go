@@ -5,8 +5,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strconv"
 	"time"
 
+	"../logger"
 	"../models"
 	"github.com/julienschmidt/httprouter"
 )
@@ -18,6 +20,9 @@ var EnterpriseProfiles = make(map[string]models.EnterpriseProfile)
 func PostEnterpriseProfile(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	profile := models.EnterpriseProfile{}
 	json.NewDecoder(r.Body).Decode(&profile)
+
+	msg, _ := json.Marshal(profile)
+	logger.Logger("PostEnterpriseProfile", string(msg))
 
 	profileName := profile.Profile.ProfileName
 	if len(profileName) > 0 {
@@ -46,6 +51,8 @@ func GetEnterpriseProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.
 	var profilesJSON bytes.Buffer
 	profilesJSON.WriteString("{\"enterpriseProfile\":[")
 
+	logger.Logger("GetEnterpriseProfiles", strconv.Itoa(len(EnterpriseProfiles)))
+
 	ok := false
 	for _, profile := range EnterpriseProfiles {
 		if ok {
@@ -67,6 +74,9 @@ func GetEnterpriseProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.
 // GetEnterpriseProfile - GET /profiles/enterprises/:profilename
 func GetEnterpriseProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profile, ok := EnterpriseProfiles[ps.ByName("profilename")]
+
+	logger.Logger("GetEnterpriseProfile", ps.ByName("profilename"))
+
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(200)
@@ -82,6 +92,9 @@ func GetEnterpriseProfile(w http.ResponseWriter, r *http.Request, ps httprouter.
 func PutEnterpriseProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profile := models.EnterpriseProfile{}
 	json.NewDecoder(r.Body).Decode(&profile)
+
+	msg, _ := json.Marshal(profile)
+	logger.Logger("PutEnterpriseProfile", string(msg))
 
 	profileName := ps.ByName("profilename")
 	_, ok := EnterpriseProfiles[profileName]
@@ -107,6 +120,9 @@ func PutEnterpriseProfile(w http.ResponseWriter, r *http.Request, ps httprouter.
 // DeleteEnterpriseProfile - DELETE /profiles/enterprises/:profilename
 func DeleteEnterpriseProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profileName := ps.ByName("profilename")
+
+	logger.Logger("DeleteEnterpriseProfile", profileName)
+
 	_, ok := EnterpriseProfiles[profileName]
 	if ok {
 		delete(EnterpriseProfiles, profileName)

@@ -5,7 +5,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strconv"
 
+	"../logger"
 	"../models"
 	"github.com/julienschmidt/httprouter"
 )
@@ -17,6 +19,9 @@ var EnterpriseDeployments = make(map[string]models.EnterpriseDeployment)
 func PostEnterpriseDeployment(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	deployment := models.EnterpriseDeployment{}
 	json.NewDecoder(r.Body).Decode(&deployment)
+
+	msg, _ := json.Marshal(deployment)
+	logger.Logger("PostEnterpriseDeployment", string(msg))
 
 	enterpriseServer := deployment.EnterpriseDeployParams.EnterpriseServer
 	if len(enterpriseServer) > 0 {
@@ -41,6 +46,8 @@ func GetEnterpriseDeployments(w http.ResponseWriter, r *http.Request, _ httprout
 	var deploymentsJSON bytes.Buffer
 	deploymentsJSON.WriteString("{\"enterpriseDeployment\":[")
 
+	logger.Logger("GetEnterpriseDeployments", strconv.Itoa(len(EnterpriseDeployments)))
+
 	ok := false
 	for _, deployment := range EnterpriseDeployments {
 		if ok {
@@ -62,6 +69,9 @@ func GetEnterpriseDeployments(w http.ResponseWriter, r *http.Request, _ httprout
 // GetEnterpriseDeployment - GET /deployments/enterprises/:deploymentname
 func GetEnterpriseDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	deployment, ok := EnterpriseDeployments[ps.ByName("deploymentname")]
+
+	logger.Logger("GetEnterpriseDeployment", ps.ByName("deploymentname"))
+
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(200)
@@ -77,6 +87,9 @@ func GetEnterpriseDeployment(w http.ResponseWriter, r *http.Request, ps httprout
 func PutEnterpriseDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	deployment := models.EnterpriseDeployment{}
 	json.NewDecoder(r.Body).Decode(&deployment)
+
+	msg, _ := json.Marshal(deployment)
+	logger.Logger("PutEnterpriseDeployment", string(msg))
 
 	enterpriseServer := ps.ByName("deploymentname")
 	_, ok := EnterpriseDeployments[enterpriseServer]
@@ -98,6 +111,9 @@ func PutEnterpriseDeployment(w http.ResponseWriter, r *http.Request, ps httprout
 // DeleteEnterpriseDeployment - DELETE /deployments/enterprises/:deploymentname
 func DeleteEnterpriseDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	enterpriseServer := ps.ByName("deploymentname")
+
+	logger.Logger("DeleteEnterpriseDeployment", enterpriseServer)
+
 	_, ok := EnterpriseDeployments[enterpriseServer]
 	if ok {
 		delete(EnterpriseDeployments, enterpriseServer)

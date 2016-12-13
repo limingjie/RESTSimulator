@@ -5,19 +5,24 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strconv"
 	"time"
 
+	"../logger"
 	"../models"
 	"github.com/julienschmidt/httprouter"
 )
 
-// ServerProfile map
+// ServerProfiles map
 var ServerProfiles = make(map[string]models.ServerProfile)
 
 // PostServerProfile - POST /profiles/servers
 func PostServerProfile(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	profile := models.ServerProfile{}
 	json.NewDecoder(r.Body).Decode(&profile)
+
+	msg, _ := json.Marshal(profile)
+	logger.Logger("PostServerProfile", string(msg))
 
 	profileName := profile.Profile.ProfileName
 	if len(profileName) > 0 {
@@ -46,6 +51,8 @@ func GetServerProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.Para
 	var profilesJSON bytes.Buffer
 	profilesJSON.WriteString("{\"serverProfile\":[")
 
+	logger.Logger("GetServerProfiles", strconv.Itoa(len(ServerProfiles)))
+
 	ok := false
 	for _, profile := range ServerProfiles {
 		if ok {
@@ -67,6 +74,9 @@ func GetServerProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.Para
 // GetServerProfile - GET /profiles/servers/:profilename
 func GetServerProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profile, ok := ServerProfiles[ps.ByName("profilename")]
+
+	logger.Logger("GetServerProfile", ps.ByName("profilename"))
+
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(200)
@@ -82,6 +92,9 @@ func GetServerProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Para
 func PutServerProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profile := models.ServerProfile{}
 	json.NewDecoder(r.Body).Decode(&profile)
+
+	msg, _ := json.Marshal(profile)
+	logger.Logger("PutServerProfile", string(msg))
 
 	profileName := ps.ByName("profilename")
 	_, ok := ServerProfiles[profileName]
@@ -107,6 +120,9 @@ func PutServerProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Para
 // DeleteServerProfile - DELETE /profiles/servers/:profilename
 func DeleteServerProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profileName := ps.ByName("profilename")
+
+	logger.Logger("DeleteServerProfile", profileName)
+
 	_, ok := ServerProfiles[profileName]
 	if ok {
 		delete(ServerProfiles, profileName)
