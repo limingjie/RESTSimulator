@@ -5,10 +5,19 @@
 - POST /profiles/enterprises
   - 201 - Succeed.
   - 400 - Error: Expecting Profile Name.
-  - 409 - Error: Duplicate Profile.
-- GET /profiles/enterprises/{profile}
-  - 200 - Ok.
-  - 404 - Error: Not Found.
+  - 409 - Error: Enterprise profile with same name already exists.
+- GET /profiles/enterprises
+  - 200 - Succeed.
+- GET /profiles/enterprises/{profilename}
+  - 200 - Succeed.
+  - 404 - Error: Enterprise profile does not exist.
+- PUT /profiles/enterprises/{profilename}
+  - 200 - Succeed.
+  - 404 - Error: Enterprise profile does not exist.
+  - 409 - Error: Enterprise profile name does not match.
+- DELETE /profiles/enterprises/{profilename}
+  - 200 - Succeed.
+  - 404 - Error: Enterprise profile does not exist.
 
 ## Compile and Run
 

@@ -1,8 +1,8 @@
 package models
 
 type (
-	// EnterpriseProfile struct
-	EnterpriseProfile struct {
+	// Profile struct
+	Profile struct {
 		ProfileName      string `json:"profileName"`
 		AccessPermission string `json:"accessPermission"`
 		LastUpdated      string `json:"lastUpdated"`
@@ -34,9 +34,9 @@ type (
 		CloudRegistryAddress string `json:"cloudRegistryAddress"`
 	}
 
-	// Enterprise struct
-	Enterprise struct {
-		EnterpriseProfile      EnterpriseProfile      `json:"profile"`
+	// EnterpriseProfile struct
+	EnterpriseProfile struct {
+		Profile                Profile                `json:"profile"`
 		EnterpriseConfigParams EnterpriseConfigParams `json:"enterpriseConfigParams"`
 	}
 )
