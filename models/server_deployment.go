@@ -14,6 +14,6 @@ type (
 	// ServerDeployment struct
 	ServerDeployment struct {
 		Deployment         Deployment         `json:"deploymentInfo"`
-		ServerDeployParams ServerDeployParams `json:"enterpriseDeployParams"`
+		ServerDeployParams ServerDeployParams `json:"serverDeployParams"`
 	}
 )
