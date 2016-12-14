@@ -46,15 +46,15 @@ func PostServerDeployment(w http.ResponseWriter, r *http.Request, _ httprouter.P
 		return
 	}
 
-	siebelServer := deployment.ServerDeployParams.SiebelServer
-	if len(siebelServer) > 0 {
-		_, ok := ServerDeployments[siebelServer]
+	deploymentName := deployment.ServerDeployParams.SiebelServer
+	if len(deploymentName) > 0 {
+		_, ok := ServerDeployments[deploymentName]
 		if ok {
 			w.WriteHeader(409)
 			fmt.Fprintf(w, "Error: Server deployment with same name already exists.")
 		} else {
 			deployment.Deployment.Check()
-			ServerDeployments[siebelServer] = deployment
+			ServerDeployments[deploymentName] = deployment
 
 			deployServerProfile(deployment.Deployment.ProfileName)
 

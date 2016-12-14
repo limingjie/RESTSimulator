@@ -53,6 +53,13 @@ func main() {
 	router.PUT("/cloudgateway/v1.0/profiles/cacheserver/:profilename", restapis.PutCacheServerProfile)
 	router.DELETE("/cloudgateway/v1.0/profiles/cacheserver/:profilename", restapis.DeleteCacheServerProfile)
 
+	// CacheServer Deployment APIs
+	router.POST("/cloudgateway/v1.0/deployments/cacheserver", restapis.PostCacheServerDeployment)
+	router.GET("/cloudgateway/v1.0/deployments/cacheserver", restapis.GetCacheServerDeployments)
+	router.GET("/cloudgateway/v1.0/deployments/cacheserver/:profilename", restapis.GetCacheServerDeployment)
+	router.PUT("/cloudgateway/v1.0/deployments/cacheserver/:profilename", restapis.PutCacheServerDeployment)
+	router.DELETE("/cloudgateway/v1.0/deployments/cacheserver/:profilename", restapis.DeleteCacheServerDeployment)
+
 	// CacheClient Profile APIs
 	router.POST("/cloudgateway/v1.0/profiles/cacheclient", restapis.PostCacheClientProfile)
 	router.GET("/cloudgateway/v1.0/profiles/cacheclient", restapis.GetCacheClientProfiles)

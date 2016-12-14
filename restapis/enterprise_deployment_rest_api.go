@@ -46,15 +46,15 @@ func PostEnterpriseDeployment(w http.ResponseWriter, r *http.Request, _ httprout
 		return
 	}
 
-	enterpriseServer := deployment.EnterpriseDeployParams.EnterpriseServer
-	if len(enterpriseServer) > 0 {
-		_, ok := EnterpriseDeployments[enterpriseServer]
+	deploymentName := deployment.EnterpriseDeployParams.EnterpriseServer
+	if len(deploymentName) > 0 {
+		_, ok := EnterpriseDeployments[deploymentName]
 		if ok {
 			w.WriteHeader(409)
 			fmt.Fprintf(w, "Error: Enterprise deployment with same name already exists.")
 		} else {
 			deployment.Deployment.Check()
-			EnterpriseDeployments[enterpriseServer] = deployment
+			EnterpriseDeployments[deploymentName] = deployment
 
 			deployEntpriseProfile(deployment.Deployment.ProfileName)
 
