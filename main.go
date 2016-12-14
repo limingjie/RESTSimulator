@@ -46,5 +46,6 @@ func main() {
 	router.PUT("/cloudgateway/v1.0/deployments/servers/:deploymentname", restapis.PutServerDeployment)
 	router.DELETE("/cloudgateway/v1.0/deployments/servers/:deploymentname", restapis.DeleteServerDeployment)
 
+	fmt.Printf("RESTful URL - http://localhost:8889/cloudgateway/v1.0/\n")
 	log.Fatal(http.ListenAndServe(":8889", router))
 }

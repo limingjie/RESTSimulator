@@ -15,6 +15,22 @@ import (
 // EnterpriseDeployments map
 var EnterpriseDeployments = make(map[string]models.EnterpriseDeployment)
 
+func deployEntpriseProfile(profileName string) {
+	profile, ok := EnterpriseProfiles[profileName]
+	if ok {
+		profile.Profile.Deploy()
+		EnterpriseProfiles[profileName] = profile
+	}
+}
+
+func undeployEntpriseProfile(profileName string) {
+	profile, ok := EnterpriseProfiles[profileName]
+	if ok {
+		profile.Profile.Undeploy()
+		EnterpriseProfiles[profileName] = profile
+	}
+}
+
 // PostEnterpriseDeployment - POST /deployments/enterprises
 func PostEnterpriseDeployment(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	deployment := models.EnterpriseDeployment{}
@@ -23,6 +39,13 @@ func PostEnterpriseDeployment(w http.ResponseWriter, r *http.Request, _ httprout
 	msg, _ := json.Marshal(deployment)
 	logger.Logger("PostEnterpriseDeployment", string(msg))
 
+	_, ok := EnterpriseProfiles[deployment.Deployment.ProfileName]
+	if !ok {
+		w.WriteHeader(400)
+		fmt.Fprintf(w, "Error: Inexist Deployment Profile.")
+		return
+	}
+
 	enterpriseServer := deployment.EnterpriseDeployParams.EnterpriseServer
 	if len(enterpriseServer) > 0 {
 		_, ok := EnterpriseDeployments[enterpriseServer]
@@ -30,7 +53,10 @@ func PostEnterpriseDeployment(w http.ResponseWriter, r *http.Request, _ httprout
 			w.WriteHeader(409)
 			fmt.Fprintf(w, "Error: Enterprise deployment with same name already exists.")
 		} else {
+			deployment.Deployment.Check()
 			EnterpriseDeployments[enterpriseServer] = deployment
+
+			deployEntpriseProfile(deployment.Deployment.ProfileName)
 
 			w.WriteHeader(201)
 			fmt.Fprintf(w, "Succeed.")
@@ -91,11 +117,25 @@ func PutEnterpriseDeployment(w http.ResponseWriter, r *http.Request, ps httprout
 	msg, _ := json.Marshal(deployment)
 	logger.Logger("PutEnterpriseDeployment", string(msg))
 
-	enterpriseServer := ps.ByName("deploymentname")
-	_, ok := EnterpriseDeployments[enterpriseServer]
+	_, ok := EnterpriseProfiles[deployment.Deployment.ProfileName]
+	if !ok {
+		w.WriteHeader(400)
+		fmt.Fprintf(w, "Error: Expecting Deployment Profile.")
+		return
+	}
+
+	deploymentName := ps.ByName("deploymentname")
+	_, ok = EnterpriseDeployments[deploymentName]
 	if ok {
-		if deployment.EnterpriseDeployParams.EnterpriseServer == enterpriseServer {
-			EnterpriseDeployments[enterpriseServer] = deployment
+		if deployment.EnterpriseDeployParams.EnterpriseServer == deploymentName {
+			oldProfileName := EnterpriseDeployments[deploymentName].Deployment.ProfileName
+			if deployment.Deployment.ProfileName != oldProfileName {
+				deployEntpriseProfile(deployment.Deployment.ProfileName)
+				undeployEntpriseProfile(oldProfileName)
+			}
+
+			EnterpriseDeployments[deploymentName] = deployment
+
 			w.WriteHeader(200)
 			fmt.Fprintf(w, "Succeed.")
 		} else {
@@ -110,13 +150,19 @@ func PutEnterpriseDeployment(w http.ResponseWriter, r *http.Request, ps httprout
 
 // DeleteEnterpriseDeployment - DELETE /deployments/enterprises/:deploymentname
 func DeleteEnterpriseDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	enterpriseServer := ps.ByName("deploymentname")
+	deploymentName := ps.ByName("deploymentname")
 
-	logger.Logger("DeleteEnterpriseDeployment", enterpriseServer)
+	logger.Logger("DeleteEnterpriseDeployment", deploymentName)
 
-	_, ok := EnterpriseDeployments[enterpriseServer]
+	deployment, ok := EnterpriseDeployments[deploymentName]
 	if ok {
-		delete(EnterpriseDeployments, enterpriseServer)
+		_, ok := EnterpriseProfiles[deployment.Deployment.ProfileName]
+		if ok {
+			undeployEntpriseProfile(deployment.Deployment.ProfileName)
+		}
+
+		delete(EnterpriseDeployments, deploymentName)
+
 		w.WriteHeader(200)
 		fmt.Fprintf(w, "Succeed.")
 	} else {

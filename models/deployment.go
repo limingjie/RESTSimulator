@@ -1,5 +1,9 @@
 package models
 
+import (
+	"../logger"
+)
+
 type (
 	// Deployment struct
 	Deployment struct {
@@ -9,3 +13,12 @@ type (
 		Status         string `json:"status"`
 	}
 )
+
+// Check Deployment
+func (deployment *Deployment) Check() {
+	if deployment.Status == "" {
+		deployment.Status = "Deployed"
+	}
+
+	logger.Logger("Deployment.Check", "Deployed")
+}

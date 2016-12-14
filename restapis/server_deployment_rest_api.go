@@ -15,6 +15,22 @@ import (
 // ServerDeployments map
 var ServerDeployments = make(map[string]models.ServerDeployment)
 
+func deployServerProfile(profileName string) {
+	profile, ok := ServerProfiles[profileName]
+	if ok {
+		profile.Profile.Deploy()
+		ServerProfiles[profileName] = profile
+	}
+}
+
+func undeployServerProfile(profileName string) {
+	profile, ok := ServerProfiles[profileName]
+	if ok {
+		profile.Profile.Undeploy()
+		ServerProfiles[profileName] = profile
+	}
+}
+
 // PostServerDeployment - POST /deployments/servers
 func PostServerDeployment(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	deployment := models.ServerDeployment{}
@@ -23,6 +39,13 @@ func PostServerDeployment(w http.ResponseWriter, r *http.Request, _ httprouter.P
 	msg, _ := json.Marshal(deployment)
 	logger.Logger("PostServerDeployment", string(msg))
 
+	_, ok := ServerProfiles[deployment.Deployment.ProfileName]
+	if !ok {
+		w.WriteHeader(400)
+		fmt.Fprintf(w, "Error: Inexist Deployment Profile.")
+		return
+	}
+
 	siebelServer := deployment.ServerDeployParams.SiebelServer
 	if len(siebelServer) > 0 {
 		_, ok := ServerDeployments[siebelServer]
@@ -30,7 +53,10 @@ func PostServerDeployment(w http.ResponseWriter, r *http.Request, _ httprouter.P
 			w.WriteHeader(409)
 			fmt.Fprintf(w, "Error: Server deployment with same name already exists.")
 		} else {
+			deployment.Deployment.Check()
 			ServerDeployments[siebelServer] = deployment
+
+			deployServerProfile(deployment.Deployment.ProfileName)
 
 			w.WriteHeader(201)
 			fmt.Fprintf(w, "Succeed.")
@@ -91,11 +117,25 @@ func PutServerDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.P
 	msg, _ := json.Marshal(deployment)
 	logger.Logger("PutServerDeployment", string(msg))
 
-	siebelServer := ps.ByName("deploymentname")
-	_, ok := ServerDeployments[siebelServer]
+	_, ok := ServerProfiles[deployment.Deployment.ProfileName]
+	if !ok {
+		w.WriteHeader(400)
+		fmt.Fprintf(w, "Error: Expecting Deployment Profile.")
+		return
+	}
+
+	deploymentName := ps.ByName("deploymentname")
+	_, ok = ServerDeployments[deploymentName]
 	if ok {
-		if deployment.ServerDeployParams.SiebelServer == siebelServer {
-			ServerDeployments[siebelServer] = deployment
+		if deployment.ServerDeployParams.SiebelServer == deploymentName {
+			oldProfileName := ServerDeployments[deploymentName].Deployment.ProfileName
+			if deployment.Deployment.ProfileName != oldProfileName {
+				deployServerProfile(deployment.Deployment.ProfileName)
+				undeployServerProfile(oldProfileName)
+			}
+
+			ServerDeployments[deploymentName] = deployment
+
 			w.WriteHeader(200)
 			fmt.Fprintf(w, "Succeed.")
 		} else {
@@ -110,13 +150,19 @@ func PutServerDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.P
 
 // DeleteServerDeployment - DELETE /deployments/servers/:deploymentname
 func DeleteServerDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	siebelServer := ps.ByName("deploymentname")
+	deploymentName := ps.ByName("deploymentname")
 
-	logger.Logger("DeleteServerDeployment", siebelServer)
+	logger.Logger("DeleteServerDeployment", deploymentName)
 
-	_, ok := ServerDeployments[siebelServer]
+	deployment, ok := ServerDeployments[deploymentName]
 	if ok {
-		delete(ServerDeployments, siebelServer)
+		_, ok := ServerProfiles[deployment.Deployment.ProfileName]
+		if ok {
+			undeployServerProfile(deployment.Deployment.ProfileName)
+		}
+
+		delete(ServerDeployments, deploymentName)
+
 		w.WriteHeader(200)
 		fmt.Fprintf(w, "Succeed.")
 	} else {
