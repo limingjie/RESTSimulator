@@ -46,6 +46,20 @@ func main() {
 	router.PUT("/cloudgateway/v1.0/deployments/servers/:deploymentname", restapis.PutServerDeployment)
 	router.DELETE("/cloudgateway/v1.0/deployments/servers/:deploymentname", restapis.DeleteServerDeployment)
 
+	// CacheServer Profile APIs
+	router.POST("/cloudgateway/v1.0/profiles/cacheserver", restapis.PostCacheServerProfile)
+	router.GET("/cloudgateway/v1.0/profiles/cacheserver", restapis.GetCacheServerProfiles)
+	router.GET("/cloudgateway/v1.0/profiles/cacheserver/:profilename", restapis.GetCacheServerProfile)
+	router.PUT("/cloudgateway/v1.0/profiles/cacheserver/:profilename", restapis.PutCacheServerProfile)
+	router.DELETE("/cloudgateway/v1.0/profiles/cacheserver/:profilename", restapis.DeleteCacheServerProfile)
+
+	// CacheClient Profile APIs
+	router.POST("/cloudgateway/v1.0/profiles/cacheclient", restapis.PostCacheClientProfile)
+	router.GET("/cloudgateway/v1.0/profiles/cacheclient", restapis.GetCacheClientProfiles)
+	router.GET("/cloudgateway/v1.0/profiles/cacheclient/:profilename", restapis.GetCacheClientProfile)
+	router.PUT("/cloudgateway/v1.0/profiles/cacheclient/:profilename", restapis.PutCacheClientProfile)
+	router.DELETE("/cloudgateway/v1.0/profiles/cacheclient/:profilename", restapis.DeleteCacheClientProfile)
+
 	fmt.Printf("RESTful URL - http://localhost:8889/cloudgateway/v1.0/\n")
 	log.Fatal(http.ListenAndServe(":8889", router))
 }
