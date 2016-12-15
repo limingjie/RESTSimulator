@@ -18,6 +18,7 @@
 - DELETE /profiles/enterprises/{profilename}
   - 200 - Succeed.
   - 404 - Error: Enterprise profile does not exist.
+- All Enterprise/Server/SWSM/Cache Profile and Deployment REST APIs are available.
 
 ## Compile and Run
 
@@ -35,7 +36,7 @@
 ```sh
 $ curl -i -H "Content-Type: application/json" \
 >      -d '{"profile": {"profileName": "bar"}, "enterpriseConfigParams": {"dbUsername": "barbar"}}' \
->      -X POST http://localhost:8888/profiles/enterprises
+>      -X POST http://localhost:8888/cloudgateway/v1.0/profiles/enterprises
 HTTP/1.1 201 Created
 Date: Mon, 12 Dec 2016 16:41:01 GMT
 Content-Length: 8
@@ -45,7 +46,7 @@ Succeed.
 
 $ curl -i -H "Content-Type: application/json" \
 >      -d '{"profile": {"profileName": "foo"}, "enterpriseConfigParams": {"dbUsername": "foofoo"}}' \
->      -X POST http://localhost:8888/profiles/enterprises
+>      -X POST http://localhost:8888/cloudgateway/v1.0/profiles/enterprises
 HTTP/1.1 201 Created
 Date: Mon, 12 Dec 2016 16:41:01 GMT
 Content-Length: 8
@@ -55,7 +56,7 @@ Succeed.
 
 $ curl -i -H "Content-Type: application/json" \
 >      -d '{"profile": {"profileName": "bar"}, "enterpriseConfigParams": {"dbUsername": "barbar"}}' \
->      -X POST http://localhost:8888/profiles/enterprises
+>      -X POST http://localhost:8888/cloudgateway/v1.0/profiles/enterprises
 HTTP/1.1 409 Conflict
 Date: Mon, 12 Dec 2016 16:41:02 GMT
 Content-Length: 25
@@ -64,7 +65,7 @@ Content-Type: text/plain; charset=utf-8
 Error: Duplicate Profile.
 
 $ curl -i -H "Accept: application/json" -H "Content-Type: application/json" \
->      -X GET http://localhost:8888/profiles/enterprises/foo
+>      -X GET http://localhost:8888/cloudgateway/v1.0/profiles/enterprises/foo
 HTTP/1.1 200 OK
 Content-Type: application/json
 Date: Mon, 12 Dec 2016 16:30:26 GMT
@@ -73,7 +74,7 @@ Content-Length: 549
 {"profile":{"profileName":"foo","accessPermission":"","lastUpdated":"2016/12/13 00:30:25"},"enterpriseConfigParams":{"databasePlatform":"","connectString":"","tableOwner":"","dbUsername":"foofoo","dbUserpasswd":"","odbcDataSource":"","sqlDatabase":"","sqlServer":"","db2DatabaseAlias":"","db2CurrentSQLID":"","encrypt":"","siebelEncryption":"","keyFileName":"","keyFilePassword":"","peerAuth":"","peerCertValidation":"","caCertFileName":"","certFileNameServer":"","requestServer":"","secAdptMode":"","serverFileSystem":"","cloudRegistryAddress":""}}
 
 $ curl -i -H "Accept: application/json" -H "Content-Type: application/json" \
->      -X GET http://localhost:8888/profiles/enterprises/foobar
+>      -X GET http://localhost:8888/cloudgateway/v1.0/profiles/enterprises/foobar
 HTTP/1.1 404 Not Found
 Date: Mon, 12 Dec 2016 16:31:06 GMT
 Content-Length: 17
