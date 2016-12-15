@@ -15,7 +15,7 @@ import (
 // EnterpriseDeployments map
 var EnterpriseDeployments = make(map[string]models.EnterpriseDeployment)
 
-func deployEntpriseProfile(profileName string) {
+func deployEnterpriseProfile(profileName string) {
 	profile, ok := EnterpriseProfiles[profileName]
 	if ok {
 		profile.Profile.Deploy()
@@ -23,7 +23,7 @@ func deployEntpriseProfile(profileName string) {
 	}
 }
 
-func undeployEntpriseProfile(profileName string) {
+func undeployEnterpriseProfile(profileName string) {
 	profile, ok := EnterpriseProfiles[profileName]
 	if ok {
 		profile.Profile.Undeploy()
@@ -56,7 +56,7 @@ func PostEnterpriseDeployment(w http.ResponseWriter, r *http.Request, _ httprout
 			deployment.Deployment.Check()
 			EnterpriseDeployments[deploymentName] = deployment
 
-			deployEntpriseProfile(deployment.Deployment.ProfileName)
+			deployEnterpriseProfile(deployment.Deployment.ProfileName)
 
 			w.WriteHeader(201)
 			fmt.Fprintf(w, "Succeed.")
@@ -130,8 +130,8 @@ func PutEnterpriseDeployment(w http.ResponseWriter, r *http.Request, ps httprout
 		if deployment.EnterpriseDeployParams.EnterpriseServer == deploymentName {
 			oldProfileName := EnterpriseDeployments[deploymentName].Deployment.ProfileName
 			if deployment.Deployment.ProfileName != oldProfileName {
-				deployEntpriseProfile(deployment.Deployment.ProfileName)
-				undeployEntpriseProfile(oldProfileName)
+				deployEnterpriseProfile(deployment.Deployment.ProfileName)
+				undeployEnterpriseProfile(oldProfileName)
 			}
 
 			EnterpriseDeployments[deploymentName] = deployment
@@ -158,7 +158,7 @@ func DeleteEnterpriseDeployment(w http.ResponseWriter, r *http.Request, ps httpr
 	if ok {
 		_, ok := EnterpriseProfiles[deployment.Deployment.ProfileName]
 		if ok {
-			undeployEntpriseProfile(deployment.Deployment.ProfileName)
+			undeployEnterpriseProfile(deployment.Deployment.ProfileName)
 		}
 
 		delete(EnterpriseDeployments, deploymentName)

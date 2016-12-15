@@ -32,6 +32,13 @@ func main() {
 	router.PUT("/cloudgateway/v1.0/deployments/enterprises/:deploymentname", restapis.PutEnterpriseDeployment)
 	router.DELETE("/cloudgateway/v1.0/deployments/enterprises/:deploymentname", restapis.DeleteEnterpriseDeployment)
 
+	// SWSM Deployment APIs
+	router.POST("/cloudgateway/v1.0/deployments/swsm", restapis.PostSWSMDeployment)
+	router.GET("/cloudgateway/v1.0/deployments/swsm", restapis.GetSWSMDeployments)
+	router.GET("/cloudgateway/v1.0/deployments/swsm/:deploymentname", restapis.GetSWSMDeployment)
+	router.PUT("/cloudgateway/v1.0/deployments/swsm/:deploymentname", restapis.PutSWSMDeployment)
+	router.DELETE("/cloudgateway/v1.0/deployments/swsm/:deploymentname", restapis.DeleteSWSMDeployment)
+
 	// Server Profile APIs
 	router.POST("/cloudgateway/v1.0/profiles/servers", restapis.PostServerProfile)
 	router.GET("/cloudgateway/v1.0/profiles/servers", restapis.GetServerProfiles)
@@ -45,6 +52,13 @@ func main() {
 	router.GET("/cloudgateway/v1.0/deployments/servers/:deploymentname", restapis.GetServerDeployment)
 	router.PUT("/cloudgateway/v1.0/deployments/servers/:deploymentname", restapis.PutServerDeployment)
 	router.DELETE("/cloudgateway/v1.0/deployments/servers/:deploymentname", restapis.DeleteServerDeployment)
+
+	// SWSM Profile APIs
+	router.POST("/cloudgateway/v1.0/profiles/swsm", restapis.PostSWSMProfile)
+	router.GET("/cloudgateway/v1.0/profiles/swsm", restapis.GetSWSMProfiles)
+	router.GET("/cloudgateway/v1.0/profiles/swsm/:profilename", restapis.GetSWSMProfile)
+	router.PUT("/cloudgateway/v1.0/profiles/swsm/:profilename", restapis.PutSWSMProfile)
+	router.DELETE("/cloudgateway/v1.0/profiles/swsm/:profilename", restapis.DeleteSWSMProfile)
 
 	// CacheServer Profile APIs
 	router.POST("/cloudgateway/v1.0/profiles/cacheserver", restapis.PostCacheServerProfile)
