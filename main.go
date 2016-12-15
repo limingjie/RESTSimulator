@@ -9,6 +9,8 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
+var port = ":8889"
+
 // Index - For /
 func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	fmt.Fprint(w, "Welcome!\n")
@@ -32,13 +34,6 @@ func main() {
 	router.PUT("/cloudgateway/v1.0/deployments/enterprises/:deploymentname", restapis.PutEnterpriseDeployment)
 	router.DELETE("/cloudgateway/v1.0/deployments/enterprises/:deploymentname", restapis.DeleteEnterpriseDeployment)
 
-	// SWSM Deployment APIs
-	router.POST("/cloudgateway/v1.0/deployments/swsm", restapis.PostSWSMDeployment)
-	router.GET("/cloudgateway/v1.0/deployments/swsm", restapis.GetSWSMDeployments)
-	router.GET("/cloudgateway/v1.0/deployments/swsm/:deploymentname", restapis.GetSWSMDeployment)
-	router.PUT("/cloudgateway/v1.0/deployments/swsm/:deploymentname", restapis.PutSWSMDeployment)
-	router.DELETE("/cloudgateway/v1.0/deployments/swsm/:deploymentname", restapis.DeleteSWSMDeployment)
-
 	// Server Profile APIs
 	router.POST("/cloudgateway/v1.0/profiles/servers", restapis.PostServerProfile)
 	router.GET("/cloudgateway/v1.0/profiles/servers", restapis.GetServerProfiles)
@@ -59,6 +54,13 @@ func main() {
 	router.GET("/cloudgateway/v1.0/profiles/swsm/:profilename", restapis.GetSWSMProfile)
 	router.PUT("/cloudgateway/v1.0/profiles/swsm/:profilename", restapis.PutSWSMProfile)
 	router.DELETE("/cloudgateway/v1.0/profiles/swsm/:profilename", restapis.DeleteSWSMProfile)
+
+	// SWSM Deployment APIs
+	router.POST("/cloudgateway/v1.0/deployments/swsm", restapis.PostSWSMDeployment)
+	router.GET("/cloudgateway/v1.0/deployments/swsm", restapis.GetSWSMDeployments)
+	router.GET("/cloudgateway/v1.0/deployments/swsm/:deploymentname", restapis.GetSWSMDeployment)
+	router.PUT("/cloudgateway/v1.0/deployments/swsm/:deploymentname", restapis.PutSWSMDeployment)
+	router.DELETE("/cloudgateway/v1.0/deployments/swsm/:deploymentname", restapis.DeleteSWSMDeployment)
 
 	// CacheServer Profile APIs
 	router.POST("/cloudgateway/v1.0/profiles/cacheserver", restapis.PostCacheServerProfile)
@@ -81,6 +83,6 @@ func main() {
 	router.PUT("/cloudgateway/v1.0/profiles/cacheclient/:profilename", restapis.PutCacheClientProfile)
 	router.DELETE("/cloudgateway/v1.0/profiles/cacheclient/:profilename", restapis.DeleteCacheClientProfile)
 
-	fmt.Printf("RESTful URL - http://localhost:8889/cloudgateway/v1.0/\n")
-	log.Fatal(http.ListenAndServe(":8889", router))
+	fmt.Printf("RESTful API URL - http://localhost" + port + "/cloudgateway/v1.0/\n")
+	log.Fatal(http.ListenAndServe(port, router))
 }
