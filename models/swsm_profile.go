@@ -3,151 +3,179 @@ package models
 type (
 	// SWE struct
 	SWE struct {
-		Language             string `json:"language"`
-		SessionMonitor       string `json:"sessionMonitor"`
-		AllowStats           string `json:"allowStats"`
-		ClientRootDir        string `json:"clientRootDir"`
-		MaxQueryStringLength string `json:"maxQueryStringLength"`
+		SWSMMode             string `json:"SWSMMode"`
+		Language             string `json:"Language"`
+		SessionMonitor       string `json:"SessionMonitor"`
+		AllowStats           string `json:"AllowStats"`
+		ClientRootDir        string `json:"ClientRootDir"`
+		MaxQueryStringLength string `json:"MaxQueryStringLength"`
+		SeedFile             string `json:"SeedFile"`
 	}
 
 	// ConnMgmt struct
 	ConnMgmt struct {
-		EnableVirtualHosts      string `json:"enableVirtualHosts"`
-		VirtualHostsFileContent string `json:"virtualHostsFileContent"`
-		CertFileName            string `json:"certFileName"`
-		CACertFileName          string `json:"cACertFileName"`
-		KeyFileName             string `json:"keyFileName"`
-		KeyFilePassword         string `json:"keyFilePassword"`
-		PeerAuth                string `json:"peerAuth"`
-		PeerCertValidation      string `json:"peerCertValidation"`
+		EnableVirtualHosts string `json:"EnableVirtualHosts"`
+		VirtualHostsFile   string `json:"VirtualHostsFile"`
+		CertFileName       string `json:"CertFileName"`
+		CACertFileName     string `json:"CACertFileName"`
+		KeyFileName        string `json:"KeyFileName"`
+		KeyFilePassword    string `json:"KeyFilePassword"`
+		PeerAuth           string `json:"PeerAuth"`
+		PeerCertValidation string `json:"PeerCertValidation"`
 	}
 
 	// AuthenticationProperties struct
 	AuthenticationProperties struct {
-		EncryptedPassword         string `json:"encryptedPassword"`
-		EncryptSessionID          string `json:"encryptSessionId"`
-		AnonUserName              string `json:"anonUserName"`
-		AnonPassword              string `json:"anonPassword"`
-		ClientCertificate         string `json:"clientCertificate"`
-		TrustToken                string `json:"trustToken"`
-		GuestSessionTimeout       string `json:"guestSessionTimeout"`
-		SessionTimeout            string `json:"sessionTimeout"`
-		SessionTimeoutWarning     string `json:"sessionTimeoutWarning"`
-		SessionTimeoutWLMethod    string `json:"sessionTimeoutWLMethod"`
-		SessionTimeoutWLCommand   string `json:"sessionTimeoutWLCommand"`
-		SingleSignOn              string `json:"singleSignOn"`
-		UserSpec                  string `json:"userSpec"`
-		SubUserSpec               string `json:"subUserSpec"`
-		UserSpecSource            string `json:"userSpecSource"`
-		ProtectedVirtualDirectory string `json:"protectedVirtualDirectory"`
-		IntegratedDomainAuth      string `json:"integratedDomainAuth"`
-		SiebEntSecToken           string `json:"siebEntSecToken"`
-		AuthenticationType        string `json:"authenticationType"`
-		OAuthEndPoint             string `json:"oAuthEndPoint"`
-		SessKeepAlive             string `json:"sessKeepAlive"`
+		EncryptedPassword         bool   `json:"EncryptedPassword"`
+		EncryptSessionID          bool   `json:"EncryptSessionId"`
+		AnonUserName              string `json:"AnonUserName"`
+		AnonPassword              string `json:"AnonPassword"`
+		ClientCertificate         bool   `json:"ClientCertificate"`
+		TrustToken                string `json:"TrustToken"`
+		GuestSessionTimeout       string `json:"GuestSessionTimeout"`
+		SessionTimeout            string `json:"SessionTimeout"`
+		SessionTimeoutWarning     string `json:"SessionTimeoutWarning"`
+		SessionTimeoutWLMethod    string `json:"SessionTimeoutWLMethod"`
+		SessionTimeoutWLCommand   string `json:"SessionTimeoutWLCommand"`
+		SingleSignOn              bool   `json:"SingleSignOn"`
+		UserSpec                  string `json:"UserSpec"`
+		SubUserSpec               string `json:"SubUserSpec"`
+		UserSpecSource            string `json:"UserSpecSource"`
+		ProtectedVirtualDirectory string `json:"ProtectedVirtualDirectory"`
+		IntegratedDomainAuth      bool   `json:"IntegratedDomainAuth"`
+		SiebEntSecToken           string `json:"SiebEntSecToken"`
+		AuthenticationType        string `json:"AuthenticationType"`
+		OAuthEndPoint             string `json:"OAuthEndPoint"`
+		SessKeepAlive             string `json:"SessKeepAlive"`
 	}
 
 	// Defaults struct
 	Defaults struct {
-		AuthenticationProperties AuthenticationProperties `json:"authenticationProperties"`
-		StatsPage                string                   `json:"statsPage"`
-		HTTPPort                 string                   `json:"httpPort"`
-		HTTPSPort                string                   `json:"httpSPort"`
-		EnableFQDN               string                   `json:"enableFQDN"`
-		FQDN                     string                   `json:"fqdn"`
-		DoCompression            string                   `json:"doCompression"`
-		Enabled                  string                   `json:"enabled"`
-		SessionTracking          string                   `json:"sessionTracking"`
+		AuthenticationProperties AuthenticationProperties `json:"AuthenticationProperties"`
+		StatsPage                string                   `json:"StatsPage"`
+		HTTPPort                 string                   `json:"HTTPPort"`
+		HTTPSPort                string                   `json:"HTTPSPort"`
+		EnableFQDN               bool                     `json:"EnableFQDN"`
+		FQDN                     string                   `json:"FQDN"`
+		DoCompression            string                   `json:"DoCompression"`
+		Enabled                  bool                     `json:"Enabled"`
+		SessionTracking          string                   `json:"SessionTracking"`
 	}
 
 	// LogProperties struct
 	LogProperties struct {
-		LogFILE           string `json:"logFILE"`
-		LogFileDirectory  string `json:"logFileDirectory"`
-		LogFileName       string `json:"logFileName"`
-		LogLevel          string `json:"logLevel"`
-		MaxLogFileSize    string `json:"maxLogFileSize"`
-		MaxLogBackupIndex string `json:"maxLogBackupIndex"`
-		Lang              string `json:"lang"`
+		LogFILE           string `json:"LogFILE"`
+		LogFileDirectory  string `json:"LogFileDirectory"`
+		LogFileName       string `json:"LogFileName"`
+		LogLevel          string `json:"LogLevel"`
+		MaxLogFileSize    string `json:"MaxLogFileSize"`
+		MaxLogBackupIndex string `json:"MaxLogBackupIndex"`
+		Lang              string `json:"Lang"`
 	}
 
-	// CHANNELDEFAULT struct
-	CHANNELDEFAULT struct {
-		LogProperties LogProperties `json:"logProperties"`
+	// ChannelDefault struct
+	ChannelDefault struct {
+		LogProperties LogProperties `json:"LogProperties"`
 	}
 
 	// UI struct
 	UI struct {
-		LogProperties LogProperties `json:"logProperties"`
+		LogProperties LogProperties `json:"LogProperties"`
+	}
+
+	// RESTResourceParam struct
+	RESTResourceParam struct {
+		Name         string `json:"Name"`
+		Alias        string `json:"Alias"`
+		DefaultValue string `json:"DefaultValue"`
+	}
+
+	// RESTResourceParamList struct
+	RESTResourceParamList struct {
+		ResourceName string              `json:"ResourceName"`
+		ParamList    []RESTResourceParam `json:"ParamList"`
+	}
+
+	// RESTInBoundDefault struct
+	RESTInBoundDefault struct {
+		ObjMgr                   string                   `json:"ObjMgr"`
+		MaxPoolSize              string                   `json:"MaxPoolSize"`
+		MinPoolSize              string                   `json:"MinPoolSize"`
+		Baseuri                  string                   `json:"Baseuri"`
+		AuthenticationProperties AuthenticationProperties `json:"AuthenticationProperties"`
+		LogProperties            LogProperties            `json:"LogProperties"`
+		RESTResourceParamList    []RESTResourceParamList  `json:"RESTResourceParamList"`
 	}
 
 	// EAI struct
 	EAI struct {
-		LogProperties LogProperties `json:"logProperties"`
+		LogProperties LogProperties `json:"LogProperties"`
 	}
 
-	// RESTINBOUND struct
-	RESTINBOUND struct {
-		AuthenticationProperties AuthenticationProperties `json:"authenticationProperties"`
-		LogProperties            LogProperties            `json:"logProperties"`
-		MaxPoolSize              string                   `json:"maxPoolSize"`
-		MinPoolSize              string                   `json:"minPoolSize"`
-		Baseuri                  string                   `json:"baseuri"`
+	// RESTInBound struct
+	RESTInBound struct {
+		ObjMgr                   string                   `json:"ObjMgr"`
+		Version                  string                   `json:"Version"`
+		ResourceType             string                   `json:"ResourceType"`
+		AuthenticationProperties AuthenticationProperties `json:"AuthenticationProperties"`
+		LogProperties            LogProperties            `json:"LogProperties"`
+		RESTResourceParamList    []RESTResourceParamList  `json:"RESTResourceParamList"`
 	}
 
 	// RESTOUTBOUND struct
 	RESTOUTBOUND struct {
-		LogProperties LogProperties `json:"logProperties"`
+		LogProperties LogProperties `json:"LogProperties"`
 	}
 
 	// SOAPOUTBOUND struct
 	SOAPOUTBOUND struct {
-		LogProperties LogProperties `json:"logProperties"`
+		LogProperties LogProperties `json:"LogProperties"`
 	}
 
 	// JBS struct
 	JBS struct {
-		LogProperties LogProperties `json:"logProperties"`
+		LogProperties LogProperties `json:"LogProperties"`
 		SessKeepAlive string        `json:"sessKeepAlive"`
 	}
 
 	// DAV struct
 	DAV struct {
-		LogProperties LogProperties `json:"logProperties"`
+		LogProperties LogProperties `json:"LogProperties"`
 	}
 
 	// Application struct
 	Application struct {
-		Name                     string                   `json:"name"`
-		Language                 string                   `json:"language"`
-		EnableExtServiceOnly     string                   `json:"enableExtServiceOnly"`
-		UseAnonPool              string                   `json:"useAnonPool"`
-		AnonUserPool             string                   `json:"anonUserPool"`
-		StartCommand             string                   `json:"startCommand"`
-		AuthenticationProperties AuthenticationProperties `json:"authenticationProperties"`
+		Name                     string                   `json:"Name"`
+		Language                 string                   `json:"Language"`
+		EnableExtServiceOnly     bool                     `json:"EnableExtServiceOnly"`
+		UseAnonPool              bool                     `json:"UseAnonPool"`
+		AnonUserPool             string                   `json:"AnonUserPool"`
+		StartCommand             string                   `json:"StartCommand"`
+		WebPublicRootDir         string                   `json:"WebPublicRootDir"`
+		AuthenticationProperties AuthenticationProperties `json:"AuthenticationProperties"`
 	}
 
 	// SWSMConfigParams struct
 	SWSMConfigParams struct {
-		SWE                      SWE                      `json:"swe"`
-		ConnMgmt                 ConnMgmt                 `json:"connMgmt"`
-		AuthenticationProperties AuthenticationProperties `json:"authenticationProperties"`
-		Defaults                 Defaults                 `json:"defaults"`
-		LogProperties            LogProperties            `json:"logProperties"`
-		CHANNELDEFAULT           CHANNELDEFAULT           `json:"channelDefault"`
-		UI                       UI                       `json:"ui"`
-		EAI                      EAI                      `json:"eai"`
-		RESTINBOUND              RESTINBOUND              `json:"restInbound"`
-		RESTOUTBOUND             RESTOUTBOUND             `json:"restOutbound"`
-		SOAPOUTBOUND             SOAPOUTBOUND             `json:"soapOutbound"`
-		JBS                      JBS                      `json:"jbs"`
-		DAV                      DAV                      `json:"dav"`
-		Applications             []Application            `json:"applications"`
+		SWE                SWE                `json:"swe"`
+		ConnMgmt           ConnMgmt           `json:"ConnMgmt"`
+		Defaults           Defaults           `json:"defaults"`
+		LogProperties      LogProperties      `json:"LogProperties"`
+		ChannelDefault     ChannelDefault     `json:"CHANNELDEFAULT"`
+		UI                 UI                 `json:"UI"`
+		RESTInBoundDefault RESTInBoundDefault `json:"RESTInBoundDefault"`
+		EAI                EAI                `json:"EAI"`
+		RESTInBound        []RESTInBound      `json:"RESTInBound"`
+		RESTOUTBOUND       RESTOUTBOUND       `json:"RESTOUTBOUND"`
+		SOAPOUTBOUND       SOAPOUTBOUND       `json:"SOAPOUTBOUND"`
+		JBS                JBS                `json:"JBS"`
+		DAV                DAV                `json:"DAV"`
+		Applications       []Application      `json:"Applications"`
 	}
 
 	// SWSMProfile struct
 	SWSMProfile struct {
-		Profile          Profile          `json:"profile"`
-		SWSMConfigParams SWSMConfigParams `json:"swsmConfigParams"`
+		Profile          Profile          `json:"Profile"`
+		SWSMConfigParams SWSMConfigParams `json:"ConfigParam"`
 	}
 )

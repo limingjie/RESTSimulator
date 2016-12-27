@@ -9,16 +9,16 @@ import (
 type (
 	// Profile struct
 	Profile struct {
-		ProfileName      string `json:"profileName"`
-		AccessPermission string `json:"accessPermission"`
-		LastUpdated      string `json:"lastUpdated"`
-		Count            int    `json:"count"`
+		ProfileName      string `json:"ProfileName"`
+		AccessPermission string `json:"AccessPermission"`
+		LastUpdated      string `json:"LastUpdated"`
+		count            int
 	}
 )
 
 // Deploy - Deploy the profile
 func (profile *Profile) Deploy() {
-	profile.Count++
+	profile.count++
 	profile.AccessPermission = "READONLY"
 
 	msg, _ := json.Marshal(profile)
@@ -27,8 +27,8 @@ func (profile *Profile) Deploy() {
 
 // Undeploy - Undeploy the profile
 func (profile *Profile) Undeploy() {
-	profile.Count--
-	if profile.Count == 0 {
+	profile.count--
+	if profile.count == 0 {
 		profile.AccessPermission = "READWRITE"
 	}
 

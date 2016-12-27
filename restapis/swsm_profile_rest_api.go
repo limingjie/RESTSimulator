@@ -18,7 +18,13 @@ var SWSMProfiles = make(map[string]models.SWSMProfile)
 
 // PostSWSMProfile - POST /profiles/swsm
 func PostSWSMProfile(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	profile := models.SWSMProfile{}
+	applications := make([]models.Application, 1)
+	profile := models.SWSMProfile{
+		SWSMConfigParams: models.SWSMConfigParams{
+			Applications: applications,
+		},
+	}
+
 	json.NewDecoder(r.Body).Decode(&profile)
 
 	msg, _ := json.Marshal(profile)
@@ -49,7 +55,7 @@ func PostSWSMProfile(w http.ResponseWriter, r *http.Request, _ httprouter.Params
 // GetSWSMProfiles - GET /profiles/swsm
 func GetSWSMProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	var profilesJSON bytes.Buffer
-	profilesJSON.WriteString("{\"swsmProfile\":[")
+	profilesJSON.WriteString("{\"SWSMProfile\":[")
 
 	logger.Logger("GetSWSMProfiles", strconv.Itoa(len(SWSMProfiles)))
 
