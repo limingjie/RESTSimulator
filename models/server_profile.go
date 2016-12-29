@@ -3,26 +3,25 @@ package models
 type (
 	// ServerConfigParams struct
 	ServerConfigParams struct {
-		SiebelEnterprise           string `json:"siebelEnterprise"`
-		AnonLoginUserName          string `json:"anonLoginUserName"`
-		AnonLoginPassword          string `json:"anonLoginPassword"`
-		ModifyServerEncrypt        string `json:"modifyServerEncrypt"`
-		ModifyServerAuth           string `json:"modifyServerAuth"`
-		ClusteringEnvironmentSetup string `json:"clusteringEnvironmentSetup"`
-		SiebelClusterGateway       string `json:"siebelClusterGateway"`
-		UseOracleConnector         string `json:"useOracleConnector"`
-		Encrypt                    string `json:"encrypt"`
-		CACertFileName             string `json:"cACertFileName"`
-		CertFileNameServer         string `json:"certFileNameServer"`
-		UserName                   string `json:"userName"`
-		Password                   string `json:"password"`
-		NameserverHostName         string `json:"nameserverHostName"`
-		NamesrvrPort               string `json:"namesrvrPort"`
+		SiebelEnterprise           string `json:"SiebelEnterprise"`
+		ModifyServerEncrypt        bool   `json:"ModifyServerEncrypt"`
+		ModifyServerAuth           bool   `json:"ModifyServerAuth"`
+		ClusteringEnvironmentSetup string `json:"ClusteringEnvironmentSetup"`
+		SiebelClusterGateway       string `json:"SiebelClusterGateway"`
+		UseOracleConnector         string `json:"UseOracleConnector"`
+		Encrypt                    string `json:"Encrypt"`
+		CACertFileName             string `json:"CACertFileName"`
+		CertFileNameServer         string `json:"CertFileNameServer"`
+		Username                   string `json:"Username"`
+		Password                   string `json:"Password"`
+		NameserverHostName         string `json:"NameserverHostName"`
+		NamesrvrPort               string `json:"NamesrvrPort"`
+		SQLServerPort              string `json:"SqlServerPort"`
 	}
 
 	// ServerProfile struct
 	ServerProfile struct {
-		Profile            Profile            `json:"profile"`
-		ServerConfigParams ServerConfigParams `json:"serverConfigParams"`
+		Profile            Profile            `json:"Profile"`
+		ServerConfigParams ServerConfigParams `json:"ServerConfigParams"`
 	}
 )

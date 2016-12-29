@@ -3,13 +3,13 @@ package models
 type (
 	// EnterpriseDeployParams struct
 	EnterpriseDeployParams struct {
-		EnterpriseServer string `json:"enterpriseServer"`
-		EnterpriseDesc   string `json:"enterpriseDesc"`
+		SiebelEnterprise string `json:"SiebelEnterprise"`
+		EnterpriseDesc   string `json:"EnterpriseDesc"`
 	}
 
 	// EnterpriseDeployment struct
 	EnterpriseDeployment struct {
-		Deployment             Deployment             `json:"deploymentInfo"`
-		EnterpriseDeployParams EnterpriseDeployParams `json:"enterpriseDeployParams"`
+		Deployment             Deployment             `json:"DeploymentInfo"`
+		EnterpriseDeployParams EnterpriseDeployParams `json:"EnterpriseDeployParams"`
 	}
 )

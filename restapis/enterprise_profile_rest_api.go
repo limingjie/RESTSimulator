@@ -49,7 +49,7 @@ func PostEnterpriseProfile(w http.ResponseWriter, r *http.Request, _ httprouter.
 // GetEnterpriseProfiles - GET /profiles/enterprises
 func GetEnterpriseProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	var profilesJSON bytes.Buffer
-	profilesJSON.WriteString("{\"enterpriseProfile\":[")
+	profilesJSON.WriteString("{\"EnterpriseProfile\":[")
 
 	logger.Logger("GetEnterpriseProfiles", strconv.Itoa(len(EnterpriseProfiles)))
 

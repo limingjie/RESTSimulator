@@ -3,13 +3,13 @@ package models
 type (
 	// SWSMDeployParams struct
 	SWSMDeployParams struct {
-		SWSMNode     string `json:"swsmNode"`
-		SWSMNodeDesc string `json:"swsmNodeDesc"`
+		SWSMNode     string `json:"Node"`
+		SWSMNodeDesc string `json:"NodeDesc"`
 	}
 
 	// SWSMDeployment struct
 	SWSMDeployment struct {
-		Deployment       Deployment       `json:"deploymentInfo"`
-		SWSMDeployParams SWSMDeployParams `json:"swsmDeployParams"`
+		Deployment       Deployment       `json:"DeploymentInfo"`
+		SWSMDeployParams SWSMDeployParams `json:"DeploymentParam"`
 	}
 )

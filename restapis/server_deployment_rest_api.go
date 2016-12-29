@@ -70,7 +70,7 @@ func PostServerDeployment(w http.ResponseWriter, r *http.Request, _ httprouter.P
 // GetServerDeployments - GET /deployments/servers
 func GetServerDeployments(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	var deploymentsJSON bytes.Buffer
-	deploymentsJSON.WriteString("{\"serverDeployment\":[")
+	deploymentsJSON.WriteString("{\"ServerDeployment\":[")
 
 	logger.Logger("GetServerDeployments", strconv.Itoa(len(ServerDeployments)))
 

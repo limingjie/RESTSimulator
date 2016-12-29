@@ -70,7 +70,7 @@ func PostSWSMDeployment(w http.ResponseWriter, r *http.Request, _ httprouter.Par
 // GetSWSMDeployments - GET /deployments/swsm
 func GetSWSMDeployments(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	var deploymentsJSON bytes.Buffer
-	deploymentsJSON.WriteString("{\"swsmDeployment\":[")
+	deploymentsJSON.WriteString("{\"SWSMDeployment\":[")
 
 	logger.Logger("GetSWSMDeployments", strconv.Itoa(len(SWSMDeployments)))
 

@@ -3,17 +3,19 @@ package models
 type (
 	// ServerDeployParams struct
 	ServerDeployParams struct {
-		SiebelServer        string `json:"siebelServer"`
-		SiebelServerDesc    string `json:"siebelServerDesc"`
-		SelectOMSIA         string `json:"selectOMSIA"`
-		EnableCompGroupsSIA string `json:"enableCompGroupsSIA"`
-		SCBPort             string `json:"sCBPort"`
-		LocalSynchMgrPort   string `json:"localSynchMgrPort"`
+		AnonLoginUserName   string `json:"AnonLoginUserName"`
+		AnonLoginPassword   string `json:"AnonLoginPassword"`
+		SiebelServer        string `json:"SiebelServer"`
+		SiebelServerDesc    string `json:"SiebelServerDesc"`
+		SelectOMSIA         string `json:"SelectOMSIA"`
+		EnableCompGroupsSIA string `json:"EnableCompGroupsSIA"`
+		SCBPort             string `json:"SCBPort"`
+		LocalSynchMgrPort   string `json:"LocalSynchMgrPort"`
 	}
 
 	// ServerDeployment struct
 	ServerDeployment struct {
-		Deployment         Deployment         `json:"deploymentInfo"`
-		ServerDeployParams ServerDeployParams `json:"serverDeployParams"`
+		Deployment         Deployment         `json:"DeploymentInfo"`
+		ServerDeployParams ServerDeployParams `json:"ServerDeployParams"`
 	}
 )

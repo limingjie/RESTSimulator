@@ -46,7 +46,7 @@ func PostEnterpriseDeployment(w http.ResponseWriter, r *http.Request, _ httprout
 		return
 	}
 
-	deploymentName := deployment.EnterpriseDeployParams.EnterpriseServer
+	deploymentName := deployment.EnterpriseDeployParams.SiebelEnterprise
 	if len(deploymentName) > 0 {
 		_, ok := EnterpriseDeployments[deploymentName]
 		if ok {
@@ -70,7 +70,7 @@ func PostEnterpriseDeployment(w http.ResponseWriter, r *http.Request, _ httprout
 // GetEnterpriseDeployments - GET /deployments/enterprises
 func GetEnterpriseDeployments(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	var deploymentsJSON bytes.Buffer
-	deploymentsJSON.WriteString("{\"enterpriseDeployment\":[")
+	deploymentsJSON.WriteString("{\"EnterpriseDeployment\":[")
 
 	logger.Logger("GetEnterpriseDeployments", strconv.Itoa(len(EnterpriseDeployments)))
 
@@ -127,7 +127,7 @@ func PutEnterpriseDeployment(w http.ResponseWriter, r *http.Request, ps httprout
 	deploymentName := ps.ByName("deploymentname")
 	_, ok = EnterpriseDeployments[deploymentName]
 	if ok {
-		if deployment.EnterpriseDeployParams.EnterpriseServer == deploymentName {
+		if deployment.EnterpriseDeployParams.SiebelEnterprise == deploymentName {
 			oldProfileName := EnterpriseDeployments[deploymentName].Deployment.ProfileName
 			if deployment.Deployment.ProfileName != oldProfileName {
 				deployEnterpriseProfile(deployment.Deployment.ProfileName)

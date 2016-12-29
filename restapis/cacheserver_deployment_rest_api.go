@@ -70,7 +70,7 @@ func PostCacheServerDeployment(w http.ResponseWriter, r *http.Request, _ httprou
 // GetCacheServerDeployments - GET /deployments/cacheserver
 func GetCacheServerDeployments(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	var deploymentsJSON bytes.Buffer
-	deploymentsJSON.WriteString("{\"cacheServerDeployment\":[")
+	deploymentsJSON.WriteString("{\"CacheServerDeployment\":[")
 
 	logger.Logger("GetCacheServerDeployments", strconv.Itoa(len(CacheServerDeployments)))
 

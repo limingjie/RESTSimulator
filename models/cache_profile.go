@@ -10,7 +10,7 @@ type (
 
 	// CacheProfile struct
 	CacheProfile struct {
-		Profile           Profile           `json:"profile"`
-		CacheConfigParams CacheConfigParams `json:"cacheConfigParams"`
+		Profile           Profile           `json:"Profile"`
+		CacheConfigParams CacheConfigParams `json:"CacheConfigParams"`
 	}
 )

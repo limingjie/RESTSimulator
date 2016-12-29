@@ -49,7 +49,7 @@ func PostServerProfile(w http.ResponseWriter, r *http.Request, _ httprouter.Para
 // GetServerProfiles - GET /profiles/servers
 func GetServerProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	var profilesJSON bytes.Buffer
-	profilesJSON.WriteString("{\"serverProfile\":[")
+	profilesJSON.WriteString("{\"ServerProfile\":[")
 
 	logger.Logger("GetServerProfiles", strconv.Itoa(len(ServerProfiles)))
 
