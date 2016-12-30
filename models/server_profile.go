@@ -12,7 +12,7 @@ type (
 		Encrypt                    string `json:"Encrypt"`
 		CACertFileName             string `json:"CACertFileName"`
 		CertFileNameServer         string `json:"CertFileNameServer"`
-		Username                   string `json:"Username"`
+		Username                   string `json:"UserName"`
 		Password                   string `json:"Password"`
 		NameserverHostName         string `json:"NameserverHostName"`
 		NamesrvrPort               string `json:"NamesrvrPort"`

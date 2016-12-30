@@ -49,7 +49,7 @@ func PostCacheServerProfile(w http.ResponseWriter, r *http.Request, _ httprouter
 // GetCacheServerProfiles - GET /profiles/cacheserver
 func GetCacheServerProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	var profilesJSON bytes.Buffer
-	profilesJSON.WriteString("{\"CacheServerProfile\":[")
+	profilesJSON.WriteString("{\"CacheProfile\":[")
 
 	logger.Logger("GetCacheServerProfiles", strconv.Itoa(len(CacheServerProfiles)))
 
