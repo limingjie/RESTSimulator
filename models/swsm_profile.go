@@ -1,5 +1,6 @@
 package models
 
+/* SWSM 1.0
 type (
 	// SWE struct
 	SWE struct {
@@ -150,8 +151,9 @@ type (
 		SWSMConfigParams SWSMConfigParams `json:"ConfigParam"`
 	}
 )
+SWSM 1.0 */
 
-/* SWSM V2.0
+// SWSM 2.0
 type (
 	// SWE struct
 	SWE struct {
@@ -182,7 +184,6 @@ type (
 		EncryptSessionID          bool   `json:"EncryptSessionId"`
 		AnonUserName              string `json:"AnonUserName"`
 		AnonPassword              string `json:"AnonPassword"`
-		ClientCertificate         bool   `json:"ClientCertificate"`
 		TrustToken                string `json:"TrustToken"`
 		GuestSessionTimeout       string `json:"GuestSessionTimeout"`
 		SessionTimeout            string `json:"SessionTimeout"`
@@ -191,10 +192,7 @@ type (
 		SessionTimeoutWLCommand   string `json:"SessionTimeoutWLCommand"`
 		SingleSignOn              bool   `json:"SingleSignOn"`
 		UserSpec                  string `json:"UserSpec"`
-		SubUserSpec               string `json:"SubUserSpec"`
-		UserSpecSource            string `json:"UserSpecSource"`
 		ProtectedVirtualDirectory string `json:"ProtectedVirtualDirectory"`
-		IntegratedDomainAuth      bool   `json:"IntegratedDomainAuth"`
 		SiebEntSecToken           string `json:"SiebEntSecToken"`
 		AuthenticationType        string `json:"AuthenticationType"`
 		OAuthEndPoint             string `json:"OAuthEndPoint"`
@@ -244,15 +242,15 @@ type (
 
 	// RESTResourceParamList struct
 	RESTResourceParamList struct {
-		ResourceName string              `json:"ResourceName"`
-		ParamList    []RESTResourceParam `json:"ParamList"`
+		OperationName string              `json:"OperationName"`
+		ParamList     []RESTResourceParam `json:"ParamList"`
 	}
 
 	// RESTInBoundDefault struct
 	RESTInBoundDefault struct {
 		ObjMgr                   string                   `json:"ObjMgr"`
-		MaxPoolSize              string                   `json:"MaxPoolSize"`
-		MinPoolSize              string                   `json:"MinPoolSize"`
+		MaxConnections           string                   `json:"MaxConnections"`
+		MinConnections           string                   `json:"MinConnections"`
 		Baseuri                  string                   `json:"Baseuri"`
 		AuthenticationProperties AuthenticationProperties `json:"AuthenticationProperties"`
 		LogProperties            LogProperties            `json:"LogProperties"`
@@ -287,7 +285,7 @@ type (
 	// JBS struct
 	JBS struct {
 		LogProperties LogProperties `json:"LogProperties"`
-		SessKeepAlive string        `json:"sessKeepAlive"`
+		SessKeepAlive string        `json:"SessKeepAlive"`
 	}
 
 	// DAV struct
@@ -312,14 +310,13 @@ type (
 		SWE                SWE                `json:"swe"`
 		ConnMgmt           ConnMgmt           `json:"ConnMgmt"`
 		Defaults           Defaults           `json:"defaults"`
-		LogProperties      LogProperties      `json:"LogProperties"`
-		ChannelDefault     ChannelDefault     `json:"CHANNELDEFAULT"`
+		ChannelDefault     ChannelDefault     `json:"ChannelDefault"`
 		UI                 UI                 `json:"UI"`
 		RESTInBoundDefault RESTInBoundDefault `json:"RESTInBoundDefault"`
 		EAI                EAI                `json:"EAI"`
 		RESTInBound        []RESTInBound      `json:"RESTInBound"`
-		RESTOUTBOUND       RESTOUTBOUND       `json:"RESTOUTBOUND"`
-		SOAPOUTBOUND       SOAPOUTBOUND       `json:"SOAPOUTBOUND"`
+		RESTOUTBOUND       RESTOUTBOUND       `json:"RESTOutBound"`
+		SOAPOUTBOUND       SOAPOUTBOUND       `json:"SOAPOutBound"`
 		JBS                JBS                `json:"JBS"`
 		DAV                DAV                `json:"DAV"`
 		Applications       []Application      `json:"Applications"`
@@ -331,4 +328,3 @@ type (
 		SWSMConfigParams SWSMConfigParams `json:"ConfigParam"`
 	}
 )
-SWSM V2.0 */
