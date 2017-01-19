@@ -83,6 +83,12 @@ func main() {
 	router.PUT("/siebel/v1.0/cloudgateway/profiles/cacheclient/:profilename", restapis.PutCacheClientProfile)
 	router.DELETE("/siebel/v1.0/cloudgateway/profiles/cacheclient/:profilename", restapis.DeleteCacheClientProfile)
 
-	fmt.Printf("RESTful API URL - http://localhost" + port + "/siebel/v1.0/cloudgateway/\n")
+	// CG Bootstrap
+	router.GET("/siebel/v1.0/cginfo", restapis.GetCGInfo)
+	router.POST("/siebel/v1.0/cginfo", restapis.PostCGInfo)
+	router.GET("/siebel/v1.0/cloudgateway/bootstrapCG", restapis.GetBootstrapCG)
+	router.POST("/siebel/v1.0/cloudgateway/bootstrapCG", restapis.PostBootstrapCG)
+
+	fmt.Printf("RESTful API URL - http://localhost" + port + "/siebel/v1.0/\n")
 	log.Fatal(http.ListenAndServe(port, router))
 }
