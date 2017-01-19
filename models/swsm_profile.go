@@ -207,7 +207,7 @@ type (
 		HTTPSPort                string                   `json:"HTTPSPort"`
 		EnableFQDN               bool                     `json:"EnableFQDN"`
 		FQDN                     string                   `json:"FQDN"`
-		DoCompression            string                   `json:"DoCompression"`
+		DoCompression            bool                     `json:"DoCompression"`
 		Enabled                  bool                     `json:"Enabled"`
 		SessionTracking          string                   `json:"SessionTracking"`
 	}
