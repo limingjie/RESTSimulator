@@ -140,6 +140,12 @@ type (
 		AuthenticationProperties AuthenticationProperties `json:"AuthenticationProperties"`
 	}
 
+	GatewayIdentity struct {
+		GatewayHost string `json:"GatewayHost"`
+		GatewayPort string `json:"GatewayPort"`
+		AuthToken   string `json:"AuthToken"`
+	}
+
 	// SWSMConfigParams struct
 	SWSMConfigParams struct {
 		SWE                 SWE                   `json:"swe"`
@@ -154,6 +160,7 @@ type (
 		JBS                 JBS                   `json:"JBS"`
 		DAV                 DAV                   `json:"DAV"`
 		Applications        []Application         `json:"Applications"`
+		GatewayIdentity     GatewayIdentity       `json:"GatewayIdentity"`
 	}
 
 	// SWSMProfile struct

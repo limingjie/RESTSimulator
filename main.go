@@ -20,6 +20,13 @@ func main() {
 	router := httprouter.New()
 	router.GET("/", Index)
 
+	// Security Profile APIs
+	router.POST("/siebel/v1.0/cloudgateway/profiles/security", restapis.PostSecurityProfile)
+	router.GET("/siebel/v1.0/cloudgateway/profiles/security", restapis.GetSecurityProfiles)
+	router.GET("/siebel/v1.0/cloudgateway/profiles/security/:profilename", restapis.GetSecurityProfile)
+	router.PUT("/siebel/v1.0/cloudgateway/profiles/security/:profilename", restapis.PutSecurityProfile)
+	router.DELETE("/siebel/v1.0/cloudgateway/profiles/security/:profilename", restapis.DeleteSecurityProfile)
+
 	// Enterprise Profile APIs
 	router.POST("/siebel/v1.0/cloudgateway/profiles/enterprises", restapis.PostEnterpriseProfile)
 	router.GET("/siebel/v1.0/cloudgateway/profiles/enterprises", restapis.GetEnterpriseProfiles)
