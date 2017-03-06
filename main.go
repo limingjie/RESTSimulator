@@ -20,6 +20,16 @@ func main() {
 	router := httprouter.New()
 	router.GET("/", Index)
 
+	// CG Bootstrap
+	router.GET("/siebel/v1.0/cginfo", restapis.GetCGInfo)
+	router.POST("/siebel/v1.0/cginfo", restapis.PostCGInfo)
+	router.GET("/siebel/v1.0/cloudgateway/bootstrapCG", restapis.GetBootstrapCG)
+	router.POST("/siebel/v1.0/cloudgateway/bootstrapCG", restapis.PostBootstrapCG)
+
+	// List APIs
+	router.GET("/siebel/v1.0/appicon", restapis.GetAppIcon)
+	router.GET("/siebel/v1.0/cloudgateway/discovery/services", restapis.GetDiscoveryServices)
+
 	// Security Profile APIs
 	router.POST("/siebel/v1.0/cloudgateway/profiles/security", restapis.PostSecurityProfile)
 	router.GET("/siebel/v1.0/cloudgateway/profiles/security", restapis.GetSecurityProfiles)
@@ -90,15 +100,19 @@ func main() {
 	router.PUT("/siebel/v1.0/cloudgateway/profiles/cacheclient/:profilename", restapis.PutCacheClientProfile)
 	router.DELETE("/siebel/v1.0/cloudgateway/profiles/cacheclient/:profilename", restapis.DeleteCacheClientProfile)
 
-	// CG Bootstrap
-	router.GET("/siebel/v1.0/cginfo", restapis.GetCGInfo)
-	router.POST("/siebel/v1.0/cginfo", restapis.PostCGInfo)
-	router.GET("/siebel/v1.0/cloudgateway/bootstrapCG", restapis.GetBootstrapCG)
-	router.POST("/siebel/v1.0/cloudgateway/bootstrapCG", restapis.PostBootstrapCG)
+	// Migration Profile APIs
+	router.POST("/siebel/v1.0/cloudgateway/profiles/migrations", restapis.PostMigrationProfile)
+	router.GET("/siebel/v1.0/cloudgateway/profiles/migrations", restapis.GetMigrationProfiles)
+	router.GET("/siebel/v1.0/cloudgateway/profiles/migrations/:profilename", restapis.GetMigrationProfile)
+	router.PUT("/siebel/v1.0/cloudgateway/profiles/migrations/:profilename", restapis.PutMigrationProfile)
+	router.DELETE("/siebel/v1.0/cloudgateway/profiles/migrations/:profilename", restapis.DeleteMigrationProfile)
 
-	// List APIs
-	router.GET("/siebel/v1.0/appicon", restapis.GetAppIcon)
-	router.GET("/siebel/v1.0/cloudgateway/discovery/services", restapis.GetDiscoveryServices)
+	// Migration Deployment APIs
+	router.POST("/siebel/v1.0/cloudgateway/deployments/migrations", restapis.PostMigrationDeployment)
+	router.GET("/siebel/v1.0/cloudgateway/deployments/migrations", restapis.GetMigrationDeployments)
+	router.GET("/siebel/v1.0/cloudgateway/deployments/migrations/:profilename", restapis.GetMigrationDeployment)
+	router.PUT("/siebel/v1.0/cloudgateway/deployments/migrations/:profilename", restapis.PutMigrationDeployment)
+	router.DELETE("/siebel/v1.0/cloudgateway/deployments/migrations/:profilename", restapis.DeleteMigrationDeployment)
 
 	fmt.Printf("RESTful API URL - http://localhost" + port + "/siebel/v1.0/\n")
 	log.Fatal(http.ListenAndServe(port, router))
