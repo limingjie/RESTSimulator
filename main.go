@@ -89,6 +89,10 @@ func main() {
 	router.GET("/siebel/v1.0/cloudgateway/bootstrapCG", restapis.GetBootstrapCG)
 	router.POST("/siebel/v1.0/cloudgateway/bootstrapCG", restapis.PostBootstrapCG)
 
+	// List APIs
+	router.GET("/siebel/v1.0/appicon", restapis.GetAppIcon)
+	router.GET("/siebel/v1.0/cloudgateway/discovery/services", restapis.GetDiscoveryServices)
+
 	fmt.Printf("RESTful API URL - http://localhost" + port + "/siebel/v1.0/\n")
 	log.Fatal(http.ListenAndServe(port, router))
 }

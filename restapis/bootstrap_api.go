@@ -23,7 +23,8 @@ func GetCGInfo(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
-	fmt.Fprintf(w, "%s", cgInfoJSON)
+	// fmt.Fprintf(w, "%s", cgInfoJSON)
+	fmt.Fprintf(w, "{\"CGHostURI\":\"https://localhost:8889/siebel/v1.0/cloudgateway\"}")
 }
 
 // PostCGInfo - POST /cginfo
@@ -43,7 +44,8 @@ func GetBootstrapCG(w http.ResponseWriter, r *http.Request, _ httprouter.Params)
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
-	fmt.Fprintf(w, "%s", BootstrapCGJSON)
+	// fmt.Fprintf(w, "%s", BootstrapCGJSON)
+	fmt.Fprintf(w, "{\"registryPort\":\"4330\", \"registryPassword\":\"sadmin\", \"registryUserName\":\"sadmin\", \"SecurityProfile\": \"Gateway\", \"PrimaryLanguage\":\"enu\"}")
 }
 
 // PostBootstrapCG - POST /bootstrapCG
