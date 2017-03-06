@@ -4,9 +4,9 @@ type (
 	// SWE struct
 	SWE struct {
 		Language             string `json:"Language"`
-		SessionMonitor       string `json:"SessionMonitor"`
-		AllowStats           string `json:"AllowStats"`
-		MaxQueryStringLength string `json:"MaxQueryStringLength"`
+		SessionMonitor       bool   `json:"SessionMonitor"`
+		AllowStats           bool   `json:"AllowStats"`
+		MaxQueryStringLength int    `json:"MaxQueryStringLength"`
 		SeedFile             string `json:"SeedFile"`
 	}
 
@@ -16,8 +16,8 @@ type (
 		CACertFileName     string `json:"CACertFileName"`
 		KeyFileName        string `json:"KeyFileName"`
 		KeyFilePassword    string `json:"KeyFilePassword"`
-		PeerAuth           string `json:"PeerAuth"`
-		PeerCertValidation string `json:"PeerCertValidation"`
+		PeerAuth           bool   `json:"PeerAuth"`
+		PeerCertValidation bool   `json:"PeerCertValidation"`
 	}
 
 	// AuthenticationProperties struct
@@ -25,10 +25,10 @@ type (
 		AnonUserName            string `json:"AnonUserName"`
 		AnonPassword            string `json:"AnonPassword"`
 		TrustToken              string `json:"TrustToken"`
-		GuestSessionTimeout     string `json:"GuestSessionTimeout"`
-		SessionTimeout          string `json:"SessionTimeout"`
-		SessionTokenTimeout     string `json:"SessionTokenTimeout"`
-		SessionTokenMaxAge      string `json:"SessionTokenMaxAge"`
+		GuestSessionTimeout     int    `json:"GuestSessionTimeout"`
+		SessionTimeout          int    `json:"SessionTimeout"`
+		SessionTokenTimeout     int    `json:"SessionTokenTimeout"`
+		SessionTokenMaxAge      int    `json:"SessionTokenMaxAge"`
 		SessionTimeoutWLMethod  string `json:"SessionTimeoutWLMethod"`
 		SessionTimeoutWLCommand string `json:"SessionTimeoutWLCommand"`
 		SingleSignOn            bool   `json:"SingleSignOn"`
