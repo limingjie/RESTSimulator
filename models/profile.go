@@ -19,7 +19,7 @@ type (
 // Deploy - Deploy the profile
 func (profile *Profile) Deploy() {
 	profile.count++
-	profile.AccessPermission = "READONLY"
+	profile.AccessPermission = "ReadOnly"
 
 	msg, _ := json.Marshal(profile)
 	logger.Logger("deployProfile", string(msg))
@@ -29,7 +29,7 @@ func (profile *Profile) Deploy() {
 func (profile *Profile) Undeploy() {
 	profile.count--
 	if profile.count == 0 {
-		profile.AccessPermission = "READWRITE"
+		profile.AccessPermission = "ReadWrite"
 	}
 
 	msg, _ := json.Marshal(profile)

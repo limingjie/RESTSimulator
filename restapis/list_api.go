@@ -14,7 +14,7 @@ func GetAppIcon(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
-	fmt.Fprintf(w, "{{\"AppIcon\":[{\"name\":\"sales.png\"},{\"name\":\"sales1.png\"},{\"name\":\"sales2.png\"},{\"name\":\"sales3.png\"},{\"name\":\"sales4.png\"},{\"name\":\"service.png\"},{\"name\":\"service2.png\"},{\"name\":\"callcenter.png\"},{\"name\":\"LifeSciences1.png\"},{\"name\":\"LifeSciences3.png\"},{\"name\":\"LifeSciences4.png\"},{\"name\":\"ConsumerGoods.png\"},{\"name\":\"epharma.png\"},{\"name\":\"fins.png\"}]}")
+	fmt.Fprintf(w, "{\"AppIcon\":[{\"name\":\"sales.png\"},{\"name\":\"sales1.png\"},{\"name\":\"sales2.png\"},{\"name\":\"sales3.png\"},{\"name\":\"sales4.png\"},{\"name\":\"service.png\"},{\"name\":\"service2.png\"},{\"name\":\"callcenter.png\"},{\"name\":\"LifeSciences1.png\"},{\"name\":\"LifeSciences3.png\"},{\"name\":\"LifeSciences4.png\"},{\"name\":\"ConsumerGoods.png\"},{\"name\":\"epharma.png\"},{\"name\":\"fins.png\"}]}")
 }
 
 // GetDiscoveryServices - GET /discovery/services

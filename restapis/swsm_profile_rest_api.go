@@ -34,7 +34,7 @@ func PostSWSMProfile(w http.ResponseWriter, r *http.Request, _ httprouter.Params
 		} else {
 			profile.Profile.LastUpdated = time.Now().Format("2006/01/02 15:04:05")
 			if len(profile.Profile.AccessPermission) == 0 {
-				profile.Profile.AccessPermission = "READWRITE"
+				profile.Profile.AccessPermission = "ReadWrite"
 			}
 			SWSMProfiles[profileName] = profile
 
@@ -103,7 +103,7 @@ func PutSWSMProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params
 		if profile.Profile.ProfileName == profileName {
 			profile.Profile.LastUpdated = time.Now().Format("2006/01/02 15:04:05")
 			if len(profile.Profile.AccessPermission) == 0 {
-				profile.Profile.AccessPermission = "READWRITE"
+				profile.Profile.AccessPermission = "ReadWrite"
 			}
 			SWSMProfiles[profileName] = profile
 			w.WriteHeader(200)

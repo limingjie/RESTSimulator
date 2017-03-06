@@ -33,7 +33,7 @@ func PostSecurityProfile(w http.ResponseWriter, r *http.Request, _ httprouter.Pa
 		} else {
 			profile.Profile.LastUpdated = time.Now().Format("2006/01/02 15:04:05")
 			if len(profile.Profile.AccessPermission) == 0 {
-				profile.Profile.AccessPermission = "READWRITE"
+				profile.Profile.AccessPermission = "ReadWrite"
 			}
 			SecurityProfile[profileName] = profile
 
@@ -49,7 +49,7 @@ func PostSecurityProfile(w http.ResponseWriter, r *http.Request, _ httprouter.Pa
 // GetSecurityProfiles - GET /profiles/security
 func GetSecurityProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	var profilesJSON bytes.Buffer
-	profilesJSON.WriteString("{\"SecurityProfile\":[")
+	profilesJSON.WriteString("{\"SecurityProfiles\":[")
 
 	logger.Logger("GetSecurityProfiles", strconv.Itoa(len(SecurityProfile)))
 
@@ -102,7 +102,7 @@ func PutSecurityProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Pa
 		if profile.Profile.ProfileName == profileName {
 			profile.Profile.LastUpdated = time.Now().Format("2006/01/02 15:04:05")
 			if len(profile.Profile.AccessPermission) == 0 {
-				profile.Profile.AccessPermission = "READWRITE"
+				profile.Profile.AccessPermission = "ReadWrite"
 			}
 			SecurityProfile[profileName] = profile
 			w.WriteHeader(200)
