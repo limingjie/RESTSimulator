@@ -114,7 +114,7 @@ type (
 	// JBS struct
 	JBS struct {
 		LogProperties LogProperties `json:"LogProperties"`
-		SessKeepAlive string        `json:"SessKeepAlive"`
+		SessKeepAlive int           `json:"SessKeepAlive"`
 	}
 
 	// DAV struct
