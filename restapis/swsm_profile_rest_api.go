@@ -4,11 +4,11 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"strconv"
 	"time"
 
-	"../logger"
 	"../models"
 	"github.com/julienschmidt/httprouter"
 )
@@ -23,7 +23,7 @@ func PostSWSMProfile(w http.ResponseWriter, r *http.Request, _ httprouter.Params
 	json.NewDecoder(r.Body).Decode(&profile)
 
 	msg, _ := json.Marshal(profile)
-	logger.Logger("PostSWSMProfile", string(msg))
+	log.Println("PostSWSMProfile", string(msg))
 
 	profileName := profile.Profile.ProfileName
 	if len(profileName) > 0 {
@@ -52,7 +52,7 @@ func GetSWSMProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.Params
 	var profilesJSON bytes.Buffer
 	profilesJSON.WriteString("{\"SWSMProfile\":[")
 
-	logger.Logger("GetSWSMProfiles", strconv.Itoa(len(SWSMProfiles)))
+	log.Println("GetSWSMProfiles", strconv.Itoa(len(SWSMProfiles)))
 
 	ok := false
 	for _, profile := range SWSMProfiles {
@@ -76,7 +76,7 @@ func GetSWSMProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.Params
 func GetSWSMProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profile, ok := SWSMProfiles[ps.ByName("profilename")]
 
-	logger.Logger("GetSWSMProfile", ps.ByName("profilename"))
+	log.Println("GetSWSMProfile", ps.ByName("profilename"))
 
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -95,7 +95,7 @@ func PutSWSMProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params
 	json.NewDecoder(r.Body).Decode(&profile)
 
 	msg, _ := json.Marshal(profile)
-	logger.Logger("PutSWSMProfile", string(msg))
+	log.Println("PutSWSMProfile", string(msg))
 
 	profileName := ps.ByName("profilename")
 	_, ok := SWSMProfiles[profileName]
@@ -122,7 +122,7 @@ func PutSWSMProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params
 func DeleteSWSMProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profileName := ps.ByName("profilename")
 
-	logger.Logger("DeleteSWSMProfile", profileName)
+	log.Println("DeleteSWSMProfile", profileName)
 
 	_, ok := SWSMProfiles[profileName]
 	if ok {

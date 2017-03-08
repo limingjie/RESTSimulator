@@ -1,7 +1,7 @@
 package models
 
 import (
-	"../logger"
+	"log"
 )
 
 type (
@@ -20,5 +20,5 @@ func (deployment *Deployment) Check() {
 		deployment.Status = "Deployed"
 	}
 
-	logger.Logger("Deployment.Check", "Deployed")
+	log.Println("Deployment.Check", "Deployed")
 }

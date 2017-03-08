@@ -4,11 +4,11 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"strconv"
 	"time"
 
-	"../logger"
 	"../models"
 	"github.com/julienschmidt/httprouter"
 )
@@ -22,7 +22,7 @@ func PostCacheClientProfile(w http.ResponseWriter, r *http.Request, _ httprouter
 	json.NewDecoder(r.Body).Decode(&profile)
 
 	msg, _ := json.Marshal(profile)
-	logger.Logger("PostCacheClientProfile", string(msg))
+	log.Println("PostCacheClientProfile", string(msg))
 
 	profileName := profile.Profile.ProfileName
 	if len(profileName) > 0 {
@@ -51,7 +51,7 @@ func GetCacheClientProfiles(w http.ResponseWriter, r *http.Request, _ httprouter
 	var profilesJSON bytes.Buffer
 	profilesJSON.WriteString("{\"CacheClientProfile\":[")
 
-	logger.Logger("GetCacheClientProfiles", strconv.Itoa(len(CacheClientProfiles)))
+	log.Println("GetCacheClientProfiles", strconv.Itoa(len(CacheClientProfiles)))
 
 	ok := false
 	for _, profile := range CacheClientProfiles {
@@ -75,7 +75,7 @@ func GetCacheClientProfiles(w http.ResponseWriter, r *http.Request, _ httprouter
 func GetCacheClientProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profile, ok := CacheClientProfiles[ps.ByName("profilename")]
 
-	logger.Logger("GetCacheClientProfiles", ps.ByName("profilename"))
+	log.Println("GetCacheClientProfiles", ps.ByName("profilename"))
 
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -94,7 +94,7 @@ func PutCacheClientProfile(w http.ResponseWriter, r *http.Request, ps httprouter
 	json.NewDecoder(r.Body).Decode(&profile)
 
 	msg, _ := json.Marshal(profile)
-	logger.Logger("PutCacheClientProfile", string(msg))
+	log.Println("PutCacheClientProfile", string(msg))
 
 	profileName := ps.ByName("profilename")
 	_, ok := CacheClientProfiles[profileName]
@@ -121,7 +121,7 @@ func PutCacheClientProfile(w http.ResponseWriter, r *http.Request, ps httprouter
 func DeleteCacheClientProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profileName := ps.ByName("profilename")
 
-	logger.Logger("DeleteCacheClientProfile", profileName)
+	log.Println("DeleteCacheClientProfile", profileName)
 
 	_, ok := CacheClientProfiles[profileName]
 	if ok {

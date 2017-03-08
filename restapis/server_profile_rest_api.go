@@ -4,11 +4,11 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"strconv"
 	"time"
 
-	"../logger"
 	"../models"
 	"github.com/julienschmidt/httprouter"
 )
@@ -22,7 +22,7 @@ func PostServerProfile(w http.ResponseWriter, r *http.Request, _ httprouter.Para
 	json.NewDecoder(r.Body).Decode(&profile)
 
 	msg, _ := json.Marshal(profile)
-	logger.Logger("PostServerProfile", string(msg))
+	log.Println("PostServerProfile", string(msg))
 
 	profileName := profile.Profile.ProfileName
 	if len(profileName) > 0 {
@@ -51,7 +51,7 @@ func GetServerProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.Para
 	var profilesJSON bytes.Buffer
 	profilesJSON.WriteString("{\"ServerProfile\":[")
 
-	logger.Logger("GetServerProfiles", strconv.Itoa(len(ServerProfiles)))
+	log.Println("GetServerProfiles", strconv.Itoa(len(ServerProfiles)))
 
 	ok := false
 	for _, profile := range ServerProfiles {
@@ -75,7 +75,7 @@ func GetServerProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.Para
 func GetServerProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profile, ok := ServerProfiles[ps.ByName("profilename")]
 
-	logger.Logger("GetServerProfile", ps.ByName("profilename"))
+	log.Println("GetServerProfile", ps.ByName("profilename"))
 
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -94,7 +94,7 @@ func PutServerProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Para
 	json.NewDecoder(r.Body).Decode(&profile)
 
 	msg, _ := json.Marshal(profile)
-	logger.Logger("PutServerProfile", string(msg))
+	log.Println("PutServerProfile", string(msg))
 
 	profileName := ps.ByName("profilename")
 	_, ok := ServerProfiles[profileName]
@@ -121,7 +121,7 @@ func PutServerProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Para
 func DeleteServerProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profileName := ps.ByName("profilename")
 
-	logger.Logger("DeleteServerProfile", profileName)
+	log.Println("DeleteServerProfile", profileName)
 
 	_, ok := ServerProfiles[profileName]
 	if ok {

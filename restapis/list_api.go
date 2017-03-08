@@ -2,15 +2,15 @@ package restapis
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 
-	"../logger"
 	"github.com/julienschmidt/httprouter"
 )
 
 // GetAppIcon - GET /AppIcon
 func GetAppIcon(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	logger.Logger("GetAppIcon", "icons")
+	log.Println("GetAppIcon", "icons")
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
@@ -19,7 +19,7 @@ func GetAppIcon(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 
 // GetDiscoveryServices - GET /discovery/services
 func GetDiscoveryServices(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	logger.Logger("GetDiscoveryServices", "services")
+	log.Println("GetDiscoveryServices", "services")
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)

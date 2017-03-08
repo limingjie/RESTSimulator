@@ -4,11 +4,11 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"strconv"
 	"time"
 
-	"../logger"
 	"../models"
 	"github.com/julienschmidt/httprouter"
 )
@@ -22,7 +22,7 @@ func PostMigrationProfile(w http.ResponseWriter, r *http.Request, _ httprouter.P
 	json.NewDecoder(r.Body).Decode(&profile)
 
 	msg, _ := json.Marshal(profile)
-	logger.Logger("PostMigrationProfile", string(msg))
+	log.Println("PostMigrationProfile", string(msg))
 
 	profileName := profile.Profile.ProfileName
 	if len(profileName) > 0 {
@@ -51,7 +51,7 @@ func GetMigrationProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.P
 	var profilesJSON bytes.Buffer
 	profilesJSON.WriteString("{\"MigrationProfile\":[")
 
-	logger.Logger("GetMigrationProfiles", strconv.Itoa(len(MigrationProfiles)))
+	log.Println("GetMigrationProfiles", strconv.Itoa(len(MigrationProfiles)))
 
 	ok := false
 	for _, profile := range MigrationProfiles {
@@ -75,7 +75,7 @@ func GetMigrationProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.P
 func GetMigrationProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profile, ok := MigrationProfiles[ps.ByName("profilename")]
 
-	logger.Logger("GetMigrationProfiles", ps.ByName("profilename"))
+	log.Println("GetMigrationProfiles", ps.ByName("profilename"))
 
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -94,7 +94,7 @@ func PutMigrationProfile(w http.ResponseWriter, r *http.Request, ps httprouter.P
 	json.NewDecoder(r.Body).Decode(&profile)
 
 	msg, _ := json.Marshal(profile)
-	logger.Logger("PutMigrationProfile", string(msg))
+	log.Println("PutMigrationProfile", string(msg))
 
 	profileName := ps.ByName("profilename")
 	_, ok := MigrationProfiles[profileName]
@@ -121,7 +121,7 @@ func PutMigrationProfile(w http.ResponseWriter, r *http.Request, ps httprouter.P
 func DeleteMigrationProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profileName := ps.ByName("profilename")
 
-	logger.Logger("DeleteMigrationProfile", profileName)
+	log.Println("DeleteMigrationProfile", profileName)
 
 	_, ok := MigrationProfiles[profileName]
 	if ok {

@@ -4,10 +4,10 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"strconv"
 
-	"../logger"
 	"../models"
 	"github.com/julienschmidt/httprouter"
 )
@@ -37,7 +37,7 @@ func PostSWSMDeployment(w http.ResponseWriter, r *http.Request, _ httprouter.Par
 	json.NewDecoder(r.Body).Decode(&deployment)
 
 	msg, _ := json.Marshal(deployment)
-	logger.Logger("PostSWSMDeployment", string(msg))
+	log.Println("PostSWSMDeployment", string(msg))
 
 	_, ok := SWSMProfiles[deployment.Deployment.ProfileName]
 	if !ok {
@@ -72,7 +72,7 @@ func GetSWSMDeployments(w http.ResponseWriter, r *http.Request, _ httprouter.Par
 	var deploymentsJSON bytes.Buffer
 	deploymentsJSON.WriteString("{\"SWSMDeployment\":[")
 
-	logger.Logger("GetSWSMDeployments", strconv.Itoa(len(SWSMDeployments)))
+	log.Println("GetSWSMDeployments", strconv.Itoa(len(SWSMDeployments)))
 
 	ok := false
 	for _, deployment := range SWSMDeployments {
@@ -96,7 +96,7 @@ func GetSWSMDeployments(w http.ResponseWriter, r *http.Request, _ httprouter.Par
 func GetSWSMDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	deployment, ok := SWSMDeployments[ps.ByName("deploymentname")]
 
-	logger.Logger("GetSWSMDeployment", ps.ByName("deploymentname"))
+	log.Println("GetSWSMDeployment", ps.ByName("deploymentname"))
 
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -115,7 +115,7 @@ func PutSWSMDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Par
 	json.NewDecoder(r.Body).Decode(&deployment)
 
 	msg, _ := json.Marshal(deployment)
-	logger.Logger("PutSWSMDeployment", string(msg))
+	log.Println("PutSWSMDeployment", string(msg))
 
 	_, ok := SWSMProfiles[deployment.Deployment.ProfileName]
 	if !ok {
@@ -152,7 +152,7 @@ func PutSWSMDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Par
 func DeleteSWSMDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	deploymentName := ps.ByName("deploymentname")
 
-	logger.Logger("DeleteSWSMDeployment", deploymentName)
+	log.Println("DeleteSWSMDeployment", deploymentName)
 
 	deployment, ok := SWSMDeployments[deploymentName]
 	if ok {

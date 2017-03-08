@@ -4,17 +4,17 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"strconv"
 	"time"
 
-	"../logger"
 	"../models"
 	"github.com/julienschmidt/httprouter"
 )
 
-// SecurityProfile map
-var SecurityProfile = make(map[string]models.SecurityProfile)
+// SecurityProfiles map
+var SecurityProfiles = make(map[string]models.SecurityProfile)
 
 // PostSecurityProfile - POST /profiles/security
 func PostSecurityProfile(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
@@ -22,11 +22,11 @@ func PostSecurityProfile(w http.ResponseWriter, r *http.Request, _ httprouter.Pa
 	json.NewDecoder(r.Body).Decode(&profile)
 
 	msg, _ := json.Marshal(profile)
-	logger.Logger("PostSecurityProfile", string(msg))
+	log.Println("PostSecurityProfile", string(msg))
 
 	profileName := profile.Profile.ProfileName
 	if len(profileName) > 0 {
-		_, ok := SecurityProfile[profileName]
+		_, ok := SecurityProfiles[profileName]
 		if ok {
 			w.WriteHeader(409)
 			fmt.Fprintf(w, "Error: Security profile with same name already exists.")
@@ -35,7 +35,7 @@ func PostSecurityProfile(w http.ResponseWriter, r *http.Request, _ httprouter.Pa
 			if len(profile.Profile.AccessPermission) == 0 {
 				profile.Profile.AccessPermission = "ReadWrite"
 			}
-			SecurityProfile[profileName] = profile
+			SecurityProfiles[profileName] = profile
 
 			w.WriteHeader(201)
 			fmt.Fprintf(w, "Succeed.")
@@ -51,10 +51,10 @@ func GetSecurityProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.Pa
 	var profilesJSON bytes.Buffer
 	profilesJSON.WriteString("{\"SecurityProfiles\":[")
 
-	logger.Logger("GetSecurityProfiles", strconv.Itoa(len(SecurityProfile)))
+	log.Println("GetSecurityProfiles", strconv.Itoa(len(SecurityProfiles)))
 
 	ok := false
-	for _, profile := range SecurityProfile {
+	for _, profile := range SecurityProfiles {
 		if ok {
 			profilesJSON.WriteString(",")
 		} else {
@@ -73,9 +73,9 @@ func GetSecurityProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.Pa
 
 // GetSecurityProfile - GET /profiles/security/:profilename
 func GetSecurityProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	profile, ok := SecurityProfile[ps.ByName("profilename")]
+	profile, ok := SecurityProfiles[ps.ByName("profilename")]
 
-	logger.Logger("GetSecurityProfile", ps.ByName("profilename"))
+	log.Println("GetSecurityProfile", ps.ByName("profilename"))
 
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -94,17 +94,17 @@ func PutSecurityProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Pa
 	json.NewDecoder(r.Body).Decode(&profile)
 
 	msg, _ := json.Marshal(profile)
-	logger.Logger("PutSecurityProfile", string(msg))
+	log.Println("PutSecurityProfile", string(msg))
 
 	profileName := ps.ByName("profilename")
-	_, ok := SecurityProfile[profileName]
+	_, ok := SecurityProfiles[profileName]
 	if ok {
 		if profile.Profile.ProfileName == profileName {
 			profile.Profile.LastUpdated = time.Now().Format("2006/01/02 15:04:05")
 			if len(profile.Profile.AccessPermission) == 0 {
 				profile.Profile.AccessPermission = "ReadWrite"
 			}
-			SecurityProfile[profileName] = profile
+			SecurityProfiles[profileName] = profile
 			w.WriteHeader(200)
 			fmt.Fprintf(w, "Succeed.")
 		} else {
@@ -121,11 +121,11 @@ func PutSecurityProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Pa
 func DeleteSecurityProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profileName := ps.ByName("profilename")
 
-	logger.Logger("DeleteSecurityProfile", profileName)
+	log.Println("DeleteSecurityProfile", profileName)
 
-	_, ok := SecurityProfile[profileName]
+	_, ok := SecurityProfiles[profileName]
 	if ok {
-		delete(SecurityProfile, profileName)
+		delete(SecurityProfiles, profileName)
 		w.WriteHeader(200)
 		fmt.Fprintf(w, "Succeed.")
 	} else {

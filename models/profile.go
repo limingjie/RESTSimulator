@@ -2,8 +2,7 @@ package models
 
 import (
 	"encoding/json"
-
-	"../logger"
+	"log"
 )
 
 type (
@@ -34,7 +33,7 @@ func (profile *Profile) Deploy() {
 	profile.AccessPermission = "ReadOnly"
 
 	msg, _ := json.Marshal(profile)
-	logger.Logger("deployProfile", string(msg))
+	log.Println("deployProfile", string(msg))
 }
 
 // Undeploy - Undeploy the profile
@@ -45,5 +44,5 @@ func (profile *Profile) Undeploy() {
 	}
 
 	msg, _ := json.Marshal(profile)
-	logger.Logger("undeployProfile", string(msg))
+	log.Println("undeployProfile", string(msg))
 }

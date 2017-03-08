@@ -4,10 +4,10 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"strconv"
 
-	"../logger"
 	"../models"
 	"github.com/julienschmidt/httprouter"
 )
@@ -37,7 +37,7 @@ func PostMigrationDeployment(w http.ResponseWriter, r *http.Request, _ httproute
 	json.NewDecoder(r.Body).Decode(&deployment)
 
 	msg, _ := json.Marshal(deployment)
-	logger.Logger("PostMigrationDeployment", string(msg))
+	log.Println("PostMigrationDeployment", string(msg))
 
 	_, ok := MigrationProfiles[deployment.Deployment.ProfileName]
 	if !ok {
@@ -72,7 +72,7 @@ func GetMigrationDeployments(w http.ResponseWriter, r *http.Request, _ httproute
 	var deploymentsJSON bytes.Buffer
 	deploymentsJSON.WriteString("{\"MigrationDeployment\":[")
 
-	logger.Logger("GetMigrationDeployments", strconv.Itoa(len(MigrationDeployments)))
+	log.Println("GetMigrationDeployments", strconv.Itoa(len(MigrationDeployments)))
 
 	ok := false
 	for _, deployment := range MigrationDeployments {
@@ -96,7 +96,7 @@ func GetMigrationDeployments(w http.ResponseWriter, r *http.Request, _ httproute
 func GetMigrationDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	deployment, ok := MigrationDeployments[ps.ByName("deploymentname")]
 
-	logger.Logger("GetMigrationDeployment", ps.ByName("deploymentname"))
+	log.Println("GetMigrationDeployment", ps.ByName("deploymentname"))
 
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -115,7 +115,7 @@ func PutMigrationDeployment(w http.ResponseWriter, r *http.Request, ps httproute
 	json.NewDecoder(r.Body).Decode(&deployment)
 
 	msg, _ := json.Marshal(deployment)
-	logger.Logger("PutMigrationDeployment", string(msg))
+	log.Println("PutMigrationDeployment", string(msg))
 
 	_, ok := MigrationProfiles[deployment.Deployment.ProfileName]
 	if !ok {
@@ -152,7 +152,7 @@ func PutMigrationDeployment(w http.ResponseWriter, r *http.Request, ps httproute
 func DeleteMigrationDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	deploymentName := ps.ByName("deploymentname")
 
-	logger.Logger("DeleteMigrationDeployment", deploymentName)
+	log.Println("DeleteMigrationDeployment", deploymentName)
 
 	deployment, ok := MigrationDeployments[deploymentName]
 	if ok {
