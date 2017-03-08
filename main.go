@@ -22,23 +22,8 @@ func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 }
 
 func main() {
-	c := make(chan os.Signal, 1)
-	signal.Notify(c, os.Interrupt)
-	go func() {
-		for sig := range c {
-			log.Printf("Captured %v, saving data and exit...", sig)
-			data.SaveData()
-			os.Exit(1)
-		}
-	}()
-
-	data.ReadData()
-
 	router := httprouter.New()
 	router.GET("/", Index)
-
-	// Seed Cache Generator
-	rand.Seed(time.Now().UTC().UnixNano())
 
 	// CG Bootstrap
 	router.GET("/siebel/v1.0/cginfo", restapis.GetCGInfo)
@@ -145,6 +130,25 @@ func main() {
 	router.DELETE("/siebel/v1.0/cloudgateway/clearcache", restapis.ClearCaches)
 	router.DELETE("/siebel/v1.0/cloudgateway/clearcache/:cachename", restapis.ClearCache)
 
-	fmt.Printf("RESTful API URL - http://localhost" + port + "/siebel/v1.0/\n")
+	// Seed Cache Generator
+	rand.Seed(time.Now().UTC().UnixNano())
+
+	// Capture Ctrl+C for saving data
+	c := make(chan os.Signal, 1)
+	signal.Notify(c, os.Interrupt)
+	go func() {
+		for sig := range c {
+			log.Printf("Captured %v.", sig)
+			data.SaveData()
+			os.Exit(1)
+		}
+	}()
+
+	// Loading data
+	data.LoadData()
+
+	// Start server
+	log.Println("Starting server...")
+	log.Println("http://localhost" + port + "/siebel/v1.0/")
 	log.Fatal(http.ListenAndServe(port, router))
 }

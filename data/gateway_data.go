@@ -33,7 +33,7 @@ func writeDataToFile(filename string, data interface{}) {
 
 // SaveData -
 func SaveData() {
-	log.Printf("Saving Data...")
+	log.Println("Saving Data...")
 
 	// Create data directory
 	os.Mkdir("GatewayData", os.ModePerm)
@@ -54,8 +54,8 @@ func SaveData() {
 	log.Println("Done.")
 }
 
-// readDataFromFile -
-func readDataFromFile(filename string, data interface{}) {
+// loadDataFromFile -
+func loadDataFromFile(filename string, data interface{}) {
 	// Read data
 	bs, err := ioutil.ReadFile(filename)
 	if err != nil {
@@ -75,22 +75,22 @@ func readDataFromFile(filename string, data interface{}) {
 	}
 }
 
-// ReadData -
-func ReadData() {
-	log.Printf("Loading Data...")
+// LoadData -
+func LoadData() {
+	log.Println("Loading Data...")
 
-	readDataFromFile(filepath.Clean("GatewayData/CacheClientProfiles.data"), &restapis.CacheClientProfiles)
-	readDataFromFile(filepath.Clean("GatewayData/CacheServerProfiles.data"), &restapis.CacheServerProfiles)
-	readDataFromFile(filepath.Clean("GatewayData/CacheServerDeployments.data"), &restapis.CacheServerDeployments)
-	readDataFromFile(filepath.Clean("GatewayData/EnterpriseProfiles.data"), &restapis.EnterpriseProfiles)
-	readDataFromFile(filepath.Clean("GatewayData/EnterpriseDeployments.data"), &restapis.EnterpriseDeployments)
-	readDataFromFile(filepath.Clean("GatewayData/MigrationProfiles.data"), &restapis.MigrationProfiles)
-	readDataFromFile(filepath.Clean("GatewayData/MigrationDeployments.data"), &restapis.MigrationDeployments)
-	readDataFromFile(filepath.Clean("GatewayData/SecurityProfiles.data"), &restapis.SecurityProfiles)
-	readDataFromFile(filepath.Clean("GatewayData/ServerProfiles.data"), &restapis.ServerProfiles)
-	readDataFromFile(filepath.Clean("GatewayData/ServerDeployments.data"), &restapis.ServerDeployments)
-	readDataFromFile(filepath.Clean("GatewayData/SWSMProfiles.data"), &restapis.SWSMProfiles)
-	readDataFromFile(filepath.Clean("GatewayData/SWSMDeployments.data"), &restapis.SWSMDeployments)
+	loadDataFromFile(filepath.Clean("GatewayData/CacheClientProfiles.data"), &restapis.CacheClientProfiles)
+	loadDataFromFile(filepath.Clean("GatewayData/CacheServerProfiles.data"), &restapis.CacheServerProfiles)
+	loadDataFromFile(filepath.Clean("GatewayData/CacheServerDeployments.data"), &restapis.CacheServerDeployments)
+	loadDataFromFile(filepath.Clean("GatewayData/EnterpriseProfiles.data"), &restapis.EnterpriseProfiles)
+	loadDataFromFile(filepath.Clean("GatewayData/EnterpriseDeployments.data"), &restapis.EnterpriseDeployments)
+	loadDataFromFile(filepath.Clean("GatewayData/MigrationProfiles.data"), &restapis.MigrationProfiles)
+	loadDataFromFile(filepath.Clean("GatewayData/MigrationDeployments.data"), &restapis.MigrationDeployments)
+	loadDataFromFile(filepath.Clean("GatewayData/SecurityProfiles.data"), &restapis.SecurityProfiles)
+	loadDataFromFile(filepath.Clean("GatewayData/ServerProfiles.data"), &restapis.ServerProfiles)
+	loadDataFromFile(filepath.Clean("GatewayData/ServerDeployments.data"), &restapis.ServerDeployments)
+	loadDataFromFile(filepath.Clean("GatewayData/SWSMProfiles.data"), &restapis.SWSMProfiles)
+	loadDataFromFile(filepath.Clean("GatewayData/SWSMDeployments.data"), &restapis.SWSMDeployments)
 
 	log.Println("Done.")
 }
