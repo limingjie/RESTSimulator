@@ -114,6 +114,9 @@ func main() {
 	router.PUT("/siebel/v1.0/cloudgateway/deployments/migrations/:profilename", restapis.PutMigrationDeployment)
 	router.DELETE("/siebel/v1.0/cloudgateway/deployments/migrations/:profilename", restapis.DeleteMigrationDeployment)
 
+	// Cache Management APIs
+	router.GET("/siebel/v1.0/cloudgateway/cache", restapis.GetCacheInfo)
+
 	fmt.Printf("RESTful API URL - http://localhost" + port + "/siebel/v1.0/\n")
 	log.Fatal(http.ListenAndServe(port, router))
 }

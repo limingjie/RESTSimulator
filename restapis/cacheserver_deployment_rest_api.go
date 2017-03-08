@@ -89,7 +89,8 @@ func GetCacheServerDeployments(w http.ResponseWriter, r *http.Request, _ httprou
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
-	fmt.Fprintf(w, "%s", deploymentsJSON.String())
+	// fmt.Fprintf(w, "%s", deploymentsJSON.String())
+	fmt.Fprintf(w, "%s", "{\"CacheServerDeployment\":[{\"DeploymentInfo\":{\"PhysicalHostIP\":\"slc01qlu.us.oracle.com:4432\",\"ProfileName\":\"CS_PROFILE_STAR\",\"Action\":\"Deploy\",\"Status\":\"Deployed\"},\"CacheServerDeployParams\":{\"CacheServerAgentNode\":\"CS_A_3\",\"CacheServerAgentNodeDesc\":\"CS_A_3\"}}]}")
 }
 
 // GetCacheServerDeployment - GET /deployments/cacheserver/:deploymentname

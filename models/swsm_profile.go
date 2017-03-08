@@ -140,6 +140,7 @@ type (
 		AuthenticationProperties AuthenticationProperties `json:"AuthenticationProperties"`
 	}
 
+	// GatewayIdentity struct
 	GatewayIdentity struct {
 		GatewayHost string `json:"GatewayHost"`
 		GatewayPort string `json:"GatewayPort"`
