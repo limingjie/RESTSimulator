@@ -51,7 +51,7 @@ func PostMigrationDeployment(w http.ResponseWriter, r *http.Request, _ httproute
 		_, ok := MigrationDeployments[deploymentName]
 		if ok {
 			w.WriteHeader(409)
-			fmt.Fprintf(w, "Error: Enterprise deployment with same name already exists.")
+			fmt.Fprintf(w, "Error: Migration deployment with same name already exists.")
 		} else {
 			deployment.Deployment.Check()
 			MigrationDeployments[deploymentName] = deployment
@@ -105,7 +105,7 @@ func GetMigrationDeployment(w http.ResponseWriter, r *http.Request, ps httproute
 		fmt.Fprintf(w, "%s", deploymentJSON)
 	} else {
 		w.WriteHeader(404)
-		fmt.Fprintf(w, "Error: Enterprise deployment does not exist.")
+		fmt.Fprintf(w, "Error: Migration deployment does not exist.")
 	}
 }
 
@@ -140,11 +140,11 @@ func PutMigrationDeployment(w http.ResponseWriter, r *http.Request, ps httproute
 			fmt.Fprintf(w, "Succeed.")
 		} else {
 			w.WriteHeader(409)
-			fmt.Fprintf(w, "Error: Enterprise deployment name does not match.")
+			fmt.Fprintf(w, "Error: Migration deployment name does not match.")
 		}
 	} else {
 		w.WriteHeader(404)
-		fmt.Fprintf(w, "Error: Enterprise deployment does not exist.")
+		fmt.Fprintf(w, "Error: Migration deployment does not exist.")
 	}
 }
 
@@ -167,6 +167,6 @@ func DeleteMigrationDeployment(w http.ResponseWriter, r *http.Request, ps httpro
 		fmt.Fprintf(w, "Succeed.")
 	} else {
 		w.WriteHeader(404)
-		fmt.Fprintf(w, "Error: Enterprise deployment does not exist.")
+		fmt.Fprintf(w, "Error: Migration deployment does not exist.")
 	}
 }

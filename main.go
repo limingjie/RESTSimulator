@@ -81,6 +81,8 @@ func main() {
 
 	// CacheServer Profile APIs
 	router.POST("/siebel/v1.0/cloudgateway/profiles/cacheserver", restapis.PostCacheServerProfile)
+	router.POST("/siebel/v1.0/cloudgateway/profiles/cacheserver/tangoconfig", restapis.PostCacheServerTangoConfigConversion)
+	router.POST("/siebel/v1.0/cloudgateway/profiles/cacheserver/cacheconfig", restapis.PostCacheServerCacheConfigConversion)
 	router.GET("/siebel/v1.0/cloudgateway/profiles/cacheserver", restapis.GetCacheServerProfiles)
 	router.GET("/siebel/v1.0/cloudgateway/profiles/cacheserver/:profilename", restapis.GetCacheServerProfile)
 	router.PUT("/siebel/v1.0/cloudgateway/profiles/cacheserver/:profilename", restapis.PutCacheServerProfile)
@@ -95,6 +97,7 @@ func main() {
 
 	// CacheClient Profile APIs
 	router.POST("/siebel/v1.0/cloudgateway/profiles/cacheclient", restapis.PostCacheClientProfile)
+	router.POST("/siebel/v1.0/cloudgateway/profiles/cacheclient/cacheconfig", restapis.PostCacheClientCacheConfigConversion)
 	router.GET("/siebel/v1.0/cloudgateway/profiles/cacheclient", restapis.GetCacheClientProfiles)
 	router.GET("/siebel/v1.0/cloudgateway/profiles/cacheclient/:profilename", restapis.GetCacheClientProfile)
 	router.PUT("/siebel/v1.0/cloudgateway/profiles/cacheclient/:profilename", restapis.PutCacheClientProfile)

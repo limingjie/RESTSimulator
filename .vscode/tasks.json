@@ -10,7 +10,7 @@
     "echoCommand": true,
     "tasks": [{
         "taskName": "go build",
-        "args": ["build", "-o", "${workspaceRoot}/bin/server.exe", "${workspaceRoot}/main.go"],
+        "args": ["build", "-o", "${workspaceRoot}/bin/GatewaySimulator.exe", "${workspaceRoot}/main.go"],
         "isBuildCommand": true
     }, {
         "taskName": "go run",

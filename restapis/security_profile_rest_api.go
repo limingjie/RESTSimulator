@@ -29,7 +29,7 @@ func PostSecurityProfile(w http.ResponseWriter, r *http.Request, _ httprouter.Pa
 		_, ok := SecurityProfile[profileName]
 		if ok {
 			w.WriteHeader(409)
-			fmt.Fprintf(w, "Error: Enterprise profile with same name already exists.")
+			fmt.Fprintf(w, "Error: Security profile with same name already exists.")
 		} else {
 			profile.Profile.LastUpdated = time.Now().Format("2006/01/02 15:04:05")
 			if len(profile.Profile.AccessPermission) == 0 {
@@ -84,7 +84,7 @@ func GetSecurityProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Pa
 		fmt.Fprintf(w, "%s", profileJSON)
 	} else {
 		w.WriteHeader(404)
-		fmt.Fprintf(w, "Error: Enterprise profile does not exist.")
+		fmt.Fprintf(w, "Error: Security profile does not exist.")
 	}
 }
 
@@ -109,11 +109,11 @@ func PutSecurityProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Pa
 			fmt.Fprintf(w, "Succeed.")
 		} else {
 			w.WriteHeader(409)
-			fmt.Fprintf(w, "Error: Enterprise profile name does not match.")
+			fmt.Fprintf(w, "Error: Security profile name does not match.")
 		}
 	} else {
 		w.WriteHeader(404)
-		fmt.Fprintf(w, "Error: Enterprise profile does not exist.")
+		fmt.Fprintf(w, "Error: Security profile does not exist.")
 	}
 }
 
@@ -130,6 +130,6 @@ func DeleteSecurityProfile(w http.ResponseWriter, r *http.Request, ps httprouter
 		fmt.Fprintf(w, "Succeed.")
 	} else {
 		w.WriteHeader(404)
-		fmt.Fprintf(w, "Error: Enterprise profile does not exist.")
+		fmt.Fprintf(w, "Error: Security profile does not exist.")
 	}
 }

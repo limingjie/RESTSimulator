@@ -29,7 +29,7 @@ func PostMigrationProfile(w http.ResponseWriter, r *http.Request, _ httprouter.P
 		_, ok := MigrationProfiles[profileName]
 		if ok {
 			w.WriteHeader(409)
-			fmt.Fprintf(w, "Error: Enterprise profile with same name already exists.")
+			fmt.Fprintf(w, "Error: Migration profile with same name already exists.")
 		} else {
 			profile.Profile.LastUpdated = time.Now().Format("2006/01/02 15:04:05")
 			if len(profile.Profile.AccessPermission) == 0 {
@@ -84,7 +84,7 @@ func GetMigrationProfile(w http.ResponseWriter, r *http.Request, ps httprouter.P
 		fmt.Fprintf(w, "%s", profileJSON)
 	} else {
 		w.WriteHeader(404)
-		fmt.Fprintf(w, "Error: Enterprise profile does not exist.")
+		fmt.Fprintf(w, "Error: Migration profile does not exist.")
 	}
 }
 
@@ -109,11 +109,11 @@ func PutMigrationProfile(w http.ResponseWriter, r *http.Request, ps httprouter.P
 			fmt.Fprintf(w, "Succeed.")
 		} else {
 			w.WriteHeader(409)
-			fmt.Fprintf(w, "Error: Enterprise profile name does not match.")
+			fmt.Fprintf(w, "Error: Migration profile name does not match.")
 		}
 	} else {
 		w.WriteHeader(404)
-		fmt.Fprintf(w, "Error: Enterprise profile does not exist.")
+		fmt.Fprintf(w, "Error: Migration profile does not exist.")
 	}
 }
 
@@ -130,6 +130,6 @@ func DeleteMigrationProfile(w http.ResponseWriter, r *http.Request, ps httproute
 		fmt.Fprintf(w, "Succeed.")
 	} else {
 		w.WriteHeader(404)
-		fmt.Fprintf(w, "Error: Enterprise profile does not exist.")
+		fmt.Fprintf(w, "Error: Migration profile does not exist.")
 	}
 }

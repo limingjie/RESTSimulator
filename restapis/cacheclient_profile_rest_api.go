@@ -29,7 +29,7 @@ func PostCacheClientProfile(w http.ResponseWriter, r *http.Request, _ httprouter
 		_, ok := CacheClientProfiles[profileName]
 		if ok {
 			w.WriteHeader(409)
-			fmt.Fprintf(w, "Error: Enterprise profile with same name already exists.")
+			fmt.Fprintf(w, "Error: CacheClient profile with same name already exists.")
 		} else {
 			profile.Profile.LastUpdated = time.Now().Format("2006/01/02 15:04:05")
 			if len(profile.Profile.AccessPermission) == 0 {
@@ -84,7 +84,7 @@ func GetCacheClientProfile(w http.ResponseWriter, r *http.Request, ps httprouter
 		fmt.Fprintf(w, "%s", profileJSON)
 	} else {
 		w.WriteHeader(404)
-		fmt.Fprintf(w, "Error: Enterprise profile does not exist.")
+		fmt.Fprintf(w, "Error: CacheClient profile does not exist.")
 	}
 }
 
@@ -109,11 +109,11 @@ func PutCacheClientProfile(w http.ResponseWriter, r *http.Request, ps httprouter
 			fmt.Fprintf(w, "Succeed.")
 		} else {
 			w.WriteHeader(409)
-			fmt.Fprintf(w, "Error: Enterprise profile name does not match.")
+			fmt.Fprintf(w, "Error: CacheClient profile name does not match.")
 		}
 	} else {
 		w.WriteHeader(404)
-		fmt.Fprintf(w, "Error: Enterprise profile does not exist.")
+		fmt.Fprintf(w, "Error: CacheClient profile does not exist.")
 	}
 }
 
@@ -130,6 +130,13 @@ func DeleteCacheClientProfile(w http.ResponseWriter, r *http.Request, ps httprou
 		fmt.Fprintf(w, "Succeed.")
 	} else {
 		w.WriteHeader(404)
-		fmt.Fprintf(w, "Error: Enterprise profile does not exist.")
+		fmt.Fprintf(w, "Error: CacheClient profile does not exist.")
 	}
+}
+
+// PostCacheClientCacheConfigConversion - POST /profiles/cacheclient/tangoconfig
+func PostCacheClientCacheConfigConversion(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(200)
+	fmt.Fprintf(w, "%s", "{\"cacheConfig\": {\"cacheConfigXml\": \"<?xml version='1.0'?><pre><tend><tobexml></tobexml></tend></pre>\"}}")
 }

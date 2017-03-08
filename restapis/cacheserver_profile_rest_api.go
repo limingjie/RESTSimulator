@@ -29,7 +29,7 @@ func PostCacheServerProfile(w http.ResponseWriter, r *http.Request, _ httprouter
 		_, ok := CacheServerProfiles[profileName]
 		if ok {
 			w.WriteHeader(409)
-			fmt.Fprintf(w, "Error: Enterprise profile with same name already exists.")
+			fmt.Fprintf(w, "Error: CacheServer profile with same name already exists.")
 		} else {
 			profile.Profile.LastUpdated = time.Now().Format("2006/01/02 15:04:05")
 			if len(profile.Profile.AccessPermission) == 0 {
@@ -84,7 +84,7 @@ func GetCacheServerProfile(w http.ResponseWriter, r *http.Request, ps httprouter
 		fmt.Fprintf(w, "%s", profileJSON)
 	} else {
 		w.WriteHeader(404)
-		fmt.Fprintf(w, "Error: Enterprise profile does not exist.")
+		fmt.Fprintf(w, "Error: CacheServer profile does not exist.")
 	}
 }
 
@@ -109,11 +109,11 @@ func PutCacheServerProfile(w http.ResponseWriter, r *http.Request, ps httprouter
 			fmt.Fprintf(w, "Succeed.")
 		} else {
 			w.WriteHeader(409)
-			fmt.Fprintf(w, "Error: Enterprise profile name does not match.")
+			fmt.Fprintf(w, "Error: CacheServer profile name does not match.")
 		}
 	} else {
 		w.WriteHeader(404)
-		fmt.Fprintf(w, "Error: Enterprise profile does not exist.")
+		fmt.Fprintf(w, "Error: CacheServer profile does not exist.")
 	}
 }
 
@@ -130,6 +130,20 @@ func DeleteCacheServerProfile(w http.ResponseWriter, r *http.Request, ps httprou
 		fmt.Fprintf(w, "Succeed.")
 	} else {
 		w.WriteHeader(404)
-		fmt.Fprintf(w, "Error: Enterprise profile does not exist.")
+		fmt.Fprintf(w, "Error: CacheServer profile does not exist.")
 	}
+}
+
+// PostCacheServerTangoConfigConversion - POST /profiles/cacheserver/tangoconfig
+func PostCacheServerTangoConfigConversion(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(200)
+	fmt.Fprintf(w, "%s", "{\"tangoConfig\": \"<?xml version='1.0'?><pre><tend><tobexml></tobexml></tend></pre>\"}")
+}
+
+// PostCacheServerCacheConfigConversion - POST /profiles/cacheserver/cacheconfig
+func PostCacheServerCacheConfigConversion(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(200)
+	fmt.Fprintf(w, "%s", "{\"cacheConfigXml\": \"<?xml version='1.0'?><pre><tend><tobexml></tobexml></tend></pre>\"}")
 }

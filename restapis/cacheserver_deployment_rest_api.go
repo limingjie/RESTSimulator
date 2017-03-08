@@ -51,7 +51,7 @@ func PostCacheServerDeployment(w http.ResponseWriter, r *http.Request, _ httprou
 		_, ok := CacheServerDeployments[deploymentName]
 		if ok {
 			w.WriteHeader(409)
-			fmt.Fprintf(w, "Error: Enterprise deployment with same name already exists.")
+			fmt.Fprintf(w, "Error: CacheServer deployment with same name already exists.")
 		} else {
 			deployment.Deployment.Check()
 			CacheServerDeployments[deploymentName] = deployment
@@ -89,8 +89,7 @@ func GetCacheServerDeployments(w http.ResponseWriter, r *http.Request, _ httprou
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
-	// fmt.Fprintf(w, "%s", deploymentsJSON.String())
-	fmt.Fprintf(w, "%s", "{\"CacheServerDeployment\":[{\"DeploymentInfo\":{\"PhysicalHostIP\":\"slc01qlu.us.oracle.com:4432\",\"ProfileName\":\"CS_PROFILE_STAR\",\"Action\":\"Deploy\",\"Status\":\"Deployed\"},\"CacheServerDeployParams\":{\"CacheServerAgentNode\":\"CS_A_3\",\"CacheServerAgentNodeDesc\":\"CS_A_3\"}}]}")
+	fmt.Fprintf(w, "%s", deploymentsJSON.String())
 }
 
 // GetCacheServerDeployment - GET /deployments/cacheserver/:deploymentname
@@ -106,7 +105,7 @@ func GetCacheServerDeployment(w http.ResponseWriter, r *http.Request, ps httprou
 		fmt.Fprintf(w, "%s", deploymentJSON)
 	} else {
 		w.WriteHeader(404)
-		fmt.Fprintf(w, "Error: Enterprise deployment does not exist.")
+		fmt.Fprintf(w, "Error: CacheServer deployment does not exist.")
 	}
 }
 
@@ -141,11 +140,11 @@ func PutCacheServerDeployment(w http.ResponseWriter, r *http.Request, ps httprou
 			fmt.Fprintf(w, "Succeed.")
 		} else {
 			w.WriteHeader(409)
-			fmt.Fprintf(w, "Error: Enterprise deployment name does not match.")
+			fmt.Fprintf(w, "Error: CacheServer deployment name does not match.")
 		}
 	} else {
 		w.WriteHeader(404)
-		fmt.Fprintf(w, "Error: Enterprise deployment does not exist.")
+		fmt.Fprintf(w, "Error: CacheServer deployment does not exist.")
 	}
 }
 
@@ -168,6 +167,6 @@ func DeleteCacheServerDeployment(w http.ResponseWriter, r *http.Request, ps http
 		fmt.Fprintf(w, "Succeed.")
 	} else {
 		w.WriteHeader(404)
-		fmt.Fprintf(w, "Error: Enterprise deployment does not exist.")
+		fmt.Fprintf(w, "Error: CacheServer deployment does not exist.")
 	}
 }
