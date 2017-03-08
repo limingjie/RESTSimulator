@@ -1,1 +1,1 @@
-# REST Simulator for WBC
+# REST Simulator for SMC

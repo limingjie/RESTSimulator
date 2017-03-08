@@ -14,6 +14,18 @@ type (
 		LastUpdated      string `json:"LastUpdated"`
 		count            int
 	}
+
+	// LogProperties struct
+	LogProperties struct {
+		LogLevel string `json:"LogLevel"`
+	}
+
+	// GatewayIdentity struct
+	GatewayIdentity struct {
+		GatewayHost string `json:"GatewayHost"`
+		GatewayPort string `json:"GatewayPort"`
+		AuthToken   string `json:"AuthToken"`
+	}
 )
 
 // Deploy - Deploy the profile

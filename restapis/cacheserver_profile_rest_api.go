@@ -14,11 +14,11 @@ import (
 )
 
 // CacheServerProfiles map
-var CacheServerProfiles = make(map[string]models.CacheProfile)
+var CacheServerProfiles = make(map[string]models.CacheServerProfile)
 
 // PostCacheServerProfile - POST /profiles/cacheserver
 func PostCacheServerProfile(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	profile := models.CacheProfile{}
+	profile := models.CacheServerProfile{}
 	json.NewDecoder(r.Body).Decode(&profile)
 
 	msg, _ := json.Marshal(profile)
@@ -49,7 +49,7 @@ func PostCacheServerProfile(w http.ResponseWriter, r *http.Request, _ httprouter
 // GetCacheServerProfiles - GET /profiles/cacheserver
 func GetCacheServerProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	var profilesJSON bytes.Buffer
-	profilesJSON.WriteString("{\"CacheProfile\":[")
+	profilesJSON.WriteString("{\"CacheServerProfile\":[")
 
 	logger.Logger("GetCacheServerProfiles", strconv.Itoa(len(CacheServerProfiles)))
 
@@ -90,7 +90,7 @@ func GetCacheServerProfile(w http.ResponseWriter, r *http.Request, ps httprouter
 
 // PutCacheServerProfile - PUT /profiles/cacheserver/:profilename
 func PutCacheServerProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	profile := models.CacheProfile{}
+	profile := models.CacheServerProfile{}
 	json.NewDecoder(r.Body).Decode(&profile)
 
 	msg, _ := json.Marshal(profile)

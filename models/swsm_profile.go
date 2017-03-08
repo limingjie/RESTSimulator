@@ -44,11 +44,6 @@ type (
 		DoCompression            bool                     `json:"DoCompression"`
 	}
 
-	// LogProperties struct
-	LogProperties struct {
-		LogLevel string `json:"LogLevel"`
-	}
-
 	// UI struct
 	UI struct {
 		LogProperties LogProperties `json:"LogProperties"`
@@ -138,13 +133,6 @@ type (
 		EAISOAPNoSessInPref      bool                     `json:"EAISOAPNoSessInPref"`
 		EAISOAPMaxRetry          int                      `json:"EAISOAPMaxRetry"`
 		AuthenticationProperties AuthenticationProperties `json:"AuthenticationProperties"`
-	}
-
-	// GatewayIdentity struct
-	GatewayIdentity struct {
-		GatewayHost string `json:"GatewayHost"`
-		GatewayPort string `json:"GatewayPort"`
-		AuthToken   string `json:"AuthToken"`
 	}
 
 	// SWSMConfigParams struct

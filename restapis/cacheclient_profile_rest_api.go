@@ -14,11 +14,11 @@ import (
 )
 
 // CacheClientProfiles map
-var CacheClientProfiles = make(map[string]models.CacheProfile)
+var CacheClientProfiles = make(map[string]models.CacheClientProfile)
 
 // PostCacheClientProfile - POST /profiles/cacheserver
 func PostCacheClientProfile(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	profile := models.CacheProfile{}
+	profile := models.CacheClientProfile{}
 	json.NewDecoder(r.Body).Decode(&profile)
 
 	msg, _ := json.Marshal(profile)
@@ -49,7 +49,7 @@ func PostCacheClientProfile(w http.ResponseWriter, r *http.Request, _ httprouter
 // GetCacheClientProfiles - GET /profiles/cacheserver
 func GetCacheClientProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	var profilesJSON bytes.Buffer
-	profilesJSON.WriteString("{\"CacheProfile\":[")
+	profilesJSON.WriteString("{\"CacheClientProfile\":[")
 
 	logger.Logger("GetCacheClientProfiles", strconv.Itoa(len(CacheClientProfiles)))
 
@@ -90,7 +90,7 @@ func GetCacheClientProfile(w http.ResponseWriter, r *http.Request, ps httprouter
 
 // PutCacheClientProfile - PUT /profiles/cacheserver/:profilename
 func PutCacheClientProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	profile := models.CacheProfile{}
+	profile := models.CacheClientProfile{}
 	json.NewDecoder(r.Body).Decode(&profile)
 
 	msg, _ := json.Marshal(profile)
