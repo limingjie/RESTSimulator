@@ -71,11 +71,11 @@ func GetEnterpriseProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.
 	fmt.Fprintf(w, "%s", profilesJSON.String())
 }
 
-// GetEnterpriseProfile - GET /profiles/enterprises/:profilename
+// GetEnterpriseProfile - GET /profiles/enterprises/:name
 func GetEnterpriseProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	profile, ok := EnterpriseProfiles[ps.ByName("profilename")]
+	profile, ok := EnterpriseProfiles[ps.ByName("name")]
 
-	log.Println("GetEnterpriseProfile", ps.ByName("profilename"))
+	log.Println("GetEnterpriseProfile", ps.ByName("name"))
 
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -88,7 +88,7 @@ func GetEnterpriseProfile(w http.ResponseWriter, r *http.Request, ps httprouter.
 	}
 }
 
-// PutEnterpriseProfile - PUT /profiles/enterprises/:profilename
+// PutEnterpriseProfile - PUT /profiles/enterprises/:name
 func PutEnterpriseProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profile := models.EnterpriseProfile{}
 	json.NewDecoder(r.Body).Decode(&profile)
@@ -96,7 +96,7 @@ func PutEnterpriseProfile(w http.ResponseWriter, r *http.Request, ps httprouter.
 	msg, _ := json.Marshal(profile)
 	log.Println("PutEnterpriseProfile", string(msg))
 
-	profileName := ps.ByName("profilename")
+	profileName := ps.ByName("name")
 	_, ok := EnterpriseProfiles[profileName]
 	if ok {
 		if profile.Profile.ProfileName == profileName {
@@ -117,9 +117,9 @@ func PutEnterpriseProfile(w http.ResponseWriter, r *http.Request, ps httprouter.
 	}
 }
 
-// DeleteEnterpriseProfile - DELETE /profiles/enterprises/:profilename
+// DeleteEnterpriseProfile - DELETE /profiles/enterprises/:name
 func DeleteEnterpriseProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	profileName := ps.ByName("profilename")
+	profileName := ps.ByName("name")
 
 	log.Println("DeleteEnterpriseProfile", profileName)
 

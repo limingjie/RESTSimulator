@@ -92,11 +92,11 @@ func GetEnterpriseDeployments(w http.ResponseWriter, r *http.Request, _ httprout
 	fmt.Fprintf(w, "%s", deploymentsJSON.String())
 }
 
-// GetEnterpriseDeployment - GET /deployments/enterprises/:deploymentname
+// GetEnterpriseDeployment - GET /deployments/enterprises/:name
 func GetEnterpriseDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	deployment, ok := EnterpriseDeployments[ps.ByName("deploymentname")]
+	deployment, ok := EnterpriseDeployments[ps.ByName("name")]
 
-	log.Println("GetEnterpriseDeployment", ps.ByName("deploymentname"))
+	log.Println("GetEnterpriseDeployment", ps.ByName("name"))
 
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -109,7 +109,7 @@ func GetEnterpriseDeployment(w http.ResponseWriter, r *http.Request, ps httprout
 	}
 }
 
-// PutEnterpriseDeployment - PUT /deployments/enterprises/:deploymentname
+// PutEnterpriseDeployment - PUT /deployments/enterprises/:name
 func PutEnterpriseDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	deployment := models.EnterpriseDeployment{}
 	json.NewDecoder(r.Body).Decode(&deployment)
@@ -124,7 +124,7 @@ func PutEnterpriseDeployment(w http.ResponseWriter, r *http.Request, ps httprout
 		return
 	}
 
-	deploymentName := ps.ByName("deploymentname")
+	deploymentName := ps.ByName("name")
 	_, ok = EnterpriseDeployments[deploymentName]
 	if ok {
 		if deployment.EnterpriseDeployParams.SiebelEnterprise == deploymentName {
@@ -148,9 +148,9 @@ func PutEnterpriseDeployment(w http.ResponseWriter, r *http.Request, ps httprout
 	}
 }
 
-// DeleteEnterpriseDeployment - DELETE /deployments/enterprises/:deploymentname
+// DeleteEnterpriseDeployment - DELETE /deployments/enterprises/:name
 func DeleteEnterpriseDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	deploymentName := ps.ByName("deploymentname")
+	deploymentName := ps.ByName("name")
 
 	log.Println("DeleteEnterpriseDeployment", deploymentName)
 

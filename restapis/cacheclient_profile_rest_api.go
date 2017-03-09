@@ -71,11 +71,11 @@ func GetCacheClientProfiles(w http.ResponseWriter, r *http.Request, _ httprouter
 	fmt.Fprintf(w, "%s", profilesJSON.String())
 }
 
-// GetCacheClientProfile - GET /profiles/cacheserver/:profilename
+// GetCacheClientProfile - GET /profiles/cacheserver/:name
 func GetCacheClientProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	profile, ok := CacheClientProfiles[ps.ByName("profilename")]
+	profile, ok := CacheClientProfiles[ps.ByName("name")]
 
-	log.Println("GetCacheClientProfiles", ps.ByName("profilename"))
+	log.Println("GetCacheClientProfiles", ps.ByName("name"))
 
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -88,7 +88,7 @@ func GetCacheClientProfile(w http.ResponseWriter, r *http.Request, ps httprouter
 	}
 }
 
-// PutCacheClientProfile - PUT /profiles/cacheserver/:profilename
+// PutCacheClientProfile - PUT /profiles/cacheserver/:name
 func PutCacheClientProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profile := models.CacheClientProfile{}
 	json.NewDecoder(r.Body).Decode(&profile)
@@ -96,7 +96,7 @@ func PutCacheClientProfile(w http.ResponseWriter, r *http.Request, ps httprouter
 	msg, _ := json.Marshal(profile)
 	log.Println("PutCacheClientProfile", string(msg))
 
-	profileName := ps.ByName("profilename")
+	profileName := ps.ByName("name")
 	_, ok := CacheClientProfiles[profileName]
 	if ok {
 		if profile.Profile.ProfileName == profileName {
@@ -117,9 +117,9 @@ func PutCacheClientProfile(w http.ResponseWriter, r *http.Request, ps httprouter
 	}
 }
 
-// DeleteCacheClientProfile - DELETE /profiles/cacheserver/:profilename
+// DeleteCacheClientProfile - DELETE /profiles/cacheserver/:name
 func DeleteCacheClientProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	profileName := ps.ByName("profilename")
+	profileName := ps.ByName("name")
 
 	log.Println("DeleteCacheClientProfile", profileName)
 

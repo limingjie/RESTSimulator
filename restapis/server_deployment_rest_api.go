@@ -92,11 +92,11 @@ func GetServerDeployments(w http.ResponseWriter, r *http.Request, _ httprouter.P
 	fmt.Fprintf(w, "%s", deploymentsJSON.String())
 }
 
-// GetServerDeployment - GET /deployments/servers/:deploymentname
+// GetServerDeployment - GET /deployments/servers/:name
 func GetServerDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	deployment, ok := ServerDeployments[ps.ByName("deploymentname")]
+	deployment, ok := ServerDeployments[ps.ByName("name")]
 
-	log.Println("GetServerDeployment", ps.ByName("deploymentname"))
+	log.Println("GetServerDeployment", ps.ByName("name"))
 
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -109,7 +109,7 @@ func GetServerDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.P
 	}
 }
 
-// PutServerDeployment - PUT /deployments/servers/:deploymentname
+// PutServerDeployment - PUT /deployments/servers/:name
 func PutServerDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	deployment := models.ServerDeployment{}
 	json.NewDecoder(r.Body).Decode(&deployment)
@@ -124,7 +124,7 @@ func PutServerDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.P
 		return
 	}
 
-	deploymentName := ps.ByName("deploymentname")
+	deploymentName := ps.ByName("name")
 	_, ok = ServerDeployments[deploymentName]
 	if ok {
 		if deployment.ServerDeployParams.SiebelServer == deploymentName {
@@ -148,9 +148,9 @@ func PutServerDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.P
 	}
 }
 
-// DeleteServerDeployment - DELETE /deployments/servers/:deploymentname
+// DeleteServerDeployment - DELETE /deployments/servers/:name
 func DeleteServerDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	deploymentName := ps.ByName("deploymentname")
+	deploymentName := ps.ByName("name")
 
 	log.Println("DeleteServerDeployment", deploymentName)
 

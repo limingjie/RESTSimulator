@@ -71,11 +71,11 @@ func GetServerProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.Para
 	fmt.Fprintf(w, "%s", profilesJSON.String())
 }
 
-// GetServerProfile - GET /profiles/servers/:profilename
+// GetServerProfile - GET /profiles/servers/:name
 func GetServerProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	profile, ok := ServerProfiles[ps.ByName("profilename")]
+	profile, ok := ServerProfiles[ps.ByName("name")]
 
-	log.Println("GetServerProfile", ps.ByName("profilename"))
+	log.Println("GetServerProfile", ps.ByName("name"))
 
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -88,7 +88,7 @@ func GetServerProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Para
 	}
 }
 
-// PutServerProfile - PUT /profiles/servers/:profilename
+// PutServerProfile - PUT /profiles/servers/:name
 func PutServerProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profile := models.ServerProfile{}
 	json.NewDecoder(r.Body).Decode(&profile)
@@ -96,7 +96,7 @@ func PutServerProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Para
 	msg, _ := json.Marshal(profile)
 	log.Println("PutServerProfile", string(msg))
 
-	profileName := ps.ByName("profilename")
+	profileName := ps.ByName("name")
 	_, ok := ServerProfiles[profileName]
 	if ok {
 		if profile.Profile.ProfileName == profileName {
@@ -117,9 +117,9 @@ func PutServerProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Para
 	}
 }
 
-// DeleteServerProfile - DELETE /profiles/servers/:profilename
+// DeleteServerProfile - DELETE /profiles/servers/:name
 func DeleteServerProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	profileName := ps.ByName("profilename")
+	profileName := ps.ByName("name")
 
 	log.Println("DeleteServerProfile", profileName)
 

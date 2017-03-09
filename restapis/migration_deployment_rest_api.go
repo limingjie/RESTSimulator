@@ -92,11 +92,11 @@ func GetMigrationDeployments(w http.ResponseWriter, r *http.Request, _ httproute
 	fmt.Fprintf(w, "%s", deploymentsJSON.String())
 }
 
-// GetMigrationDeployment - GET /deployments/migrations/:deploymentname
+// GetMigrationDeployment - GET /deployments/migrations/:name
 func GetMigrationDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	deployment, ok := MigrationDeployments[ps.ByName("deploymentname")]
+	deployment, ok := MigrationDeployments[ps.ByName("name")]
 
-	log.Println("GetMigrationDeployment", ps.ByName("deploymentname"))
+	log.Println("GetMigrationDeployment", ps.ByName("name"))
 
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -109,7 +109,7 @@ func GetMigrationDeployment(w http.ResponseWriter, r *http.Request, ps httproute
 	}
 }
 
-// PutMigrationDeployment - PUT /deployments/migrations/:deploymentname
+// PutMigrationDeployment - PUT /deployments/migrations/:name
 func PutMigrationDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	deployment := models.MigrationDeployment{}
 	json.NewDecoder(r.Body).Decode(&deployment)
@@ -124,7 +124,7 @@ func PutMigrationDeployment(w http.ResponseWriter, r *http.Request, ps httproute
 		return
 	}
 
-	deploymentName := ps.ByName("deploymentname")
+	deploymentName := ps.ByName("name")
 	_, ok = MigrationDeployments[deploymentName]
 	if ok {
 		if deployment.MigrationDeployParams.SiebelMigration == deploymentName {
@@ -148,9 +148,9 @@ func PutMigrationDeployment(w http.ResponseWriter, r *http.Request, ps httproute
 	}
 }
 
-// DeleteMigrationDeployment - DELETE /deployments/migrations/:deploymentname
+// DeleteMigrationDeployment - DELETE /deployments/migrations/:name
 func DeleteMigrationDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	deploymentName := ps.ByName("deploymentname")
+	deploymentName := ps.ByName("name")
 
 	log.Println("DeleteMigrationDeployment", deploymentName)
 

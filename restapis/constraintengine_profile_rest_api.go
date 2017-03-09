@@ -71,11 +71,11 @@ func GetConstraintEngineProfiles(w http.ResponseWriter, r *http.Request, _ httpr
 	fmt.Fprintf(w, "%s", profilesJSON.String())
 }
 
-// GetConstraintEngineProfile - GET /profiles/constraintengines/:profilename
+// GetConstraintEngineProfile - GET /profiles/constraintengines/:name
 func GetConstraintEngineProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	profile, ok := ConstraintEngineProfiles[ps.ByName("profilename")]
+	profile, ok := ConstraintEngineProfiles[ps.ByName("name")]
 
-	log.Println("GetConstraintEngineProfile", ps.ByName("profilename"))
+	log.Println("GetConstraintEngineProfile", ps.ByName("name"))
 
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -88,7 +88,7 @@ func GetConstraintEngineProfile(w http.ResponseWriter, r *http.Request, ps httpr
 	}
 }
 
-// PutConstraintEngineProfile - PUT /profiles/constraintengines/:profilename
+// PutConstraintEngineProfile - PUT /profiles/constraintengines/:name
 func PutConstraintEngineProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profile := models.ConstraintEngineProfile{}
 	json.NewDecoder(r.Body).Decode(&profile)
@@ -96,7 +96,7 @@ func PutConstraintEngineProfile(w http.ResponseWriter, r *http.Request, ps httpr
 	msg, _ := json.Marshal(profile)
 	log.Println("PutConstraintEngineProfile", string(msg))
 
-	profileName := ps.ByName("profilename")
+	profileName := ps.ByName("name")
 	_, ok := ConstraintEngineProfiles[profileName]
 	if ok {
 		if profile.Profile.ProfileName == profileName {
@@ -117,9 +117,9 @@ func PutConstraintEngineProfile(w http.ResponseWriter, r *http.Request, ps httpr
 	}
 }
 
-// DeleteConstraintEngineProfile - DELETE /profiles/constraintengines/:profilename
+// DeleteConstraintEngineProfile - DELETE /profiles/constraintengines/:name
 func DeleteConstraintEngineProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	profileName := ps.ByName("profilename")
+	profileName := ps.ByName("name")
 
 	log.Println("DeleteConstraintEngineProfile", profileName)
 

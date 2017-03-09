@@ -71,11 +71,11 @@ func GetMigrationProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.P
 	fmt.Fprintf(w, "%s", profilesJSON.String())
 }
 
-// GetMigrationProfile - GET /profiles/migrations/:profilename
+// GetMigrationProfile - GET /profiles/migrations/:name
 func GetMigrationProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	profile, ok := MigrationProfiles[ps.ByName("profilename")]
+	profile, ok := MigrationProfiles[ps.ByName("name")]
 
-	log.Println("GetMigrationProfiles", ps.ByName("profilename"))
+	log.Println("GetMigrationProfiles", ps.ByName("name"))
 
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -88,7 +88,7 @@ func GetMigrationProfile(w http.ResponseWriter, r *http.Request, ps httprouter.P
 	}
 }
 
-// PutMigrationProfile - PUT /profiles/migrations/:profilename
+// PutMigrationProfile - PUT /profiles/migrations/:name
 func PutMigrationProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profile := models.MigrationProfile{}
 	json.NewDecoder(r.Body).Decode(&profile)
@@ -96,7 +96,7 @@ func PutMigrationProfile(w http.ResponseWriter, r *http.Request, ps httprouter.P
 	msg, _ := json.Marshal(profile)
 	log.Println("PutMigrationProfile", string(msg))
 
-	profileName := ps.ByName("profilename")
+	profileName := ps.ByName("name")
 	_, ok := MigrationProfiles[profileName]
 	if ok {
 		if profile.Profile.ProfileName == profileName {
@@ -117,9 +117,9 @@ func PutMigrationProfile(w http.ResponseWriter, r *http.Request, ps httprouter.P
 	}
 }
 
-// DeleteMigrationProfile - DELETE /profiles/migrations/:profilename
+// DeleteMigrationProfile - DELETE /profiles/migrations/:name
 func DeleteMigrationProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	profileName := ps.ByName("profilename")
+	profileName := ps.ByName("name")
 
 	log.Println("DeleteMigrationProfile", profileName)
 

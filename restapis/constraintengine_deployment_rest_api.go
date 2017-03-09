@@ -92,11 +92,11 @@ func GetConstraintEngineDeployments(w http.ResponseWriter, r *http.Request, _ ht
 	fmt.Fprintf(w, "%s", deploymentsJSON.String())
 }
 
-// GetConstraintEngineDeployment - GET /deployments/constraintengines/:deploymentname
+// GetConstraintEngineDeployment - GET /deployments/constraintengines/:name
 func GetConstraintEngineDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	deployment, ok := ConstraintEngineDeployments[ps.ByName("deploymentname")]
+	deployment, ok := ConstraintEngineDeployments[ps.ByName("name")]
 
-	log.Println("GetConstraintEngineDeployment", ps.ByName("deploymentname"))
+	log.Println("GetConstraintEngineDeployment", ps.ByName("name"))
 
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -109,7 +109,7 @@ func GetConstraintEngineDeployment(w http.ResponseWriter, r *http.Request, ps ht
 	}
 }
 
-// PutConstraintEngineDeployment - PUT /deployments/constraintengines/:deploymentname
+// PutConstraintEngineDeployment - PUT /deployments/constraintengines/:name
 func PutConstraintEngineDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	deployment := models.ConstraintEngineDeployment{}
 	json.NewDecoder(r.Body).Decode(&deployment)
@@ -124,7 +124,7 @@ func PutConstraintEngineDeployment(w http.ResponseWriter, r *http.Request, ps ht
 		return
 	}
 
-	deploymentName := ps.ByName("deploymentname")
+	deploymentName := ps.ByName("name")
 	_, ok = ConstraintEngineDeployments[deploymentName]
 	if ok {
 		if deployment.ConstraintEngineDeployParams.DeploymentName == deploymentName {
@@ -148,9 +148,9 @@ func PutConstraintEngineDeployment(w http.ResponseWriter, r *http.Request, ps ht
 	}
 }
 
-// DeleteConstraintEngineDeployment - DELETE /deployments/constraintengines/:deploymentname
+// DeleteConstraintEngineDeployment - DELETE /deployments/constraintengines/:name
 func DeleteConstraintEngineDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	deploymentName := ps.ByName("deploymentname")
+	deploymentName := ps.ByName("name")
 
 	log.Println("DeleteConstraintEngineDeployment", deploymentName)
 

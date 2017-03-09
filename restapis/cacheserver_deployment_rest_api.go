@@ -92,11 +92,11 @@ func GetCacheServerDeployments(w http.ResponseWriter, r *http.Request, _ httprou
 	fmt.Fprintf(w, "%s", deploymentsJSON.String())
 }
 
-// GetCacheServerDeployment - GET /deployments/cacheserver/:deploymentname
+// GetCacheServerDeployment - GET /deployments/cacheserver/:name
 func GetCacheServerDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	deployment, ok := CacheServerDeployments[ps.ByName("deploymentname")]
+	deployment, ok := CacheServerDeployments[ps.ByName("name")]
 
-	log.Println("GetCacheServerDeployment", ps.ByName("deploymentname"))
+	log.Println("GetCacheServerDeployment", ps.ByName("name"))
 
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -109,7 +109,7 @@ func GetCacheServerDeployment(w http.ResponseWriter, r *http.Request, ps httprou
 	}
 }
 
-// PutCacheServerDeployment - PUT /deployments/cacheserver/:deploymentname
+// PutCacheServerDeployment - PUT /deployments/cacheserver/:name
 func PutCacheServerDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	deployment := models.CacheServerDeployment{}
 	json.NewDecoder(r.Body).Decode(&deployment)
@@ -124,7 +124,7 @@ func PutCacheServerDeployment(w http.ResponseWriter, r *http.Request, ps httprou
 		return
 	}
 
-	deploymentName := ps.ByName("deploymentname")
+	deploymentName := ps.ByName("name")
 	_, ok = CacheServerDeployments[deploymentName]
 	if ok {
 		if deployment.CacheServerDeployParams.CacheServerAgentNode == deploymentName {
@@ -148,9 +148,9 @@ func PutCacheServerDeployment(w http.ResponseWriter, r *http.Request, ps httprou
 	}
 }
 
-// DeleteCacheServerDeployment - DELETE /deployments/cacheserver/:deploymentname
+// DeleteCacheServerDeployment - DELETE /deployments/cacheserver/:name
 func DeleteCacheServerDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	deploymentName := ps.ByName("deploymentname")
+	deploymentName := ps.ByName("name")
 
 	log.Println("DeleteCacheServerDeployment", deploymentName)
 

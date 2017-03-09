@@ -71,11 +71,11 @@ func GetSecurityProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.Pa
 	fmt.Fprintf(w, "%s", profilesJSON.String())
 }
 
-// GetSecurityProfile - GET /profiles/security/:profilename
+// GetSecurityProfile - GET /profiles/security/:name
 func GetSecurityProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	profile, ok := SecurityProfiles[ps.ByName("profilename")]
+	profile, ok := SecurityProfiles[ps.ByName("name")]
 
-	log.Println("GetSecurityProfile", ps.ByName("profilename"))
+	log.Println("GetSecurityProfile", ps.ByName("name"))
 
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -88,7 +88,7 @@ func GetSecurityProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Pa
 	}
 }
 
-// PutSecurityProfile - PUT /profiles/security/:profilename
+// PutSecurityProfile - PUT /profiles/security/:name
 func PutSecurityProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profile := models.SecurityProfile{}
 	json.NewDecoder(r.Body).Decode(&profile)
@@ -96,7 +96,7 @@ func PutSecurityProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Pa
 	msg, _ := json.Marshal(profile)
 	log.Println("PutSecurityProfile", string(msg))
 
-	profileName := ps.ByName("profilename")
+	profileName := ps.ByName("name")
 	_, ok := SecurityProfiles[profileName]
 	if ok {
 		if profile.Profile.ProfileName == profileName {
@@ -117,9 +117,9 @@ func PutSecurityProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Pa
 	}
 }
 
-// DeleteSecurityProfile - DELETE /profiles/security/:profilename
+// DeleteSecurityProfile - DELETE /profiles/security/:name
 func DeleteSecurityProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	profileName := ps.ByName("profilename")
+	profileName := ps.ByName("name")
 
 	log.Println("DeleteSecurityProfile", profileName)
 

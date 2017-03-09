@@ -92,11 +92,11 @@ func GetSWSMDeployments(w http.ResponseWriter, r *http.Request, _ httprouter.Par
 	fmt.Fprintf(w, "%s", deploymentsJSON.String())
 }
 
-// GetSWSMDeployment - GET /deployments/swsm/:deploymentname
+// GetSWSMDeployment - GET /deployments/swsm/:name
 func GetSWSMDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	deployment, ok := SWSMDeployments[ps.ByName("deploymentname")]
+	deployment, ok := SWSMDeployments[ps.ByName("name")]
 
-	log.Println("GetSWSMDeployment", ps.ByName("deploymentname"))
+	log.Println("GetSWSMDeployment", ps.ByName("name"))
 
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -109,7 +109,7 @@ func GetSWSMDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Par
 	}
 }
 
-// PutSWSMDeployment - PUT /deployments/swsm/:deploymentname
+// PutSWSMDeployment - PUT /deployments/swsm/:name
 func PutSWSMDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	deployment := models.SWSMDeployment{}
 	json.NewDecoder(r.Body).Decode(&deployment)
@@ -124,7 +124,7 @@ func PutSWSMDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Par
 		return
 	}
 
-	deploymentName := ps.ByName("deploymentname")
+	deploymentName := ps.ByName("name")
 	_, ok = SWSMDeployments[deploymentName]
 	if ok {
 		if deployment.SWSMDeployParams.SWSMNode == deploymentName {
@@ -148,9 +148,9 @@ func PutSWSMDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Par
 	}
 }
 
-// DeleteSWSMDeployment - DELETE /deployments/swsm/:deploymentname
+// DeleteSWSMDeployment - DELETE /deployments/swsm/:name
 func DeleteSWSMDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	deploymentName := ps.ByName("deploymentname")
+	deploymentName := ps.ByName("name")
 
 	log.Println("DeleteSWSMDeployment", deploymentName)
 
