@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"path/filepath"
 	"strconv"
 	"time"
 
@@ -15,6 +16,10 @@ import (
 
 // CacheClientProfiles map
 var CacheClientProfiles = make(map[string]models.CacheClientProfile)
+
+func saveCacheClientProfiles() {
+	WriteFile(filepath.Clean("GatewayData/CacheClientProfiles.json"), CacheClientProfiles)
+}
 
 // PostCacheClientProfile - POST /profiles/cacheserver
 func PostCacheClientProfile(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
@@ -39,6 +44,8 @@ func PostCacheClientProfile(w http.ResponseWriter, r *http.Request, _ httprouter
 
 			w.WriteHeader(201)
 			fmt.Fprintf(w, "Succeed.")
+
+			saveCacheClientProfiles()
 		}
 	} else {
 		w.WriteHeader(400)
@@ -107,6 +114,8 @@ func PutCacheClientProfile(w http.ResponseWriter, r *http.Request, ps httprouter
 			CacheClientProfiles[profileName] = profile
 			w.WriteHeader(200)
 			fmt.Fprintf(w, "Succeed.")
+
+			saveCacheClientProfiles()
 		} else {
 			w.WriteHeader(409)
 			fmt.Fprintf(w, "Error: CacheClient profile name does not match.")
@@ -128,6 +137,8 @@ func DeleteCacheClientProfile(w http.ResponseWriter, r *http.Request, ps httprou
 		delete(CacheClientProfiles, profileName)
 		w.WriteHeader(200)
 		fmt.Fprintf(w, "Succeed.")
+
+		saveCacheClientProfiles()
 	} else {
 		w.WriteHeader(404)
 		fmt.Fprintf(w, "Error: CacheClient profile does not exist.")

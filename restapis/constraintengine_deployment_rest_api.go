@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"path/filepath"
 	"strconv"
 
 	"../models"
@@ -14,6 +15,10 @@ import (
 
 // ConstraintEngineDeployments map
 var ConstraintEngineDeployments = make(map[string]models.ConstraintEngineDeployment)
+
+func saveConstraintEngineDeployments() {
+	WriteFile(filepath.Clean("GatewayData/ConstraintEngineDeployments.json"), ConstraintEngineDeployments)
+}
 
 func deployConstraintEngineProfile(profileName string) {
 	profile, ok := ConstraintEngineProfiles[profileName]
@@ -60,6 +65,8 @@ func PostConstraintEngineDeployment(w http.ResponseWriter, r *http.Request, _ ht
 
 			w.WriteHeader(201)
 			fmt.Fprintf(w, "Succeed.")
+
+			saveConstraintEngineDeployments()
 		}
 	} else {
 		w.WriteHeader(400)
@@ -138,6 +145,8 @@ func PutConstraintEngineDeployment(w http.ResponseWriter, r *http.Request, ps ht
 
 			w.WriteHeader(200)
 			fmt.Fprintf(w, "Succeed.")
+
+			saveConstraintEngineDeployments()
 		} else {
 			w.WriteHeader(409)
 			fmt.Fprintf(w, "Error: ConstraintEngine deployment name does not match.")
@@ -165,6 +174,8 @@ func DeleteConstraintEngineDeployment(w http.ResponseWriter, r *http.Request, ps
 
 		w.WriteHeader(200)
 		fmt.Fprintf(w, "Succeed.")
+
+		saveConstraintEngineDeployments()
 	} else {
 		w.WriteHeader(404)
 		fmt.Fprintf(w, "Error: ConstraintEngine deployment does not exist.")

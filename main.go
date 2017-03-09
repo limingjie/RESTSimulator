@@ -5,11 +5,8 @@ import (
 	"log"
 	"math/rand"
 	"net/http"
-	"os"
-	"os/signal"
 	"time"
 
-	"./data"
 	"./restapis"
 	"github.com/julienschmidt/httprouter"
 )
@@ -147,19 +144,8 @@ func main() {
 	// Seed Cache Generator
 	rand.Seed(time.Now().UTC().UnixNano())
 
-	// Capture Ctrl+C for saving data
-	c := make(chan os.Signal, 1)
-	signal.Notify(c, os.Interrupt)
-	go func() {
-		for sig := range c {
-			log.Printf("Captured %v.", sig)
-			data.SaveData()
-			os.Exit(1)
-		}
-	}()
-
 	// Loading data
-	data.LoadData()
+	restapis.LoadAll()
 
 	// Start server
 	log.Println("Starting server...")

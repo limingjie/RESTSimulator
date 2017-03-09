@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"path/filepath"
 	"strconv"
 
 	"../models"
@@ -14,6 +15,10 @@ import (
 
 // EnterpriseDeployments map
 var EnterpriseDeployments = make(map[string]models.EnterpriseDeployment)
+
+func saveEnterpriseDeployments() {
+	WriteFile(filepath.Clean("GatewayData/EnterpriseDeployments.json"), EnterpriseDeployments)
+}
 
 func deployEnterpriseProfile(profileName string) {
 	profile, ok := EnterpriseProfiles[profileName]
@@ -60,6 +65,8 @@ func PostEnterpriseDeployment(w http.ResponseWriter, r *http.Request, _ httprout
 
 			w.WriteHeader(201)
 			fmt.Fprintf(w, "Succeed.")
+
+			saveEnterpriseDeployments()
 		}
 	} else {
 		w.WriteHeader(400)
@@ -138,6 +145,8 @@ func PutEnterpriseDeployment(w http.ResponseWriter, r *http.Request, ps httprout
 
 			w.WriteHeader(200)
 			fmt.Fprintf(w, "Succeed.")
+
+			saveEnterpriseDeployments()
 		} else {
 			w.WriteHeader(409)
 			fmt.Fprintf(w, "Error: Enterprise deployment name does not match.")
@@ -165,6 +174,8 @@ func DeleteEnterpriseDeployment(w http.ResponseWriter, r *http.Request, ps httpr
 
 		w.WriteHeader(200)
 		fmt.Fprintf(w, "Succeed.")
+
+		saveEnterpriseDeployments()
 	} else {
 		w.WriteHeader(404)
 		fmt.Fprintf(w, "Error: Enterprise deployment does not exist.")

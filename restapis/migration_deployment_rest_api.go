@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"path/filepath"
 	"strconv"
 
 	"../models"
@@ -14,6 +15,10 @@ import (
 
 // MigrationDeployments map
 var MigrationDeployments = make(map[string]models.MigrationDeployment)
+
+func saveMigrationDeployments() {
+	WriteFile(filepath.Clean("GatewayData/MigrationDeployments.json"), MigrationDeployments)
+}
 
 func deployMigrationProfile(profileName string) {
 	profile, ok := MigrationProfiles[profileName]
@@ -60,6 +65,8 @@ func PostMigrationDeployment(w http.ResponseWriter, r *http.Request, _ httproute
 
 			w.WriteHeader(201)
 			fmt.Fprintf(w, "Succeed.")
+
+			saveMigrationDeployments()
 		}
 	} else {
 		w.WriteHeader(400)
@@ -138,6 +145,8 @@ func PutMigrationDeployment(w http.ResponseWriter, r *http.Request, ps httproute
 
 			w.WriteHeader(200)
 			fmt.Fprintf(w, "Succeed.")
+
+			saveMigrationDeployments()
 		} else {
 			w.WriteHeader(409)
 			fmt.Fprintf(w, "Error: Migration deployment name does not match.")
@@ -165,6 +174,8 @@ func DeleteMigrationDeployment(w http.ResponseWriter, r *http.Request, ps httpro
 
 		w.WriteHeader(200)
 		fmt.Fprintf(w, "Succeed.")
+
+		saveMigrationDeployments()
 	} else {
 		w.WriteHeader(404)
 		fmt.Fprintf(w, "Error: Migration deployment does not exist.")

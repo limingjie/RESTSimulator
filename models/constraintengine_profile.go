@@ -3,10 +3,8 @@ package models
 type (
 	// ConstraintEngineConfigParams struct
 	ConstraintEngineConfigParams struct {
-		CGHostURL          string `json:"CGHostURL"`
 		CacheClientProfile string `json:"CacheClientProfile"`
-		LogLocation        string `json:"LogLocation"`
-		LogFileName        string `json:"LogFileName"`
+		SecurityProfile    string `json:"SecurityProfile"`
 		DefaultLogLevel    string `json:"DefaultLogLevel"`
 	}
 

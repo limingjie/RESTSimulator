@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"path/filepath"
 	"strconv"
 	"time"
 
@@ -15,6 +16,10 @@ import (
 
 // SWSMProfiles map
 var SWSMProfiles = make(map[string]models.SWSMProfile)
+
+func saveSWSMProfiles() {
+	WriteFile(filepath.Clean("GatewayData/SWSMProfiles.json"), SWSMProfiles)
+}
 
 // PostSWSMProfile - POST /profiles/swsm
 func PostSWSMProfile(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
@@ -40,6 +45,8 @@ func PostSWSMProfile(w http.ResponseWriter, r *http.Request, _ httprouter.Params
 
 			w.WriteHeader(201)
 			fmt.Fprintf(w, "Succeed.")
+
+			saveSWSMProfiles()
 		}
 	} else {
 		w.WriteHeader(400)
@@ -108,6 +115,8 @@ func PutSWSMProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params
 			SWSMProfiles[profileName] = profile
 			w.WriteHeader(200)
 			fmt.Fprintf(w, "Succeed.")
+
+			saveSWSMProfiles()
 		} else {
 			w.WriteHeader(409)
 			fmt.Fprintf(w, "Error: SWSM profile name does not match.")
@@ -129,6 +138,8 @@ func DeleteSWSMProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Par
 		delete(SWSMProfiles, profileName)
 		w.WriteHeader(200)
 		fmt.Fprintf(w, "Succeed.")
+
+		saveSWSMProfiles()
 	} else {
 		w.WriteHeader(404)
 		fmt.Fprintf(w, "Error: SWSM profile does not exist.")

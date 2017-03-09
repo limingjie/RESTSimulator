@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"path/filepath"
 	"strconv"
 	"time"
 
@@ -15,6 +16,10 @@ import (
 
 // ServerProfiles map
 var ServerProfiles = make(map[string]models.ServerProfile)
+
+func saveServerProfiles() {
+	WriteFile(filepath.Clean("GatewayData/ServerProfiles.json"), ServerProfiles)
+}
 
 // PostServerProfile - POST /profiles/servers
 func PostServerProfile(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
@@ -39,6 +44,8 @@ func PostServerProfile(w http.ResponseWriter, r *http.Request, _ httprouter.Para
 
 			w.WriteHeader(201)
 			fmt.Fprintf(w, "Succeed.")
+
+			saveServerProfiles()
 		}
 	} else {
 		w.WriteHeader(400)
@@ -107,6 +114,8 @@ func PutServerProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Para
 			ServerProfiles[profileName] = profile
 			w.WriteHeader(200)
 			fmt.Fprintf(w, "Succeed.")
+
+			saveServerProfiles()
 		} else {
 			w.WriteHeader(409)
 			fmt.Fprintf(w, "Error: Server profile name does not match.")
@@ -128,6 +137,8 @@ func DeleteServerProfile(w http.ResponseWriter, r *http.Request, ps httprouter.P
 		delete(ServerProfiles, profileName)
 		w.WriteHeader(200)
 		fmt.Fprintf(w, "Succeed.")
+
+		saveServerProfiles()
 	} else {
 		w.WriteHeader(404)
 		fmt.Fprintf(w, "Error: Server profile does not exist.")

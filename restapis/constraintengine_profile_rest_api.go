@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"path/filepath"
 	"strconv"
 	"time"
 
@@ -15,6 +16,10 @@ import (
 
 // ConstraintEngineProfiles map
 var ConstraintEngineProfiles = make(map[string]models.ConstraintEngineProfile)
+
+func saveConstraintEngineProfiles() {
+	WriteFile(filepath.Clean("GatewayData/ConstraintEngineProfiles.json"), ConstraintEngineProfiles)
+}
 
 // PostConstraintEngineProfile - POST /profiles/constraintengines
 func PostConstraintEngineProfile(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
@@ -39,6 +44,8 @@ func PostConstraintEngineProfile(w http.ResponseWriter, r *http.Request, _ httpr
 
 			w.WriteHeader(201)
 			fmt.Fprintf(w, "Succeed.")
+
+			saveConstraintEngineProfiles()
 		}
 	} else {
 		w.WriteHeader(400)
@@ -107,6 +114,8 @@ func PutConstraintEngineProfile(w http.ResponseWriter, r *http.Request, ps httpr
 			ConstraintEngineProfiles[profileName] = profile
 			w.WriteHeader(200)
 			fmt.Fprintf(w, "Succeed.")
+
+			saveConstraintEngineProfiles()
 		} else {
 			w.WriteHeader(409)
 			fmt.Fprintf(w, "Error: Constraint Engine profile name does not match.")
@@ -128,6 +137,8 @@ func DeleteConstraintEngineProfile(w http.ResponseWriter, r *http.Request, ps ht
 		delete(ConstraintEngineProfiles, profileName)
 		w.WriteHeader(200)
 		fmt.Fprintf(w, "Succeed.")
+
+		saveConstraintEngineProfiles()
 	} else {
 		w.WriteHeader(404)
 		fmt.Fprintf(w, "Error: Constraint Engine profile does not exist.")

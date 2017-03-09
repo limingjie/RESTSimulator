@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"path/filepath"
 	"strconv"
 
 	"../models"
@@ -14,6 +15,10 @@ import (
 
 // CacheServerDeployments map
 var CacheServerDeployments = make(map[string]models.CacheServerDeployment)
+
+func saveCacheServerDeployments() {
+	WriteFile(filepath.Clean("GatewayData/CacheServerDeployments.json"), CacheServerDeployments)
+}
 
 func deployCacheServerProfile(profileName string) {
 	profile, ok := CacheServerProfiles[profileName]
@@ -60,6 +65,8 @@ func PostCacheServerDeployment(w http.ResponseWriter, r *http.Request, _ httprou
 
 			w.WriteHeader(201)
 			fmt.Fprintf(w, "Succeed.")
+
+			saveCacheServerDeployments()
 		}
 	} else {
 		w.WriteHeader(400)
@@ -138,6 +145,8 @@ func PutCacheServerDeployment(w http.ResponseWriter, r *http.Request, ps httprou
 
 			w.WriteHeader(200)
 			fmt.Fprintf(w, "Succeed.")
+
+			saveCacheServerDeployments()
 		} else {
 			w.WriteHeader(409)
 			fmt.Fprintf(w, "Error: CacheServer deployment name does not match.")
@@ -165,6 +174,8 @@ func DeleteCacheServerDeployment(w http.ResponseWriter, r *http.Request, ps http
 
 		w.WriteHeader(200)
 		fmt.Fprintf(w, "Succeed.")
+
+		saveCacheServerDeployments()
 	} else {
 		w.WriteHeader(404)
 		fmt.Fprintf(w, "Error: CacheServer deployment does not exist.")

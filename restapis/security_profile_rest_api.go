@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"path/filepath"
 	"strconv"
 	"time"
 
@@ -15,6 +16,10 @@ import (
 
 // SecurityProfiles map
 var SecurityProfiles = make(map[string]models.SecurityProfile)
+
+func saveSecurityProfiles() {
+	WriteFile(filepath.Clean("GatewayData/SecurityProfiles.json"), SecurityProfiles)
+}
 
 // PostSecurityProfile - POST /profiles/security
 func PostSecurityProfile(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
@@ -39,6 +44,8 @@ func PostSecurityProfile(w http.ResponseWriter, r *http.Request, _ httprouter.Pa
 
 			w.WriteHeader(201)
 			fmt.Fprintf(w, "Succeed.")
+
+			saveSecurityProfiles()
 		}
 	} else {
 		w.WriteHeader(400)
@@ -107,6 +114,8 @@ func PutSecurityProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Pa
 			SecurityProfiles[profileName] = profile
 			w.WriteHeader(200)
 			fmt.Fprintf(w, "Succeed.")
+
+			saveSecurityProfiles()
 		} else {
 			w.WriteHeader(409)
 			fmt.Fprintf(w, "Error: Security profile name does not match.")
@@ -128,6 +137,8 @@ func DeleteSecurityProfile(w http.ResponseWriter, r *http.Request, ps httprouter
 		delete(SecurityProfiles, profileName)
 		w.WriteHeader(200)
 		fmt.Fprintf(w, "Succeed.")
+
+		saveSecurityProfiles()
 	} else {
 		w.WriteHeader(404)
 		fmt.Fprintf(w, "Error: Security profile does not exist.")

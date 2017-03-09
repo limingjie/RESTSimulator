@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"path/filepath"
 	"strconv"
 	"time"
 
@@ -15,6 +16,10 @@ import (
 
 // EnterpriseProfiles map
 var EnterpriseProfiles = make(map[string]models.EnterpriseProfile)
+
+func saveEnterpriseProfiles() {
+	WriteFile(filepath.Clean("GatewayData/EnterpriseProfiles.json"), EnterpriseProfiles)
+}
 
 // PostEnterpriseProfile - POST /profiles/enterprises
 func PostEnterpriseProfile(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
@@ -39,6 +44,8 @@ func PostEnterpriseProfile(w http.ResponseWriter, r *http.Request, _ httprouter.
 
 			w.WriteHeader(201)
 			fmt.Fprintf(w, "Succeed.")
+
+			saveEnterpriseProfiles()
 		}
 	} else {
 		w.WriteHeader(400)
@@ -107,6 +114,8 @@ func PutEnterpriseProfile(w http.ResponseWriter, r *http.Request, ps httprouter.
 			EnterpriseProfiles[profileName] = profile
 			w.WriteHeader(200)
 			fmt.Fprintf(w, "Succeed.")
+
+			saveEnterpriseProfiles()
 		} else {
 			w.WriteHeader(409)
 			fmt.Fprintf(w, "Error: Enterprise profile name does not match.")
@@ -128,6 +137,8 @@ func DeleteEnterpriseProfile(w http.ResponseWriter, r *http.Request, ps httprout
 		delete(EnterpriseProfiles, profileName)
 		w.WriteHeader(200)
 		fmt.Fprintf(w, "Succeed.")
+
+		saveEnterpriseProfiles()
 	} else {
 		w.WriteHeader(404)
 		fmt.Fprintf(w, "Error: Enterprise profile does not exist.")

@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"path/filepath"
 	"strconv"
 
 	"../models"
@@ -14,6 +15,10 @@ import (
 
 // ServerDeployments map
 var ServerDeployments = make(map[string]models.ServerDeployment)
+
+func saveServerDeployments() {
+	WriteFile(filepath.Clean("GatewayData/ServerDeployments.json"), ServerDeployments)
+}
 
 func deployServerProfile(profileName string) {
 	profile, ok := ServerProfiles[profileName]
@@ -60,6 +65,8 @@ func PostServerDeployment(w http.ResponseWriter, r *http.Request, _ httprouter.P
 
 			w.WriteHeader(201)
 			fmt.Fprintf(w, "Succeed.")
+
+			saveServerDeployments()
 		}
 	} else {
 		w.WriteHeader(400)
@@ -138,6 +145,8 @@ func PutServerDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.P
 
 			w.WriteHeader(200)
 			fmt.Fprintf(w, "Succeed.")
+
+			saveServerDeployments()
 		} else {
 			w.WriteHeader(409)
 			fmt.Fprintf(w, "Error: Server deployment name does not match.")
@@ -165,6 +174,8 @@ func DeleteServerDeployment(w http.ResponseWriter, r *http.Request, ps httproute
 
 		w.WriteHeader(200)
 		fmt.Fprintf(w, "Succeed.")
+
+		saveServerDeployments()
 	} else {
 		w.WriteHeader(404)
 		fmt.Fprintf(w, "Error: Server deployment does not exist.")

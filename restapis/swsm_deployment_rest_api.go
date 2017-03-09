@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"path/filepath"
 	"strconv"
 
 	"../models"
@@ -14,6 +15,10 @@ import (
 
 // SWSMDeployments map
 var SWSMDeployments = make(map[string]models.SWSMDeployment)
+
+func saveSWSMDeployments() {
+	WriteFile(filepath.Clean("GatewayData/SWSMDeployments.json"), SWSMDeployments)
+}
 
 func deploySWSMProfile(profileName string) {
 	profile, ok := SWSMProfiles[profileName]
@@ -60,6 +65,8 @@ func PostSWSMDeployment(w http.ResponseWriter, r *http.Request, _ httprouter.Par
 
 			w.WriteHeader(201)
 			fmt.Fprintf(w, "Succeed.")
+
+			saveSWSMDeployments()
 		}
 	} else {
 		w.WriteHeader(400)
@@ -138,6 +145,8 @@ func PutSWSMDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Par
 
 			w.WriteHeader(200)
 			fmt.Fprintf(w, "Succeed.")
+
+			saveSWSMDeployments()
 		} else {
 			w.WriteHeader(409)
 			fmt.Fprintf(w, "Error: SWSM deployment name does not match.")
@@ -165,6 +174,8 @@ func DeleteSWSMDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.
 
 		w.WriteHeader(200)
 		fmt.Fprintf(w, "Succeed.")
+
+		saveSWSMDeployments()
 	} else {
 		w.WriteHeader(404)
 		fmt.Fprintf(w, "Error: SWSM deployment does not exist.")

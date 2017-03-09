@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"path/filepath"
 	"strconv"
 	"time"
 
@@ -15,6 +16,10 @@ import (
 
 // MigrationProfiles map
 var MigrationProfiles = make(map[string]models.MigrationProfile)
+
+func saveMigrationProfiles() {
+	WriteFile(filepath.Clean("GatewayData/MigrationProfiles.json"), MigrationProfiles)
+}
 
 // PostMigrationProfile - POST /profiles/migrations
 func PostMigrationProfile(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
@@ -39,6 +44,8 @@ func PostMigrationProfile(w http.ResponseWriter, r *http.Request, _ httprouter.P
 
 			w.WriteHeader(201)
 			fmt.Fprintf(w, "Succeed.")
+
+			saveMigrationProfiles()
 		}
 	} else {
 		w.WriteHeader(400)
@@ -107,6 +114,8 @@ func PutMigrationProfile(w http.ResponseWriter, r *http.Request, ps httprouter.P
 			MigrationProfiles[profileName] = profile
 			w.WriteHeader(200)
 			fmt.Fprintf(w, "Succeed.")
+
+			saveMigrationProfiles()
 		} else {
 			w.WriteHeader(409)
 			fmt.Fprintf(w, "Error: Migration profile name does not match.")
@@ -128,6 +137,8 @@ func DeleteMigrationProfile(w http.ResponseWriter, r *http.Request, ps httproute
 		delete(MigrationProfiles, profileName)
 		w.WriteHeader(200)
 		fmt.Fprintf(w, "Succeed.")
+
+		saveMigrationProfiles()
 	} else {
 		w.WriteHeader(404)
 		fmt.Fprintf(w, "Error: Migration profile does not exist.")

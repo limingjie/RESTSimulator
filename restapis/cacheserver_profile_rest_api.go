@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"path/filepath"
 	"strconv"
 	"time"
 
@@ -15,6 +16,10 @@ import (
 
 // CacheServerProfiles map
 var CacheServerProfiles = make(map[string]models.CacheServerProfile)
+
+func saveCacheServerProfiles() {
+	WriteFile(filepath.Clean("GatewayData/CacheServerProfiles.json"), CacheServerProfiles)
+}
 
 // PostCacheServerProfile - POST /profiles/cacheserver
 func PostCacheServerProfile(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
@@ -39,6 +44,8 @@ func PostCacheServerProfile(w http.ResponseWriter, r *http.Request, _ httprouter
 
 			w.WriteHeader(201)
 			fmt.Fprintf(w, "Succeed.")
+
+			saveCacheServerProfiles()
 		}
 	} else {
 		w.WriteHeader(400)
@@ -107,6 +114,8 @@ func PutCacheServerProfile(w http.ResponseWriter, r *http.Request, ps httprouter
 			CacheServerProfiles[profileName] = profile
 			w.WriteHeader(200)
 			fmt.Fprintf(w, "Succeed.")
+
+			saveCacheServerProfiles()
 		} else {
 			w.WriteHeader(409)
 			fmt.Fprintf(w, "Error: CacheServer profile name does not match.")
@@ -128,6 +137,8 @@ func DeleteCacheServerProfile(w http.ResponseWriter, r *http.Request, ps httprou
 		delete(CacheServerProfiles, profileName)
 		w.WriteHeader(200)
 		fmt.Fprintf(w, "Succeed.")
+
+		saveCacheServerProfiles()
 	} else {
 		w.WriteHeader(404)
 		fmt.Fprintf(w, "Error: CacheServer profile does not exist.")
