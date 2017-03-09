@@ -16,7 +16,9 @@ import (
 // Caches map
 var Caches = make(map[string]models.CacheInfo)
 
-// randInt - Generate integer in [min, max]
+var cacheStatus = []string{"Active", "Inactive"}
+
+// randInt - Generate integer in [min, max)
 func randInt(min int, max int) int {
 	return min + rand.Intn(max-min)
 }
@@ -36,7 +38,7 @@ func createCaches(count int) {
 		name := "cache-" + ramdomString(10)
 		Caches[name] = models.CacheInfo{
 			Name:   name,
-			Status: "active",
+			Status: cacheStatus[rand.Intn(4)/3],
 			Size:   strconv.Itoa(randInt(1, 100)),
 		}
 	}
@@ -56,9 +58,9 @@ func cacheGenerator() {
 
 	// Generate new caches
 	if len(Caches) < 5 {
-		createCaches(randInt(5, 20))
+		createCaches(randInt(5, 21))
 	} else {
-		createCaches(randInt(0, 2))
+		createCaches(randInt(1, 3))
 	}
 }
 
@@ -153,7 +155,7 @@ func ClearCaches(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 func ClearCache(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	cacheName := ps.ByName("cachename")
 
-	log.Println("DeleteCache", cacheName)
+	log.Println("ClearCache", cacheName)
 
 	cache, ok := Caches[cacheName]
 	if ok {
