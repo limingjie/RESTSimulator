@@ -120,18 +120,18 @@ func main() {
 	router.DELETE("/siebel/v1.0/cloudgateway/deployments/migrations/:name", restapis.DeleteMigrationDeployment)
 
 	// Constraint Engine Profile APIs
-	router.POST("/siebel/v1.0/cloudgateway/profiles/constraintengines", restapis.PostConstraintEngineProfile)
-	router.GET("/siebel/v1.0/cloudgateway/profiles/constraintengines", restapis.GetConstraintEngineProfiles)
-	router.GET("/siebel/v1.0/cloudgateway/profiles/constraintengines/:name", restapis.GetConstraintEngineProfile)
-	router.PUT("/siebel/v1.0/cloudgateway/profiles/constraintengines/:name", restapis.PutConstraintEngineProfile)
-	router.DELETE("/siebel/v1.0/cloudgateway/profiles/constraintengines/:name", restapis.DeleteConstraintEngineProfile)
+	router.POST("/siebel/v1.0/cloudgateway/profiles/constraintengine", restapis.PostConstraintEngineProfile)
+	router.GET("/siebel/v1.0/cloudgateway/profiles/constraintengine", restapis.GetConstraintEngineProfiles)
+	router.GET("/siebel/v1.0/cloudgateway/profiles/constraintengine/:name", restapis.GetConstraintEngineProfile)
+	router.PUT("/siebel/v1.0/cloudgateway/profiles/constraintengine/:name", restapis.PutConstraintEngineProfile)
+	router.DELETE("/siebel/v1.0/cloudgateway/profiles/constraintengine/:name", restapis.DeleteConstraintEngineProfile)
 
 	// Constraint Engine Deployment APIs
-	router.POST("/siebel/v1.0/cloudgateway/deployments/constraintengines", restapis.PostConstraintEngineDeployment)
-	router.GET("/siebel/v1.0/cloudgateway/deployments/constraintengines", restapis.GetConstraintEngineDeployments)
-	router.GET("/siebel/v1.0/cloudgateway/deployments/constraintengines/:name", restapis.GetConstraintEngineDeployment)
-	router.PUT("/siebel/v1.0/cloudgateway/deployments/constraintengines/:name", restapis.PutConstraintEngineDeployment)
-	router.DELETE("/siebel/v1.0/cloudgateway/deployments/constraintengines/:name", restapis.DeleteConstraintEngineDeployment)
+	router.POST("/siebel/v1.0/cloudgateway/deployments/constraintengine", restapis.PostConstraintEngineDeployment)
+	router.GET("/siebel/v1.0/cloudgateway/deployments/constraintengine", restapis.GetConstraintEngineDeployments)
+	router.GET("/siebel/v1.0/cloudgateway/deployments/constraintengine/:name", restapis.GetConstraintEngineDeployment)
+	router.PUT("/siebel/v1.0/cloudgateway/deployments/constraintengine/:name", restapis.PutConstraintEngineDeployment)
+	router.DELETE("/siebel/v1.0/cloudgateway/deployments/constraintengine/:name", restapis.DeleteConstraintEngineDeployment)
 
 	// Cache Management APIs
 	router.GET("/siebel/v1.0/cloudgateway/cache", restapis.GetCaches)

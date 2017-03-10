@@ -21,7 +21,7 @@ func saveConstraintEngineProfiles() {
 	WriteFile(filepath.Clean("GatewayData/ConstraintEngineProfiles.json"), ConstraintEngineProfiles)
 }
 
-// PostConstraintEngineProfile - POST /profiles/constraintengines
+// PostConstraintEngineProfile - POST /profiles/constraintengine
 func PostConstraintEngineProfile(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	profile := models.ConstraintEngineProfile{}
 	json.NewDecoder(r.Body).Decode(&profile)
@@ -53,7 +53,7 @@ func PostConstraintEngineProfile(w http.ResponseWriter, r *http.Request, _ httpr
 	}
 }
 
-// GetConstraintEngineProfiles - GET /profiles/constraintengines
+// GetConstraintEngineProfiles - GET /profiles/constraintengine
 func GetConstraintEngineProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	var profilesJSON bytes.Buffer
 	profilesJSON.WriteString("{\"ConstraintEngineProfile\":[")
@@ -78,7 +78,7 @@ func GetConstraintEngineProfiles(w http.ResponseWriter, r *http.Request, _ httpr
 	fmt.Fprintf(w, "%s", profilesJSON.String())
 }
 
-// GetConstraintEngineProfile - GET /profiles/constraintengines/:name
+// GetConstraintEngineProfile - GET /profiles/constraintengine/:name
 func GetConstraintEngineProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profile, ok := ConstraintEngineProfiles[ps.ByName("name")]
 
@@ -95,7 +95,7 @@ func GetConstraintEngineProfile(w http.ResponseWriter, r *http.Request, ps httpr
 	}
 }
 
-// PutConstraintEngineProfile - PUT /profiles/constraintengines/:name
+// PutConstraintEngineProfile - PUT /profiles/constraintengine/:name
 func PutConstraintEngineProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profile := models.ConstraintEngineProfile{}
 	json.NewDecoder(r.Body).Decode(&profile)
@@ -126,7 +126,7 @@ func PutConstraintEngineProfile(w http.ResponseWriter, r *http.Request, ps httpr
 	}
 }
 
-// DeleteConstraintEngineProfile - DELETE /profiles/constraintengines/:name
+// DeleteConstraintEngineProfile - DELETE /profiles/constraintengine/:name
 func DeleteConstraintEngineProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profileName := ps.ByName("name")
 

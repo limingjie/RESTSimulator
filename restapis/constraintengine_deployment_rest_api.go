@@ -36,7 +36,7 @@ func undeployConstraintEngineProfile(profileName string) {
 	}
 }
 
-// PostConstraintEngineDeployment - POST /deployments/constraintengines
+// PostConstraintEngineDeployment - POST /deployments/constraintengine
 func PostConstraintEngineDeployment(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	deployment := models.ConstraintEngineDeployment{}
 	json.NewDecoder(r.Body).Decode(&deployment)
@@ -74,7 +74,7 @@ func PostConstraintEngineDeployment(w http.ResponseWriter, r *http.Request, _ ht
 	}
 }
 
-// GetConstraintEngineDeployments - GET /deployments/constraintengines
+// GetConstraintEngineDeployments - GET /deployments/constraintengine
 func GetConstraintEngineDeployments(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	var deploymentsJSON bytes.Buffer
 	deploymentsJSON.WriteString("{\"ConstraintEngineDeployment\":[")
@@ -99,7 +99,7 @@ func GetConstraintEngineDeployments(w http.ResponseWriter, r *http.Request, _ ht
 	fmt.Fprintf(w, "%s", deploymentsJSON.String())
 }
 
-// GetConstraintEngineDeployment - GET /deployments/constraintengines/:name
+// GetConstraintEngineDeployment - GET /deployments/constraintengine/:name
 func GetConstraintEngineDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	deployment, ok := ConstraintEngineDeployments[ps.ByName("name")]
 
@@ -116,7 +116,7 @@ func GetConstraintEngineDeployment(w http.ResponseWriter, r *http.Request, ps ht
 	}
 }
 
-// PutConstraintEngineDeployment - PUT /deployments/constraintengines/:name
+// PutConstraintEngineDeployment - PUT /deployments/constraintengine/:name
 func PutConstraintEngineDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	deployment := models.ConstraintEngineDeployment{}
 	json.NewDecoder(r.Body).Decode(&deployment)
@@ -157,7 +157,7 @@ func PutConstraintEngineDeployment(w http.ResponseWriter, r *http.Request, ps ht
 	}
 }
 
-// DeleteConstraintEngineDeployment - DELETE /deployments/constraintengines/:name
+// DeleteConstraintEngineDeployment - DELETE /deployments/constraintengine/:name
 func DeleteConstraintEngineDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	deploymentName := ps.ByName("name")
 
