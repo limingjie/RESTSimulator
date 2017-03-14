@@ -1,10 +1,20 @@
 package models
 
 type (
+	// SSLProviderCacheServer struct
+	SSLProviderCacheServer struct {
+		KeyStore           string `json:"keyStore"`
+		KeyStorePassword   string `json:"keyStorePassword"`
+		KeyStoreType       string `json:"keyStoreType"`
+		PrivateKeyPassword string `json:"privateKeyPassword"`
+		TLSPortNumber      int    `json:"tlsPortNumber"`
+	}
+
 	// TangoCoherenceOverride struct
 	TangoCoherenceOverride struct {
-		TangoConfig string `json:"tangoConfig"`
-		ClusterName string `json:"clusterName"`
+		SSLProviderCacheServer SSLProviderCacheServer `json:"sslProvider"`
+		TangoConfig            string                 `json:"tangoConfig"`
+		ClusterName            string                 `json:"clusterName"`
 	}
 
 	// CachingSchemeMapping struct

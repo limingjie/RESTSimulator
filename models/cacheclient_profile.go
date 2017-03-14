@@ -1,6 +1,13 @@
 package models
 
 type (
+	// SSLProviderCacheClient struct
+	SSLProviderCacheClient struct {
+		KeyStore         string `json:"keyStore"`
+		KeyStorePassword string `json:"keyStorePassword"`
+		KeyStoreType     string `json:"keyStoreType"`
+	}
+
 	// Use CachingSchemeMapping of CacheServer Profile
 
 	// SchemeParam struct
@@ -36,9 +43,10 @@ type (
 
 	// CacheClientConfig struct
 	CacheClientConfig struct {
-		CacheConfigXML       string               `json:"cacheConfigXml"`
-		CachingSchemeMapping CachingSchemeMapping `json:"cachingSchemeMapping"`
-		CacheSchemes         CacheSchemes         `json:"cacheSchemes"`
+		CacheConfigXML         string                 `json:"cacheConfigXml"`
+		SSLProviderCacheClient SSLProviderCacheClient `json:"sslProvider"`
+		CachingSchemeMapping   CachingSchemeMapping   `json:"cachingSchemeMapping"`
+		CacheSchemes           CacheSchemes           `json:"cacheSchemes"`
 	}
 
 	// ClientConfigParam struct
