@@ -16,6 +16,8 @@ type (
 		AuthenticationHost    string `json:"AuthenticationHost"`
 		UserSpec              string `json:"UserSpec"`
 		AssertionSpec         string `json:"AssertionSpec"`
+		IDPLogoffURL          string `json:"IDPLogoffURL"`
+		IDPLogoffReturnURL    string `json:"IDPLogoffReturnURL"`
 		Timeout               int    `json:"Timeout"`
 		SleepTime             int    `json:"SleepTime"`
 		LogLevel              string `json:"LogLevel"`
