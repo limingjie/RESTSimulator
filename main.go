@@ -141,6 +141,9 @@ func main() {
 	router.DELETE("/siebel/v1.0/cloudgateway/clearcache", restapis.ClearCaches)
 	router.DELETE("/siebel/v1.0/cloudgateway/clearcache/:cachename", restapis.ClearCache)
 
+	// Log APIs
+	router.GET("/siebel/v1.0/cloudgateway/deployments/logs/:type/:name", restapis.GetDeploymentLog)
+
 	// Seed Cache Generator
 	rand.Seed(time.Now().UTC().UnixNano())
 
