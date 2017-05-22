@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"path/filepath"
 	"strconv"
+	"strings"
 	"time"
 
 	"../models"
@@ -88,7 +89,8 @@ func GetCacheServerProfile(w http.ResponseWriter, r *http.Request, ps httprouter
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(200)
 		profileJSON, _ := json.Marshal(profile)
-		fmt.Fprintf(w, "%s", profileJSON)
+		profileString := strings.Replace(string(profileJSON), "null", "[]", -1) // SMC compare does not recognize null as empty string, workaround for cache client and server only. Other profiles have default value because they do not have advanced mode.
+		fmt.Fprintf(w, "%s", profileString)
 	} else {
 		w.WriteHeader(404)
 		fmt.Fprintf(w, "Error: CacheServer profile does not exist.")
