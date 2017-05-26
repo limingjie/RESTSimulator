@@ -63,9 +63,8 @@ type (
 
 	// RESTResourceParam struct
 	RESTResourceParam struct {
-		Name         string `json:"Name"`
-		Alias        string `json:"Alias"`
-		DefaultValue string `json:"DefaultValue"`
+		Name  string `json:"Name"`
+		Alias string `json:"Alias"`
 	}
 
 	// RESTResourceParamList struct

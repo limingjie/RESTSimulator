@@ -26,7 +26,9 @@ type (
 		SaltUserPwd                 bool   `json:"SaltUserPwd"`
 		HashAlgorithm               string `json:"HashAlgorithm"`
 		PropagateChange             bool   `json:"PropagateChange"`
+		Library                     string `json:"Library"`
 		CRC                         string `json:"CRC"`
+		Info                        string `json:"Info"`
 		SingleSignOn                bool   `json:"SingleSignOn"`
 		TrustToken                  string `json:"TrustToken"`
 		UseAdapterUsername          bool   `json:"UseAdapterUsername"`
