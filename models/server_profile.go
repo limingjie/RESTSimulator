@@ -12,13 +12,14 @@ type (
 		ModifyServerAuth           bool   `json:"ModifyServerAuth"`
 		ClusteringEnvironmentSetup string `json:"ClusteringEnvironmentSetup"`
 		SiebelClusterGateway       string `json:"SiebelClusterGateway"`
-		UseOracleConnector         bool   `json:"UseOracleConnector"`
+		UseOracleConnector         string `json:"UseOracleConnector"`
 		Encrypt                    string `json:"Encrypt"`
 		CACertFileName             string `json:"CACertFileName"`
 		CertFileNameServer         string `json:"CertFileNameServer"`
 		Username                   string `json:"Username"`
 		Password                   string `json:"Password"`
 		SQLServerPort              string `json:"SqlServerPort"`
+		Db2InstHome                string `json:"Db2InstHome"`
 	}
 
 	// ServerProfile struct
