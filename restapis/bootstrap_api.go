@@ -35,6 +35,7 @@ func PostCGInfo(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	log.Println("PostCGInfo", string(CGInfoJSON))
 
 	w.WriteHeader(200)
+	fmt.Fprintf(w, "{\"status\":\"Bootstrap Done\"}")
 }
 
 // GetBootstrapCG - GET /bootstrapCG
