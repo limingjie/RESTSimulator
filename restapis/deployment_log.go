@@ -8,7 +8,7 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-// GetDeploymentLog
+// GetDeploymentLog - Get deployment log
 func GetDeploymentLog(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	log.Println("GetDeploymentLog", "log")
 
