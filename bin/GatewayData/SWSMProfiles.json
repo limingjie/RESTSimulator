@@ -1,0 +1,1705 @@
+{
+  "AppInterfaceProd": {
+    "Profile": {
+      "ProfileName": "AppInterfaceProd",
+      "AccessPermission": "ReadOnly",
+      "LastUpdated": "2017/05/24 21:37:22"
+    },
+    "ConfigParam": {
+      "swe": {
+        "Language": "ENU",
+        "SessionMonitor": true,
+        "AllowStats": true,
+        "MaxQueryStringLength": -1,
+        "SeedFile": ""
+      },
+      "ConnMgmt": {
+        "CertFileName": "ai.cert",
+        "CACertFileName": "ai.cert",
+        "KeyFileName": "232536t1453124.key",
+        "KeyFilePassword": "2346asdfaf2356vz89asf7913o43fvf",
+        "PeerAuth": true,
+        "PeerCertValidation": true
+      },
+      "defaults": {
+        "AuthenticationProperties": {
+          "AnonUserName": "SADMIN",
+          "AnonPassword": "MSSQL",
+          "TrustToken": "",
+          "GuestSessionTimeout": 300,
+          "SessionTimeout": 900,
+          "SessionTokenTimeout": 900,
+          "SessionTokenMaxAge": 2880,
+          "SessionTimeoutWLMethod": "HeartBeat",
+          "SessionTimeoutWLCommand": "UpdatePrefMsg",
+          "SingleSignOn": false,
+          "UserSpec": ""
+        },
+        "StatsPage": "",
+        "EnableFQDN": false,
+        "FQDN": "",
+        "DoCompression": false
+      },
+      "UI": {
+        "LogProperties": {
+          "LogLevel": "ERROR"
+        }
+      },
+      "RESTInBound": {
+        "ObjectManager": "infraeaioutbound",
+        "MaxConnections": 20,
+        "MinConnections": 0,
+        "Baseuri": "http://\u003chostname\u003e/siebel/v1.0/",
+        "RESTAuthenticationProperties": {
+          "AnonUserName": "SADMIN",
+          "AnonPassword": "MSSQL",
+          "SessKeepAlive": 30,
+          "AuthenticationType": "SSO",
+          "TrustToken": "EAEWRY546EFASDFAT3Q2",
+          "OAuthEndPoint": "",
+          "UserSpec": "23T4SDFG34TDSFAA352Q4R",
+          "ValidateCertificate": true
+        },
+        "LogProperties": {
+          "LogLevel": "INFO"
+        },
+        "RESTResourceParamList": [
+          {
+            "OperationName": "Query",
+            "ParamList": [
+              {
+                "Name": "TEST",
+                "Alias": "TEST",
+                "DefaultValue": ""
+              }
+            ]
+          }
+        ]
+      },
+      "EAI": {
+        "LogProperties": {
+          "LogLevel": "WARN"
+        }
+      },
+      "RESTInBoundResource": [
+        {
+          "ResourceType": "Service",
+          "RESTResourceParamList": [
+            {
+              "OperationName": "Query",
+              "ParamList": [
+                {
+                  "Name": "abc",
+                  "Alias": "def",
+                  "DefaultValue": ""
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "RESTOutBound": {
+        "LogProperties": {
+          "LogLevel": "TRACE"
+        }
+      },
+      "SOAPOutBound": {
+        "LogProperties": {
+          "LogLevel": "ALL"
+        }
+      },
+      "JBS": {
+        "LogProperties": {
+          "LogLevel": ""
+        },
+        "SessKeepAlive": 0
+      },
+      "DAV": {
+        "LogProperties": {
+          "LogLevel": "DEBUG"
+        }
+      },
+      "Applications": [
+        {
+          "Name": "callcenter",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "fins",
+          "Language": "enu",
+          "ObjectManager": "infraeaioutbound",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "epharma",
+          "Language": "chs",
+          "ObjectManager": "srbroker",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": false,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 0,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "look",
+          "Language": "inside",
+          "ObjectManager": "srbroker",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": false,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 0,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        }
+      ],
+      "GatewayIdentity": {
+        "GatewayHost": "",
+        "GatewayPort": "",
+        "AuthToken": ""
+      }
+    }
+  },
+  "AppInterfaceProdClone": {
+    "Profile": {
+      "ProfileName": "AppInterfaceProdClone",
+      "AccessPermission": "ReadWrite",
+      "LastUpdated": "2017/05/25 02:59:24"
+    },
+    "ConfigParam": {
+      "swe": {
+        "Language": "ENU",
+        "SessionMonitor": true,
+        "AllowStats": true,
+        "MaxQueryStringLength": -1,
+        "SeedFile": ""
+      },
+      "ConnMgmt": {
+        "CertFileName": "ai.cert",
+        "CACertFileName": "ai.cert",
+        "KeyFileName": "232536t1453124.key",
+        "KeyFilePassword": "2346asdfaf2356vz89asf7913o43fvf",
+        "PeerAuth": true,
+        "PeerCertValidation": true
+      },
+      "defaults": {
+        "AuthenticationProperties": {
+          "AnonUserName": "SADMIN",
+          "AnonPassword": "MSSQL",
+          "TrustToken": "",
+          "GuestSessionTimeout": 300,
+          "SessionTimeout": 900,
+          "SessionTokenTimeout": 900,
+          "SessionTokenMaxAge": 2880,
+          "SessionTimeoutWLMethod": "HeartBeat",
+          "SessionTimeoutWLCommand": "UpdatePrefMsg",
+          "SingleSignOn": false,
+          "UserSpec": ""
+        },
+        "StatsPage": "",
+        "EnableFQDN": false,
+        "FQDN": "",
+        "DoCompression": false
+      },
+      "UI": {
+        "LogProperties": {
+          "LogLevel": "ERROR"
+        }
+      },
+      "RESTInBound": {
+        "ObjectManager": "infraeaioutbound",
+        "MaxConnections": 20,
+        "MinConnections": 0,
+        "Baseuri": "http://\u003chostname\u003e/siebel/v1.0/",
+        "RESTAuthenticationProperties": {
+          "AnonUserName": "SADMIN",
+          "AnonPassword": "MSSQL",
+          "SessKeepAlive": 30,
+          "AuthenticationType": "SSO",
+          "TrustToken": "EAEWRY546EFASDFAT3Q2",
+          "OAuthEndPoint": "",
+          "UserSpec": "23T4SDFG34TDSFAA352Q4R",
+          "ValidateCertificate": true
+        },
+        "LogProperties": {
+          "LogLevel": "INFO"
+        },
+        "RESTResourceParamList": [
+          {
+            "OperationName": "Query",
+            "ParamList": [
+              {
+                "Name": "TEST",
+                "Alias": "TEST",
+                "DefaultValue": ""
+              }
+            ]
+          }
+        ]
+      },
+      "EAI": {
+        "LogProperties": {
+          "LogLevel": "WARN"
+        }
+      },
+      "RESTInBoundResource": [
+        {
+          "ResourceType": "Service",
+          "RESTResourceParamList": [
+            {
+              "OperationName": "Query",
+              "ParamList": [
+                {
+                  "Name": "abc",
+                  "Alias": "def",
+                  "DefaultValue": ""
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "RESTOutBound": {
+        "LogProperties": {
+          "LogLevel": "TRACE"
+        }
+      },
+      "SOAPOutBound": {
+        "LogProperties": {
+          "LogLevel": "ALL"
+        }
+      },
+      "JBS": {
+        "LogProperties": {
+          "LogLevel": ""
+        },
+        "SessKeepAlive": 0
+      },
+      "DAV": {
+        "LogProperties": {
+          "LogLevel": "DEBUG"
+        }
+      },
+      "Applications": [
+        {
+          "Name": "callcenter",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "fins",
+          "Language": "enu",
+          "ObjectManager": "infraeaioutbound",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "epharma",
+          "Language": "chs",
+          "ObjectManager": "srbroker",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": false,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 0,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "look",
+          "Language": "inside",
+          "ObjectManager": "srbroker",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": false,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 0,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "callcenterr",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "callcenterrr",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "callcenter1",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "callcenter2",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "callcenter3",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "callcenter4",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "callcenter5",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "callcenter6",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "callcenter7",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "callcenter8",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "callcenter9",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "callcenter10",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "callcenter33",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "callcenter32",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "callcenter31",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "callcenter30",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "callcenter29",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "callcenter28",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "callcenter27",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "callcenter26",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "callcenter25",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "callcenter24",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "callcenter23",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "callcenter22",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "callcenter21",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "callcenter20",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "callcenter19",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "callcenter18",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "callcenter17",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "callcenter16",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "callcenter15",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "callcenter14",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "callcenter13",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "callcenter12",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "callcenter11",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        }
+      ],
+      "GatewayIdentity": {
+        "GatewayHost": "",
+        "GatewayPort": "",
+        "AuthToken": ""
+      }
+    }
+  },
+  "AppInterfaceTest": {
+    "Profile": {
+      "ProfileName": "AppInterfaceTest",
+      "AccessPermission": "ReadOnly",
+      "LastUpdated": "2017/05/24 21:36:25"
+    },
+    "ConfigParam": {
+      "swe": {
+        "Language": "ENU",
+        "SessionMonitor": true,
+        "AllowStats": true,
+        "MaxQueryStringLength": -1,
+        "SeedFile": ""
+      },
+      "ConnMgmt": {
+        "CertFileName": "ai.cert",
+        "CACertFileName": "ai.cert",
+        "KeyFileName": "232536t1453124.key",
+        "KeyFilePassword": "2346asdfaf2356vz89asf7913o43fvf",
+        "PeerAuth": true,
+        "PeerCertValidation": true
+      },
+      "defaults": {
+        "AuthenticationProperties": {
+          "AnonUserName": "SADMIN",
+          "AnonPassword": "MSSQL",
+          "TrustToken": "",
+          "GuestSessionTimeout": 300,
+          "SessionTimeout": 900,
+          "SessionTokenTimeout": 900,
+          "SessionTokenMaxAge": 2880,
+          "SessionTimeoutWLMethod": "HeartBeat",
+          "SessionTimeoutWLCommand": "UpdatePrefMsg",
+          "SingleSignOn": false,
+          "UserSpec": ""
+        },
+        "StatsPage": "",
+        "EnableFQDN": false,
+        "FQDN": "",
+        "DoCompression": false
+      },
+      "UI": {
+        "LogProperties": {
+          "LogLevel": "ERROR"
+        }
+      },
+      "RESTInBound": {
+        "ObjectManager": "infraeaioutbound",
+        "MaxConnections": 20,
+        "MinConnections": 0,
+        "Baseuri": "http://\u003chostname\u003e/siebel/v1.0/",
+        "RESTAuthenticationProperties": {
+          "AnonUserName": "SADMIN",
+          "AnonPassword": "MSSQL",
+          "SessKeepAlive": 30,
+          "AuthenticationType": "SSO",
+          "TrustToken": "EAEWRY546EFASDFAT3Q2",
+          "OAuthEndPoint": "",
+          "UserSpec": "23T4SDFG34TDSFAA352Q4R",
+          "ValidateCertificate": true
+        },
+        "LogProperties": {
+          "LogLevel": "INFO"
+        },
+        "RESTResourceParamList": [
+          {
+            "OperationName": "Query",
+            "ParamList": [
+              {
+                "Name": "TEST",
+                "Alias": "TEST",
+                "DefaultValue": ""
+              }
+            ]
+          }
+        ]
+      },
+      "EAI": {
+        "LogProperties": {
+          "LogLevel": "WARN"
+        }
+      },
+      "RESTInBoundResource": [
+        {
+          "ResourceType": "Service",
+          "RESTResourceParamList": [
+            {
+              "OperationName": "Query",
+              "ParamList": [
+                {
+                  "Name": "abc",
+                  "Alias": "def",
+                  "DefaultValue": ""
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "RESTOutBound": {
+        "LogProperties": {
+          "LogLevel": "TRACE"
+        }
+      },
+      "SOAPOutBound": {
+        "LogProperties": {
+          "LogLevel": "ALL"
+        }
+      },
+      "JBS": {
+        "LogProperties": {
+          "LogLevel": ""
+        },
+        "SessKeepAlive": 0
+      },
+      "DAV": {
+        "LogProperties": {
+          "LogLevel": "DEBUG"
+        }
+      },
+      "Applications": [
+        {
+          "Name": "callcenter",
+          "Language": "enu",
+          "ObjectManager": "eaiobjmgr_enu",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "fins",
+          "Language": "enu",
+          "ObjectManager": "infraeaioutbound",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": true,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 5,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "epharma",
+          "Language": "chs",
+          "ObjectManager": "srbroker",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": false,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 0,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        },
+        {
+          "Name": "look",
+          "Language": "inside",
+          "ObjectManager": "srbroker",
+          "AvailableInSiebelMobile": true,
+          "AppDisplayOrder": 3,
+          "AppDisplayName": "Name",
+          "AppIcon": "LifeSciences1.png",
+          "EnableExtServiceOnly": false,
+          "UseAnonPool": false,
+          "AnonUserPool": 0,
+          "StartCommand": "",
+          "EAISOAPNoSessInPref": false,
+          "EAISOAPMaxRetry": 0,
+          "AuthenticationProperties": {
+            "AnonUserName": "",
+            "AnonPassword": "",
+            "TrustToken": "",
+            "GuestSessionTimeout": 300,
+            "SessionTimeout": 900,
+            "SessionTokenTimeout": 900,
+            "SessionTokenMaxAge": 2880,
+            "SessionTimeoutWLMethod": "HeartBeat",
+            "SessionTimeoutWLCommand": "UpdatePrefMsg",
+            "SingleSignOn": false,
+            "UserSpec": ""
+          }
+        }
+      ],
+      "GatewayIdentity": {
+        "GatewayHost": "",
+        "GatewayPort": "",
+        "AuthToken": ""
+      }
+    }
+  }
+}

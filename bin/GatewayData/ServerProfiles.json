@@ -1,0 +1,132 @@
+{
+  "SiebelProd": {
+    "Profile": {
+      "ProfileName": "SiebelProd",
+      "AccessPermission": "ReadOnly",
+      "LastUpdated": "2017/05/24 21:31:49"
+    },
+    "ServerConfigParams": {
+      "AnonLoginUserName": "",
+      "AnonLoginPassword": "MSSQL",
+      "EnableCompGroupsSIA": "mktgsrv,pimsi,saleshiersvc,eautomotive,econsumer",
+      "SCBPort": "",
+      "LocalSynchMgrPort": "",
+      "ModifyServerEncrypt": true,
+      "ModifyServerAuth": true,
+      "ClusteringEnvironmentSetup": "HostSetup",
+      "SiebelClusterGateway": "192.168.255.70",
+      "UseOracleConnector": "",
+      "Encrypt": "SISNAPI",
+      "CACertFileName": "",
+      "CertFileNameServer": "",
+      "Username": "SADMIN",
+      "Password": "",
+      "SqlServerPort": "",
+      "Db2InstHome": ""
+    }
+  },
+  "SiebelServer": {
+    "Profile": {
+      "ProfileName": "SiebelServer",
+      "AccessPermission": "ReadOnly",
+      "LastUpdated": "2017/05/24 21:32:09"
+    },
+    "ServerConfigParams": {
+      "AnonLoginUserName": "sss",
+      "AnonLoginPassword": "MSSQL",
+      "EnableCompGroupsSIA": "mktgsrv,pimsi,saleshiersvc,eautomotive,econsumer",
+      "SCBPort": "4000",
+      "LocalSynchMgrPort": "3200",
+      "ModifyServerEncrypt": true,
+      "ModifyServerAuth": true,
+      "ClusteringEnvironmentSetup": "HostSetup",
+      "SiebelClusterGateway": "192.168.255.70",
+      "UseOracleConnector": "",
+      "Encrypt": "SISNAPI",
+      "CACertFileName": "",
+      "CertFileNameServer": "",
+      "Username": "SADMIN",
+      "Password": "mssql",
+      "SqlServerPort": "",
+      "Db2InstHome": ""
+    }
+  },
+  "SiebelServer_1": {
+    "Profile": {
+      "ProfileName": "SiebelServer_1",
+      "AccessPermission": "ReadOnly",
+      "LastUpdated": "2017/05/26 00:29:19"
+    },
+    "ServerConfigParams": {
+      "AnonLoginUserName": "sss",
+      "AnonLoginPassword": "MSSQL",
+      "EnableCompGroupsSIA": "mktgsrv,pimsi,saleshiersvc,eautomotive,econsumer",
+      "SCBPort": "4000",
+      "LocalSynchMgrPort": "3200",
+      "ModifyServerEncrypt": true,
+      "ModifyServerAuth": true,
+      "ClusteringEnvironmentSetup": "HostSetup",
+      "SiebelClusterGateway": "192.168.255.70",
+      "UseOracleConnector": "",
+      "Encrypt": "SISNAPI",
+      "CACertFileName": "",
+      "CertFileNameServer": "",
+      "Username": "SADMIN",
+      "Password": "mssql",
+      "SqlServerPort": "",
+      "Db2InstHome": ""
+    }
+  },
+  "SiebelServer_2": {
+    "Profile": {
+      "ProfileName": "SiebelServer_2",
+      "AccessPermission": "ReadWrite",
+      "LastUpdated": "2017/05/26 00:29:26"
+    },
+    "ServerConfigParams": {
+      "AnonLoginUserName": "sss",
+      "AnonLoginPassword": "MSSQL",
+      "EnableCompGroupsSIA": "mktgsrv,pimsi,saleshiersvc,eautomotive,econsumer",
+      "SCBPort": "4000",
+      "LocalSynchMgrPort": "3200",
+      "ModifyServerEncrypt": true,
+      "ModifyServerAuth": true,
+      "ClusteringEnvironmentSetup": "HostSetup",
+      "SiebelClusterGateway": "192.168.255.70",
+      "UseOracleConnector": "",
+      "Encrypt": "SISNAPI",
+      "CACertFileName": "",
+      "CertFileNameServer": "",
+      "Username": "SADMIN",
+      "Password": "mssql",
+      "SqlServerPort": "",
+      "Db2InstHome": ""
+    }
+  },
+  "SiebelServer_3": {
+    "Profile": {
+      "ProfileName": "SiebelServer_3",
+      "AccessPermission": "ReadWrite",
+      "LastUpdated": "2017/05/26 00:29:32"
+    },
+    "ServerConfigParams": {
+      "AnonLoginUserName": "sss",
+      "AnonLoginPassword": "MSSQL",
+      "EnableCompGroupsSIA": "mktgsrv,pimsi,saleshiersvc,eautomotive,econsumer",
+      "SCBPort": "4000",
+      "LocalSynchMgrPort": "3200",
+      "ModifyServerEncrypt": true,
+      "ModifyServerAuth": true,
+      "ClusteringEnvironmentSetup": "HostSetup",
+      "SiebelClusterGateway": "192.168.255.70",
+      "UseOracleConnector": "",
+      "Encrypt": "SISNAPI",
+      "CACertFileName": "",
+      "CertFileNameServer": "",
+      "Username": "SADMIN",
+      "Password": "mssql",
+      "SqlServerPort": "",
+      "Db2InstHome": ""
+    }
+  }
+}

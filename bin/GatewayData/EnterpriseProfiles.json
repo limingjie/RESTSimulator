@@ -1,0 +1,212 @@
+{
+  "EnterpriseProd": {
+    "Profile": {
+      "ProfileName": "EnterpriseProd",
+      "AccessPermission": "ReadOnly",
+      "LastUpdated": "2017/05/24 21:30:43"
+    },
+    "EnterpriseConfigParams": {
+      "UserName": "SADMIN",
+      "Password": "MSSQL",
+      "DBConnectString": "",
+      "SecAdptProfileName": "Gateway",
+      "PrimaryLanguage": "enu",
+      "DatabasePlatform": "MSSQL_Server",
+      "TableOwner": "",
+      "DBUsername": "SADMIN",
+      "DBUserPasswd": "MSSQL",
+      "SqlDatabase": "siebel",
+      "SqlServer": "192.168.200.30",
+      "SqlServerPort": "32100",
+      "Db2DatabaseAlias": "",
+      "Db2CurrentSQLID": "",
+      "Encrypt": "SISNAPITLS",
+      "KeyFileName": "SADMIN",
+      "KeyFilePassword": "MSSQL",
+      "PeerAuth": "",
+      "PeerCertValidation": "",
+      "CACertFileName": "CERTIFICATE.CERT",
+      "ServerFileSystem": "\\\\slc13kuy.us.oracle.com\\fs"
+    }
+  },
+  "EnterpriseTest": {
+    "Profile": {
+      "ProfileName": "EnterpriseTest",
+      "AccessPermission": "ReadWrite",
+      "LastUpdated": "2017/05/24 21:30:52"
+    },
+    "EnterpriseConfigParams": {
+      "UserName": "SADMIN",
+      "Password": "MSSQL",
+      "DBConnectString": "",
+      "SecAdptProfileName": "Gateway",
+      "PrimaryLanguage": "enu",
+      "DatabasePlatform": "MSSQL_Server",
+      "TableOwner": "",
+      "DBUsername": "SADMIN",
+      "DBUserPasswd": "MSSQL",
+      "SqlDatabase": "siebel",
+      "SqlServer": "192.168.200.30",
+      "SqlServerPort": "32100",
+      "Db2DatabaseAlias": "",
+      "Db2CurrentSQLID": "",
+      "Encrypt": "SISNAPITLS",
+      "KeyFileName": "SADMIN",
+      "KeyFilePassword": "MSSQL",
+      "PeerAuth": "",
+      "PeerCertValidation": "",
+      "CACertFileName": "CERTIFICATE.CERT",
+      "ServerFileSystem": "\\\\slc13kuy.us.oracle.com\\fs"
+    }
+  },
+  "EnterpriseTest_1": {
+    "Profile": {
+      "ProfileName": "EnterpriseTest_1",
+      "AccessPermission": "ReadWrite",
+      "LastUpdated": "2017/05/24 21:58:07"
+    },
+    "EnterpriseConfigParams": {
+      "UserName": "SADMIN",
+      "Password": "MSSQL",
+      "DBConnectString": "",
+      "SecAdptProfileName": "Gateway",
+      "PrimaryLanguage": "enu",
+      "DatabasePlatform": "MSSQL_Server",
+      "TableOwner": "",
+      "DBUsername": "SADMIN",
+      "DBUserPasswd": "MSSQL",
+      "SqlDatabase": "siebel",
+      "SqlServer": "192.168.200.30",
+      "SqlServerPort": "32100",
+      "Db2DatabaseAlias": "",
+      "Db2CurrentSQLID": "",
+      "Encrypt": "SISNAPITLS",
+      "KeyFileName": "SADMIN",
+      "KeyFilePassword": "MSSQL",
+      "PeerAuth": "",
+      "PeerCertValidation": "",
+      "CACertFileName": "CERTIFICATE.CERT",
+      "ServerFileSystem": "\\\\slc13kuy.us.oracle.com\\fs"
+    }
+  },
+  "EnterpriseTest_2": {
+    "Profile": {
+      "ProfileName": "EnterpriseTest_2",
+      "AccessPermission": "ReadWrite",
+      "LastUpdated": "2017/05/24 21:58:14"
+    },
+    "EnterpriseConfigParams": {
+      "UserName": "SADMIN",
+      "Password": "MSSQL",
+      "DBConnectString": "",
+      "SecAdptProfileName": "Gateway",
+      "PrimaryLanguage": "enu",
+      "DatabasePlatform": "MSSQL_Server",
+      "TableOwner": "",
+      "DBUsername": "SADMIN",
+      "DBUserPasswd": "MSSQL",
+      "SqlDatabase": "siebel",
+      "SqlServer": "192.168.200.30",
+      "SqlServerPort": "32100",
+      "Db2DatabaseAlias": "",
+      "Db2CurrentSQLID": "",
+      "Encrypt": "SISNAPITLS",
+      "KeyFileName": "SADMIN",
+      "KeyFilePassword": "MSSQL",
+      "PeerAuth": "",
+      "PeerCertValidation": "",
+      "CACertFileName": "CERTIFICATE.CERT",
+      "ServerFileSystem": "\\\\slc13kuy.us.oracle.com\\fs"
+    }
+  },
+  "EnterpriseTest_3": {
+    "Profile": {
+      "ProfileName": "EnterpriseTest_3",
+      "AccessPermission": "ReadWrite",
+      "LastUpdated": "2017/05/24 21:58:22"
+    },
+    "EnterpriseConfigParams": {
+      "UserName": "SADMIN",
+      "Password": "MSSQL",
+      "DBConnectString": "",
+      "SecAdptProfileName": "Gateway",
+      "PrimaryLanguage": "enu",
+      "DatabasePlatform": "MSSQL_Server",
+      "TableOwner": "",
+      "DBUsername": "SADMIN",
+      "DBUserPasswd": "MSSQL",
+      "SqlDatabase": "siebel",
+      "SqlServer": "192.168.200.30",
+      "SqlServerPort": "32100",
+      "Db2DatabaseAlias": "",
+      "Db2CurrentSQLID": "",
+      "Encrypt": "SISNAPITLS",
+      "KeyFileName": "SADMIN",
+      "KeyFilePassword": "MSSQL",
+      "PeerAuth": "",
+      "PeerCertValidation": "",
+      "CACertFileName": "CERTIFICATE.CERT",
+      "ServerFileSystem": "\\\\slc13kuy.us.oracle.com\\fs"
+    }
+  },
+  "EnterpriseTest_4": {
+    "Profile": {
+      "ProfileName": "EnterpriseTest_4",
+      "AccessPermission": "ReadWrite",
+      "LastUpdated": "2017/05/24 21:58:29"
+    },
+    "EnterpriseConfigParams": {
+      "UserName": "SADMIN",
+      "Password": "MSSQL",
+      "DBConnectString": "",
+      "SecAdptProfileName": "Gateway",
+      "PrimaryLanguage": "enu",
+      "DatabasePlatform": "MSSQL_Server",
+      "TableOwner": "",
+      "DBUsername": "SADMIN",
+      "DBUserPasswd": "MSSQL",
+      "SqlDatabase": "siebel",
+      "SqlServer": "192.168.200.30",
+      "SqlServerPort": "32100",
+      "Db2DatabaseAlias": "",
+      "Db2CurrentSQLID": "",
+      "Encrypt": "SISNAPITLS",
+      "KeyFileName": "SADMIN",
+      "KeyFilePassword": "MSSQL",
+      "PeerAuth": "",
+      "PeerCertValidation": "",
+      "CACertFileName": "CERTIFICATE.CERT",
+      "ServerFileSystem": "\\\\slc13kuy.us.oracle.com\\fs"
+    }
+  },
+  "EnterpriseTest_5": {
+    "Profile": {
+      "ProfileName": "EnterpriseTest_5",
+      "AccessPermission": "ReadWrite",
+      "LastUpdated": "2017/05/24 21:58:37"
+    },
+    "EnterpriseConfigParams": {
+      "UserName": "SADMIN",
+      "Password": "MSSQL",
+      "DBConnectString": "",
+      "SecAdptProfileName": "Gateway",
+      "PrimaryLanguage": "enu",
+      "DatabasePlatform": "MSSQL_Server",
+      "TableOwner": "",
+      "DBUsername": "SADMIN",
+      "DBUserPasswd": "MSSQL",
+      "SqlDatabase": "siebel",
+      "SqlServer": "192.168.200.30",
+      "SqlServerPort": "32100",
+      "Db2DatabaseAlias": "",
+      "Db2CurrentSQLID": "",
+      "Encrypt": "SISNAPITLS",
+      "KeyFileName": "SADMIN",
+      "KeyFilePassword": "MSSQL",
+      "PeerAuth": "",
+      "PeerCertValidation": "",
+      "CACertFileName": "CERTIFICATE.CERT",
+      "ServerFileSystem": "\\\\slc13kuy.us.oracle.com\\fs"
+    }
+  }
+}

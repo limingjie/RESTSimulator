@@ -1,0 +1,45 @@
+{
+  "CacheClient": {
+    "Profile": {
+      "ProfileName": "CacheClient",
+      "AccessPermission": "ReadWrite",
+      "LastUpdated": "2017/05/24 21:39:53"
+    },
+    "CacheConfigParams": {
+      "LogProperties": {
+        "LogLevel": "DEBUG"
+      },
+      "ClientConfigParam": {
+        "cacheConfig": {
+          "cacheConfigXml": "",
+          "sslProvider": {
+            "keyStore": "SADMIN",
+            "keyStorePassword": "MSSQL",
+            "keyStoreType": "JKS"
+          },
+          "cachingSchemeMapping": {
+            "cacheName": "com-siebel-inmem-*",
+            "schemeName": "ClientCacheScheme"
+          },
+          "cacheSchemes": {
+            "schemeParam": {
+              "schemeName": "ClientCacheScheme",
+              "serviceName": "ClientExtendTcpProxyService"
+            },
+            "initiatorConfig": {
+              "tcpInitiator": {
+                "address": "2341",
+                "port": 2
+              },
+              "outgoingMessageHandler": {
+                "heartbeatInterval": "30s",
+                "heartbeatTimeout": "30s",
+                "requestTimeout": "30s"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "Siebel": {
+    "DeploymentInfo": {
+      "PhysicalHostIP": "",
+      "ProfileName": "EnterpriseProd",
+      "Action": "Save",
+      "Status": "Deployed"
+    },
+    "EnterpriseDeployParams": {
+      "SiebelEnterprise": "Siebel",
+      "EnterpriseDesc": "Siebel Enterprise"
+    }
+  }
+}

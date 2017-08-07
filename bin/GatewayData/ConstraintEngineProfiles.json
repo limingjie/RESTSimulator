@@ -1,0 +1,14 @@
+{
+  "Constantine": {
+    "Profile": {
+      "ProfileName": "Constantine",
+      "AccessPermission": "ReadWrite",
+      "LastUpdated": "2017/05/24 21:40:35"
+    },
+    "ConstraintEngineConfigParams": {
+      "CacheClientProfile": "CacheClient",
+      "SecurityProfile": "Gateway",
+      "DefaultLogLevel": "All"
+    }
+  }
+}

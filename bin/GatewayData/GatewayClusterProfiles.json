@@ -1,0 +1,14 @@
+{
+  "GatewayCluster": {
+    "Profile": {
+      "ProfileName": "GatewayCluster",
+      "AccessPermission": "ReadWrite",
+      "LastUpdated": "2017/08/07 12:18:53"
+    },
+    "GatewayClusterConfigParams": {
+      "ClientPort": "1111",
+      "FollowerPort": "2222",
+      "LeaderPort": "5555"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "Cache": {
+    "DeploymentInfo": {
+      "PhysicalHostIP": "192.168.cache.18",
+      "ProfileName": "CacheServerProd",
+      "Action": "Deploy",
+      "Status": "Deployed"
+    },
+    "CacheServerDeployParams": {
+      "CacheServerAgentNode": "Cache",
+      "CacheServerAgentNodeDesc": "Cache Server Agent Description"
+    }
+  }
+}

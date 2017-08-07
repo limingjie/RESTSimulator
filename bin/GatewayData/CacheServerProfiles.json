@@ -1,0 +1,174 @@
+{
+  "CacheServerProd": {
+    "Profile": {
+      "ProfileName": "CacheServerProd",
+      "AccessPermission": "ReadWrite",
+      "LastUpdated": "2017/05/24 21:38:22"
+    },
+    "CacheConfigParams": {
+      "LogProperties": {
+        "LogLevel": "ERROR"
+      },
+      "SecurityProfile": "Gateway",
+      "ServerConfigParam": {
+        "tangoCoherenceOverride": {
+          "sslProvider": {
+            "keyStore": "2345r",
+            "keyStorePassword": "234",
+            "keyStoreType": "JKS",
+            "privateKeyPassword": "asdf",
+            "tlsPortNumber": 223
+          },
+          "tangoConfig": "",
+          "clusterName": "SiebelEnterpriseCacheCluster"
+        },
+        "cacheConfig": {
+          "cacheConfigXml": "",
+          "cacheConfigObj": {
+            "cachingSchemeMapping": [
+              {
+                "cacheName": "com-siebel-inmem-*",
+                "schemeName": "SiebelPartitionedInMemScheme"
+              }
+            ],
+            "cachingSchemes": {
+              "proxyScheme": {
+                "serviceName": "ExtendTcpProxyService",
+                "threadCountMax": 75,
+                "threadCountMin": 10,
+                "address": "192.168.200.19",
+                "port": 9099,
+                "enabled": true,
+                "autostart": true
+              },
+              "distributedScheme": [
+                {
+                  "schemeName": "SiebelPartitionedInMemScheme",
+                  "schemeRef": "SiebelPartitionedBaseScheme",
+                  "serviceName": "",
+                  "autostart": false,
+                  "backingMapScheme": ""
+                }
+              ],
+              "localScheme": [
+                {
+                  "schemeName": "SiebelDefaultLocalScheme",
+                  "evictionPolicy": "LRU",
+                  "highUnits": 10,
+                  "unitCalculator": "BINARY",
+                  "unitFactor": 1048576,
+                  "expiryDelay": "234"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "GatewayIdentity": {
+        "GatewayHost": "",
+        "GatewayPort": "",
+        "AuthToken": ""
+      }
+    }
+  },
+  "CacheServerProdAdvanced": {
+    "Profile": {
+      "ProfileName": "CacheServerProdAdvanced",
+      "AccessPermission": "ReadWrite",
+      "LastUpdated": "2017/05/24 21:38:39"
+    },
+    "CacheConfigParams": {
+      "LogProperties": {
+        "LogLevel": "ERROR"
+      },
+      "SecurityProfile": "Gateway",
+      "ServerConfigParam": {
+        "tangoCoherenceOverride": {
+          "sslProvider": {
+            "keyStore": "",
+            "keyStorePassword": "",
+            "keyStoreType": "",
+            "privateKeyPassword": "",
+            "tlsPortNumber": 0
+          },
+          "tangoConfig": "\u003c?xml version='1.0'?\u003e\u003cpre\u003e\u003ctend\u003e\u003ctobexml\u003e\u003c/tobexml\u003e\u003c/tend\u003e\u003c/pre\u003e",
+          "clusterName": ""
+        },
+        "cacheConfig": {
+          "cacheConfigXml": "\u003c?xml version='1.0'?\u003e\u003cpre\u003e\u003ctend\u003e\u003ctobexml\u003e\u003c/tobexml\u003e\u003c/tend\u003e\u003c/pre\u003e",
+          "cacheConfigObj": {
+            "cachingSchemeMapping": null,
+            "cachingSchemes": {
+              "proxyScheme": {
+                "serviceName": "",
+                "threadCountMax": 0,
+                "threadCountMin": 0,
+                "address": "",
+                "port": 0,
+                "enabled": false,
+                "autostart": false
+              },
+              "distributedScheme": null,
+              "localScheme": null
+            }
+          }
+        }
+      },
+      "GatewayIdentity": {
+        "GatewayHost": "",
+        "GatewayPort": "",
+        "AuthToken": ""
+      }
+    }
+  },
+  "CacheServerTest": {
+    "Profile": {
+      "ProfileName": "CacheServerTest",
+      "AccessPermission": "ReadWrite",
+      "LastUpdated": "2017/05/24 21:39:23"
+    },
+    "CacheConfigParams": {
+      "LogProperties": {
+        "LogLevel": "ERROR"
+      },
+      "SecurityProfile": "Gateway",
+      "ServerConfigParam": {
+        "tangoCoherenceOverride": {
+          "sslProvider": {
+            "keyStore": "rqw",
+            "keyStorePassword": "qwre",
+            "keyStoreType": "qwre",
+            "privateKeyPassword": "qwer",
+            "tlsPortNumber": 3
+          },
+          "tangoConfig": "",
+          "clusterName": "saef"
+        },
+        "cacheConfig": {
+          "cacheConfigXml": "",
+          "cacheConfigObj": {
+            "cachingSchemeMapping": [],
+            "cachingSchemes": {
+              "proxyScheme": {
+                "serviceName": "2342",
+                "threadCountMax": 0,
+                "threadCountMin": 0,
+                "address": "2342342",
+                "port": 23,
+                "enabled": false,
+                "autostart": false
+              },
+              "distributedScheme": [],
+              "localScheme": []
+            }
+          }
+        }
+      },
+      "GatewayIdentity": {
+        "GatewayHost": "",
+        "GatewayPort": "",
+        "AuthToken": ""
+      }
+    }
+  }
+}

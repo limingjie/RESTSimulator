@@ -1,0 +1,13 @@
+{
+  "Constantine~": {
+    "DeploymentInfo": {
+      "PhysicalHostIP": "192.168.Cons.111:8888",
+      "ProfileName": "Constantine",
+      "Action": "Save",
+      "Status": "Deployed"
+    },
+    "ConstraintEngineDeployParams": {
+      "DeploymentName": "Constantine"
+    }
+  }
+}

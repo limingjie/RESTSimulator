@@ -1,0 +1,14 @@
+{
+  "Magician": {
+    "DeploymentInfo": {
+      "PhysicalHostIP": "192.168.222.111",
+      "ProfileName": "Migration",
+      "Action": "Deploy",
+      "Status": "Deployed"
+    },
+    "MigrationDeployParams": {
+      "SiebelMigration": "Magician",
+      "MigrationDesc": "Coin tricks"
+    }
+  }
+}

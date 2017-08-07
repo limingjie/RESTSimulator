@@ -1,0 +1,26 @@
+{
+  "GNU": {
+    "DeploymentInfo": {
+      "PhysicalHostIP": "192.168.GNU.18",
+      "ProfileName": "AppInterfaceTest",
+      "Action": "Deploy",
+      "Status": "Deployed"
+    },
+    "DeploymentParam": {
+      "Node": "GNU",
+      "NodeDesc": "GNU's Not Unix"
+    }
+  },
+  "WINE": {
+    "DeploymentInfo": {
+      "PhysicalHostIP": "192.168.whatever.10",
+      "ProfileName": "AppInterfaceProd",
+      "Action": "Deploy",
+      "Status": "Deployed"
+    },
+    "DeploymentParam": {
+      "Node": "WINE",
+      "NodeDesc": "Wine Is Not Emulator"
+    }
+  }
+}

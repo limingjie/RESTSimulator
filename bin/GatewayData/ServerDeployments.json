@@ -1,0 +1,67 @@
+{
+  "KFC": {
+    "DeploymentInfo": {
+      "PhysicalHostIP": "192.168.30.55",
+      "ProfileName": "SiebelServer",
+      "Action": "Save",
+      "Status": "Deployed"
+    },
+    "ServerDeployParams": {
+      "SiebelServer": "KFC",
+      "SiebelServerDesc": "KaiFengCai",
+      "DeployedLanguage": "cht,chs"
+    }
+  },
+  "McDonalds": {
+    "DeploymentInfo": {
+      "PhysicalHostIP": "192.168.90.1",
+      "ProfileName": "SiebelProd",
+      "Action": "Deploy",
+      "Status": "Migrated"
+    },
+    "ServerDeployParams": {
+      "SiebelServer": "McDonalds",
+      "SiebelServerDesc": "McDonDon",
+      "DeployedLanguage": "enu,chs,plk,ita,esn"
+    }
+  },
+  "MrPizza": {
+    "DeploymentInfo": {
+      "PhysicalHostIP": "192.168.20.50",
+      "ProfileName": "SiebelProd",
+      "Action": "Deploy",
+      "Status": "Saved"
+    },
+    "ServerDeployParams": {
+      "SiebelServer": "MrPizza",
+      "SiebelServerDesc": "MrPizza",
+      "DeployedLanguage": "enu,cht,chs,kor,rus,sve"
+    }
+  },
+  "Subway": {
+    "DeploymentInfo": {
+      "PhysicalHostIP": "192.168.111.110",
+      "ProfileName": "SiebelProd",
+      "Action": "Save",
+      "Status": "DeployInProgress"
+    },
+    "ServerDeployParams": {
+      "SiebelServer": "Subway",
+      "SiebelServerDesc": "Yes the sandwiches",
+      "DeployedLanguage": "dan,enu,fra"
+    }
+  },
+  "slc07fsi": {
+    "DeploymentInfo": {
+      "PhysicalHostIP": "8888",
+      "ProfileName": "SiebelServer_1",
+      "Action": "Save",
+      "Status": "DeployFailed"
+    },
+    "ServerDeployParams": {
+      "SiebelServer": "slc07fsi",
+      "SiebelServerDesc": "ssd",
+      "DeployedLanguage": "enu"
+    }
+  }
+}
