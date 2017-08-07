@@ -42,7 +42,7 @@ func PostSWSMDeployment(w http.ResponseWriter, r *http.Request, _ httprouter.Par
 	json.NewDecoder(r.Body).Decode(&deployment)
 
 	msg, _ := json.Marshal(deployment)
-	log.Println("PostSWSMDeployment", string(msg))
+	log.Println(r.RemoteAddr, "PostSWSMDeployment", string(msg))
 
 	_, ok := SWSMProfiles[deployment.Deployment.ProfileName]
 	if !ok {
@@ -79,7 +79,7 @@ func GetSWSMDeployments(w http.ResponseWriter, r *http.Request, _ httprouter.Par
 	var deploymentsJSON bytes.Buffer
 	deploymentsJSON.WriteString("{\"SWSMDeployment\":[")
 
-	log.Println("GetSWSMDeployments", strconv.Itoa(len(SWSMDeployments)))
+	log.Println(r.RemoteAddr, "GetSWSMDeployments", strconv.Itoa(len(SWSMDeployments)))
 
 	ok := false
 	for _, deployment := range SWSMDeployments {
@@ -103,7 +103,7 @@ func GetSWSMDeployments(w http.ResponseWriter, r *http.Request, _ httprouter.Par
 func GetSWSMDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	deployment, ok := SWSMDeployments[ps.ByName("name")]
 
-	log.Println("GetSWSMDeployment", ps.ByName("name"))
+	log.Println(r.RemoteAddr, "GetSWSMDeployment", ps.ByName("name"))
 
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -122,7 +122,7 @@ func PutSWSMDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Par
 	json.NewDecoder(r.Body).Decode(&deployment)
 
 	msg, _ := json.Marshal(deployment)
-	log.Println("PutSWSMDeployment", string(msg))
+	log.Println(r.RemoteAddr, "PutSWSMDeployment", string(msg))
 
 	_, ok := SWSMProfiles[deployment.Deployment.ProfileName]
 	if !ok {
@@ -161,7 +161,7 @@ func PutSWSMDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Par
 func DeleteSWSMDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	deploymentName := ps.ByName("name")
 
-	log.Println("DeleteSWSMDeployment", deploymentName)
+	log.Println(r.RemoteAddr, "DeleteSWSMDeployment", deploymentName)
 
 	deployment, ok := SWSMDeployments[deploymentName]
 	if ok {

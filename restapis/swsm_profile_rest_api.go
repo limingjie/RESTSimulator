@@ -28,7 +28,7 @@ func PostSWSMProfile(w http.ResponseWriter, r *http.Request, _ httprouter.Params
 	json.NewDecoder(r.Body).Decode(&profile)
 
 	msg, _ := json.Marshal(profile)
-	log.Println("PostSWSMProfile", string(msg))
+	log.Println(r.RemoteAddr, "PostSWSMProfile", string(msg))
 
 	profileName := profile.Profile.ProfileName
 	if len(profileName) > 0 {
@@ -59,7 +59,7 @@ func GetSWSMProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.Params
 	var profilesJSON bytes.Buffer
 	profilesJSON.WriteString("{\"SWSMProfile\":[")
 
-	log.Println("GetSWSMProfiles", strconv.Itoa(len(SWSMProfiles)))
+	log.Println(r.RemoteAddr, "GetSWSMProfiles", strconv.Itoa(len(SWSMProfiles)))
 
 	ok := false
 	for _, profile := range SWSMProfiles {
@@ -83,7 +83,7 @@ func GetSWSMProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.Params
 func GetSWSMProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profile, ok := SWSMProfiles[ps.ByName("name")]
 
-	log.Println("GetSWSMProfile", ps.ByName("name"))
+	log.Println(r.RemoteAddr, "GetSWSMProfile", ps.ByName("name"))
 
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -102,7 +102,7 @@ func PutSWSMProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params
 	json.NewDecoder(r.Body).Decode(&profile)
 
 	msg, _ := json.Marshal(profile)
-	log.Println("PutSWSMProfile", string(msg))
+	log.Println(r.RemoteAddr, "PutSWSMProfile", string(msg))
 
 	profileName := ps.ByName("name")
 	_, ok := SWSMProfiles[profileName]
@@ -131,7 +131,7 @@ func PutSWSMProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params
 func DeleteSWSMProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profileName := ps.ByName("name")
 
-	log.Println("DeleteSWSMProfile", profileName)
+	log.Println(r.RemoteAddr, "DeleteSWSMProfile", profileName)
 
 	_, ok := SWSMProfiles[profileName]
 	if ok {

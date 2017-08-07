@@ -42,7 +42,7 @@ func PostEnterpriseDeployment(w http.ResponseWriter, r *http.Request, _ httprout
 	json.NewDecoder(r.Body).Decode(&deployment)
 
 	msg, _ := json.Marshal(deployment)
-	log.Println("PostEnterpriseDeployment", string(msg))
+	log.Println(r.RemoteAddr, "PostEnterpriseDeployment", string(msg))
 
 	_, ok := EnterpriseProfiles[deployment.Deployment.ProfileName]
 	if !ok {
@@ -79,7 +79,7 @@ func GetEnterpriseDeployments(w http.ResponseWriter, r *http.Request, _ httprout
 	var deploymentsJSON bytes.Buffer
 	deploymentsJSON.WriteString("{\"EnterpriseDeployment\":[")
 
-	log.Println("GetEnterpriseDeployments", strconv.Itoa(len(EnterpriseDeployments)))
+	log.Println(r.RemoteAddr, "GetEnterpriseDeployments", strconv.Itoa(len(EnterpriseDeployments)))
 
 	ok := false
 	for _, deployment := range EnterpriseDeployments {
@@ -103,7 +103,7 @@ func GetEnterpriseDeployments(w http.ResponseWriter, r *http.Request, _ httprout
 func GetEnterpriseDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	deployment, ok := EnterpriseDeployments[ps.ByName("name")]
 
-	log.Println("GetEnterpriseDeployment", ps.ByName("name"))
+	log.Println(r.RemoteAddr, "GetEnterpriseDeployment", ps.ByName("name"))
 
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -122,7 +122,7 @@ func PutEnterpriseDeployment(w http.ResponseWriter, r *http.Request, ps httprout
 	json.NewDecoder(r.Body).Decode(&deployment)
 
 	msg, _ := json.Marshal(deployment)
-	log.Println("PutEnterpriseDeployment", string(msg))
+	log.Println(r.RemoteAddr, "PutEnterpriseDeployment", string(msg))
 
 	_, ok := EnterpriseProfiles[deployment.Deployment.ProfileName]
 	if !ok {
@@ -161,7 +161,7 @@ func PutEnterpriseDeployment(w http.ResponseWriter, r *http.Request, ps httprout
 func DeleteEnterpriseDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	deploymentName := ps.ByName("name")
 
-	log.Println("DeleteEnterpriseDeployment", deploymentName)
+	log.Println(r.RemoteAddr, "DeleteEnterpriseDeployment", deploymentName)
 
 	deployment, ok := EnterpriseDeployments[deploymentName]
 	if ok {

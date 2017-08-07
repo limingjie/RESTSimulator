@@ -42,7 +42,7 @@ func PostCacheServerDeployment(w http.ResponseWriter, r *http.Request, _ httprou
 	json.NewDecoder(r.Body).Decode(&deployment)
 
 	msg, _ := json.Marshal(deployment)
-	log.Println("PostCacheServerDeployment", string(msg))
+	log.Println(r.RemoteAddr, "PostCacheServerDeployment", string(msg))
 
 	_, ok := CacheServerProfiles[deployment.Deployment.ProfileName]
 	if !ok {
@@ -79,7 +79,7 @@ func GetCacheServerDeployments(w http.ResponseWriter, r *http.Request, _ httprou
 	var deploymentsJSON bytes.Buffer
 	deploymentsJSON.WriteString("{\"CacheServerDeployment\":[")
 
-	log.Println("GetCacheServerDeployments", strconv.Itoa(len(CacheServerDeployments)))
+	log.Println(r.RemoteAddr, "GetCacheServerDeployments", strconv.Itoa(len(CacheServerDeployments)))
 
 	ok := false
 	for _, deployment := range CacheServerDeployments {
@@ -103,7 +103,7 @@ func GetCacheServerDeployments(w http.ResponseWriter, r *http.Request, _ httprou
 func GetCacheServerDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	deployment, ok := CacheServerDeployments[ps.ByName("name")]
 
-	log.Println("GetCacheServerDeployment", ps.ByName("name"))
+	log.Println(r.RemoteAddr, "GetCacheServerDeployment", ps.ByName("name"))
 
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -122,7 +122,7 @@ func PutCacheServerDeployment(w http.ResponseWriter, r *http.Request, ps httprou
 	json.NewDecoder(r.Body).Decode(&deployment)
 
 	msg, _ := json.Marshal(deployment)
-	log.Println("PutCacheServerDeployment", string(msg))
+	log.Println(r.RemoteAddr, "PutCacheServerDeployment", string(msg))
 
 	_, ok := CacheServerProfiles[deployment.Deployment.ProfileName]
 	if !ok {
@@ -161,7 +161,7 @@ func PutCacheServerDeployment(w http.ResponseWriter, r *http.Request, ps httprou
 func DeleteCacheServerDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	deploymentName := ps.ByName("name")
 
-	log.Println("DeleteCacheServerDeployment", deploymentName)
+	log.Println(r.RemoteAddr, "DeleteCacheServerDeployment", deploymentName)
 
 	deployment, ok := CacheServerDeployments[deploymentName]
 	if ok {

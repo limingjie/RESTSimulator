@@ -10,7 +10,7 @@ import (
 
 // GetAppIcon - GET /AppIcon
 func GetAppIcon(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	log.Println("GetAppIcon", "icons")
+	log.Println(r.RemoteAddr, "GetAppIcon", "icons")
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
@@ -19,7 +19,7 @@ func GetAppIcon(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 
 // GetDiscoveryServices - GET /discovery/services
 func GetDiscoveryServices(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	log.Println("GetDiscoveryServices", "services")
+	log.Println(r.RemoteAddr, "GetDiscoveryServices", "services")
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)

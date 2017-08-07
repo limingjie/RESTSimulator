@@ -27,7 +27,7 @@ func PostServerProfile(w http.ResponseWriter, r *http.Request, _ httprouter.Para
 	json.NewDecoder(r.Body).Decode(&profile)
 
 	msg, _ := json.Marshal(profile)
-	log.Println("PostServerProfile", string(msg))
+	log.Println(r.RemoteAddr, "PostServerProfile", string(msg))
 
 	profileName := profile.Profile.ProfileName
 	if len(profileName) > 0 {
@@ -58,7 +58,7 @@ func GetServerProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.Para
 	var profilesJSON bytes.Buffer
 	profilesJSON.WriteString("{\"ServerProfile\":[")
 
-	log.Println("GetServerProfiles", strconv.Itoa(len(ServerProfiles)))
+	log.Println(r.RemoteAddr, "GetServerProfiles", strconv.Itoa(len(ServerProfiles)))
 
 	ok := false
 	for _, profile := range ServerProfiles {
@@ -82,7 +82,7 @@ func GetServerProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.Para
 func GetServerProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profile, ok := ServerProfiles[ps.ByName("name")]
 
-	log.Println("GetServerProfile", ps.ByName("name"))
+	log.Println(r.RemoteAddr, "GetServerProfile", ps.ByName("name"))
 
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -101,7 +101,7 @@ func PutServerProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Para
 	json.NewDecoder(r.Body).Decode(&profile)
 
 	msg, _ := json.Marshal(profile)
-	log.Println("PutServerProfile", string(msg))
+	log.Println(r.RemoteAddr, "PutServerProfile", string(msg))
 
 	profileName := ps.ByName("name")
 	_, ok := ServerProfiles[profileName]
@@ -130,7 +130,7 @@ func PutServerProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Para
 func DeleteServerProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profileName := ps.ByName("name")
 
-	log.Println("DeleteServerProfile", profileName)
+	log.Println(r.RemoteAddr, "DeleteServerProfile", profileName)
 
 	_, ok := ServerProfiles[profileName]
 	if ok {

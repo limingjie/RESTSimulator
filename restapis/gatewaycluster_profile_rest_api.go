@@ -27,7 +27,7 @@ func PostGatewayClusterProfile(w http.ResponseWriter, r *http.Request, _ httprou
 	json.NewDecoder(r.Body).Decode(&profile)
 
 	msg, _ := json.Marshal(profile)
-	log.Println("PostGatewayClusterProfile", string(msg))
+	log.Println(r.RemoteAddr, "PostGatewayClusterProfile", string(msg))
 
 	profileName := profile.Profile.ProfileName
 	if len(profileName) > 0 {
@@ -58,7 +58,7 @@ func GetGatewayClusterProfiles(w http.ResponseWriter, r *http.Request, _ httprou
 	var profilesJSON bytes.Buffer
 	profilesJSON.WriteString("{\"GatewayClusterProfile\":[")
 
-	log.Println("GetGatewayClusterProfiles", strconv.Itoa(len(GatewayClusterProfiles)))
+	log.Println(r.RemoteAddr, "GetGatewayClusterProfiles", strconv.Itoa(len(GatewayClusterProfiles)))
 
 	ok := false
 	for _, profile := range GatewayClusterProfiles {
@@ -82,7 +82,7 @@ func GetGatewayClusterProfiles(w http.ResponseWriter, r *http.Request, _ httprou
 func GetGatewayClusterProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profile, ok := GatewayClusterProfiles[ps.ByName("name")]
 
-	log.Println("GetGatewayClusterProfile", ps.ByName("name"))
+	log.Println(r.RemoteAddr, "GetGatewayClusterProfile", ps.ByName("name"))
 
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -101,7 +101,7 @@ func PutGatewayClusterProfile(w http.ResponseWriter, r *http.Request, ps httprou
 	json.NewDecoder(r.Body).Decode(&profile)
 
 	msg, _ := json.Marshal(profile)
-	log.Println("PutGatewayClusterProfile", string(msg))
+	log.Println(r.RemoteAddr, "PutGatewayClusterProfile", string(msg))
 
 	profileName := ps.ByName("name")
 	_, ok := GatewayClusterProfiles[profileName]
@@ -130,7 +130,7 @@ func PutGatewayClusterProfile(w http.ResponseWriter, r *http.Request, ps httprou
 func DeleteGatewayClusterProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profileName := ps.ByName("name")
 
-	log.Println("DeleteGatewayClusterProfile", profileName)
+	log.Println(r.RemoteAddr, "DeleteGatewayClusterProfile", profileName)
 
 	_, ok := GatewayClusterProfiles[profileName]
 	if ok {

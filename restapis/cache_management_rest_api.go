@@ -69,7 +69,7 @@ func GetCaches(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	var cachesJSON bytes.Buffer
 	cachesJSON.WriteString("{\"cacheInfo\":[")
 
-	log.Println("GetCaches", strconv.Itoa(len(Caches)))
+	log.Println(r.RemoteAddr, "GetCaches", strconv.Itoa(len(Caches)))
 
 	ok := false
 	for _, cache := range Caches {
@@ -96,7 +96,7 @@ func GetCaches(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 func GetCache(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	cache, ok := Caches[ps.ByName("cachename")]
 
-	log.Println("GetCache", ps.ByName("cachename"))
+	log.Println(r.RemoteAddr, "GetCache", ps.ByName("cachename"))
 
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -111,7 +111,7 @@ func GetCache(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 
 // DeleteCaches - DELETE /cache
 func DeleteCaches(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	log.Println("DeleteCaches", strconv.Itoa(len(Caches)))
+	log.Println(r.RemoteAddr, "DeleteCaches", strconv.Itoa(len(Caches)))
 
 	// Let GC do the rest :)
 	Caches = make(map[string]models.CacheInfo)
@@ -124,7 +124,7 @@ func DeleteCaches(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 func DeleteCache(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	cacheName := ps.ByName("cachename")
 
-	log.Println("DeleteCache", cacheName)
+	log.Println(r.RemoteAddr, "DeleteCache", cacheName)
 
 	_, ok := Caches[cacheName]
 	if ok {
@@ -139,7 +139,7 @@ func DeleteCache(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 
 // ClearCaches - DELETE /clearcache
 func ClearCaches(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	log.Println("ClearCaches", strconv.Itoa(len(Caches)))
+	log.Println(r.RemoteAddr, "ClearCaches", strconv.Itoa(len(Caches)))
 
 	// Update cache size.
 	for _, cache := range Caches {
@@ -155,7 +155,7 @@ func ClearCaches(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 func ClearCache(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	cacheName := ps.ByName("cachename")
 
-	log.Println("ClearCache", cacheName)
+	log.Println(r.RemoteAddr, "ClearCache", cacheName)
 
 	cache, ok := Caches[cacheName]
 	if ok {

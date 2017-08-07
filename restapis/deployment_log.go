@@ -10,7 +10,7 @@ import (
 
 // GetDeploymentLog - Get deployment log
 func GetDeploymentLog(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	log.Println("GetDeploymentLog", "log")
+	log.Println(r.RemoteAddr, "GetDeploymentLog", "log")
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)

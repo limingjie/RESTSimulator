@@ -27,7 +27,7 @@ func PostSecurityProfile(w http.ResponseWriter, r *http.Request, _ httprouter.Pa
 	json.NewDecoder(r.Body).Decode(&profile)
 
 	msg, _ := json.Marshal(profile)
-	log.Println("PostSecurityProfile", string(msg))
+	log.Println(r.RemoteAddr, "PostSecurityProfile", string(msg))
 
 	profileName := profile.Profile.ProfileName
 	if len(profileName) > 0 {
@@ -58,7 +58,7 @@ func GetSecurityProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.Pa
 	var profilesJSON bytes.Buffer
 	profilesJSON.WriteString("{\"SecurityProfiles\":[")
 
-	log.Println("GetSecurityProfiles", strconv.Itoa(len(SecurityProfiles)))
+	log.Println(r.RemoteAddr, "GetSecurityProfiles", strconv.Itoa(len(SecurityProfiles)))
 
 	ok := false
 	for _, profile := range SecurityProfiles {
@@ -82,7 +82,7 @@ func GetSecurityProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.Pa
 func GetSecurityProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profile, ok := SecurityProfiles[ps.ByName("name")]
 
-	log.Println("GetSecurityProfile", ps.ByName("name"))
+	log.Println(r.RemoteAddr, "GetSecurityProfile", ps.ByName("name"))
 
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -101,7 +101,7 @@ func PutSecurityProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Pa
 	json.NewDecoder(r.Body).Decode(&profile)
 
 	msg, _ := json.Marshal(profile)
-	log.Println("PutSecurityProfile", string(msg))
+	log.Println(r.RemoteAddr, "PutSecurityProfile", string(msg))
 
 	profileName := ps.ByName("name")
 	_, ok := SecurityProfiles[profileName]
@@ -130,7 +130,7 @@ func PutSecurityProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Pa
 func DeleteSecurityProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profileName := ps.ByName("name")
 
-	log.Println("DeleteSecurityProfile", profileName)
+	log.Println(r.RemoteAddr, "DeleteSecurityProfile", profileName)
 
 	_, ok := SecurityProfiles[profileName]
 	if ok {

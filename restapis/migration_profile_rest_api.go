@@ -27,7 +27,7 @@ func PostMigrationProfile(w http.ResponseWriter, r *http.Request, _ httprouter.P
 	json.NewDecoder(r.Body).Decode(&profile)
 
 	msg, _ := json.Marshal(profile)
-	log.Println("PostMigrationProfile", string(msg))
+	log.Println(r.RemoteAddr, "PostMigrationProfile", string(msg))
 
 	profileName := profile.Profile.ProfileName
 	if len(profileName) > 0 {
@@ -58,7 +58,7 @@ func GetMigrationProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.P
 	var profilesJSON bytes.Buffer
 	profilesJSON.WriteString("{\"MigrationProfile\":[")
 
-	log.Println("GetMigrationProfiles", strconv.Itoa(len(MigrationProfiles)))
+	log.Println(r.RemoteAddr, "GetMigrationProfiles", strconv.Itoa(len(MigrationProfiles)))
 
 	ok := false
 	for _, profile := range MigrationProfiles {
@@ -82,7 +82,7 @@ func GetMigrationProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.P
 func GetMigrationProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profile, ok := MigrationProfiles[ps.ByName("name")]
 
-	log.Println("GetMigrationProfiles", ps.ByName("name"))
+	log.Println(r.RemoteAddr, "GetMigrationProfiles", ps.ByName("name"))
 
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -101,7 +101,7 @@ func PutMigrationProfile(w http.ResponseWriter, r *http.Request, ps httprouter.P
 	json.NewDecoder(r.Body).Decode(&profile)
 
 	msg, _ := json.Marshal(profile)
-	log.Println("PutMigrationProfile", string(msg))
+	log.Println(r.RemoteAddr, "PutMigrationProfile", string(msg))
 
 	profileName := ps.ByName("name")
 	_, ok := MigrationProfiles[profileName]
@@ -130,7 +130,7 @@ func PutMigrationProfile(w http.ResponseWriter, r *http.Request, ps httprouter.P
 func DeleteMigrationProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profileName := ps.ByName("name")
 
-	log.Println("DeleteMigrationProfile", profileName)
+	log.Println(r.RemoteAddr, "DeleteMigrationProfile", profileName)
 
 	_, ok := MigrationProfiles[profileName]
 	if ok {

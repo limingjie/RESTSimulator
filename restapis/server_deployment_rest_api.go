@@ -42,7 +42,7 @@ func PostServerDeployment(w http.ResponseWriter, r *http.Request, _ httprouter.P
 	json.NewDecoder(r.Body).Decode(&deployment)
 
 	msg, _ := json.Marshal(deployment)
-	log.Println("PostServerDeployment", string(msg))
+	log.Println(r.RemoteAddr, "PostServerDeployment", string(msg))
 
 	_, ok := ServerProfiles[deployment.Deployment.ProfileName]
 	if !ok {
@@ -79,7 +79,7 @@ func GetServerDeployments(w http.ResponseWriter, r *http.Request, _ httprouter.P
 	var deploymentsJSON bytes.Buffer
 	deploymentsJSON.WriteString("{\"ServerDeployment\":[")
 
-	log.Println("GetServerDeployments", strconv.Itoa(len(ServerDeployments)))
+	log.Println(r.RemoteAddr, "GetServerDeployments", strconv.Itoa(len(ServerDeployments)))
 
 	ok := false
 	for _, deployment := range ServerDeployments {
@@ -103,7 +103,7 @@ func GetServerDeployments(w http.ResponseWriter, r *http.Request, _ httprouter.P
 func GetServerDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	deployment, ok := ServerDeployments[ps.ByName("name")]
 
-	log.Println("GetServerDeployment", ps.ByName("name"))
+	log.Println(r.RemoteAddr, "GetServerDeployment", ps.ByName("name"))
 
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -122,7 +122,7 @@ func PutServerDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.P
 	json.NewDecoder(r.Body).Decode(&deployment)
 
 	msg, _ := json.Marshal(deployment)
-	log.Println("PutServerDeployment", string(msg))
+	log.Println(r.RemoteAddr, "PutServerDeployment", string(msg))
 
 	_, ok := ServerProfiles[deployment.Deployment.ProfileName]
 	if !ok {
@@ -161,7 +161,7 @@ func PutServerDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.P
 func DeleteServerDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	deploymentName := ps.ByName("name")
 
-	log.Println("DeleteServerDeployment", deploymentName)
+	log.Println(r.RemoteAddr, "DeleteServerDeployment", deploymentName)
 
 	deployment, ok := ServerDeployments[deploymentName]
 	if ok {

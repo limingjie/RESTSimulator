@@ -27,7 +27,7 @@ func PostEnterpriseProfile(w http.ResponseWriter, r *http.Request, _ httprouter.
 	json.NewDecoder(r.Body).Decode(&profile)
 
 	msg, _ := json.Marshal(profile)
-	log.Println("PostEnterpriseProfile", string(msg))
+	log.Println(r.RemoteAddr, "PostEnterpriseProfile", string(msg))
 
 	profileName := profile.Profile.ProfileName
 	if len(profileName) > 0 {
@@ -58,7 +58,7 @@ func GetEnterpriseProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.
 	var profilesJSON bytes.Buffer
 	profilesJSON.WriteString("{\"EnterpriseProfile\":[")
 
-	log.Println("GetEnterpriseProfiles", strconv.Itoa(len(EnterpriseProfiles)))
+	log.Println(r.RemoteAddr, "GetEnterpriseProfiles", strconv.Itoa(len(EnterpriseProfiles)))
 
 	ok := false
 	for _, profile := range EnterpriseProfiles {
@@ -82,7 +82,7 @@ func GetEnterpriseProfiles(w http.ResponseWriter, r *http.Request, _ httprouter.
 func GetEnterpriseProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profile, ok := EnterpriseProfiles[ps.ByName("name")]
 
-	log.Println("GetEnterpriseProfile", ps.ByName("name"))
+	log.Println(r.RemoteAddr, "GetEnterpriseProfile", ps.ByName("name"))
 
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -101,7 +101,7 @@ func PutEnterpriseProfile(w http.ResponseWriter, r *http.Request, ps httprouter.
 	json.NewDecoder(r.Body).Decode(&profile)
 
 	msg, _ := json.Marshal(profile)
-	log.Println("PutEnterpriseProfile", string(msg))
+	log.Println(r.RemoteAddr, "PutEnterpriseProfile", string(msg))
 
 	profileName := ps.ByName("name")
 	_, ok := EnterpriseProfiles[profileName]
@@ -130,7 +130,7 @@ func PutEnterpriseProfile(w http.ResponseWriter, r *http.Request, ps httprouter.
 func DeleteEnterpriseProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profileName := ps.ByName("name")
 
-	log.Println("DeleteEnterpriseProfile", profileName)
+	log.Println(r.RemoteAddr, "DeleteEnterpriseProfile", profileName)
 
 	_, ok := EnterpriseProfiles[profileName]
 	if ok {

@@ -27,7 +27,7 @@ func PostConstraintEngineProfile(w http.ResponseWriter, r *http.Request, _ httpr
 	json.NewDecoder(r.Body).Decode(&profile)
 
 	msg, _ := json.Marshal(profile)
-	log.Println("PostConstraintEngineProfile", string(msg))
+	log.Println(r.RemoteAddr, "PostConstraintEngineProfile", string(msg))
 
 	profileName := profile.Profile.ProfileName
 	if len(profileName) > 0 {
@@ -58,7 +58,7 @@ func GetConstraintEngineProfiles(w http.ResponseWriter, r *http.Request, _ httpr
 	var profilesJSON bytes.Buffer
 	profilesJSON.WriteString("{\"ConstraintEngineProfile\":[")
 
-	log.Println("GetConstraintEngineProfiles", strconv.Itoa(len(ConstraintEngineProfiles)))
+	log.Println(r.RemoteAddr, "GetConstraintEngineProfiles", strconv.Itoa(len(ConstraintEngineProfiles)))
 
 	ok := false
 	for _, profile := range ConstraintEngineProfiles {
@@ -82,7 +82,7 @@ func GetConstraintEngineProfiles(w http.ResponseWriter, r *http.Request, _ httpr
 func GetConstraintEngineProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profile, ok := ConstraintEngineProfiles[ps.ByName("name")]
 
-	log.Println("GetConstraintEngineProfile", ps.ByName("name"))
+	log.Println(r.RemoteAddr, "GetConstraintEngineProfile", ps.ByName("name"))
 
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -101,7 +101,7 @@ func PutConstraintEngineProfile(w http.ResponseWriter, r *http.Request, ps httpr
 	json.NewDecoder(r.Body).Decode(&profile)
 
 	msg, _ := json.Marshal(profile)
-	log.Println("PutConstraintEngineProfile", string(msg))
+	log.Println(r.RemoteAddr, "PutConstraintEngineProfile", string(msg))
 
 	profileName := ps.ByName("name")
 	_, ok := ConstraintEngineProfiles[profileName]
@@ -130,7 +130,7 @@ func PutConstraintEngineProfile(w http.ResponseWriter, r *http.Request, ps httpr
 func DeleteConstraintEngineProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profileName := ps.ByName("name")
 
-	log.Println("DeleteConstraintEngineProfile", profileName)
+	log.Println(r.RemoteAddr, "DeleteConstraintEngineProfile", profileName)
 
 	_, ok := ConstraintEngineProfiles[profileName]
 	if ok {

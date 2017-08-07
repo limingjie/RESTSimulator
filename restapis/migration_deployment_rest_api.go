@@ -42,7 +42,7 @@ func PostMigrationDeployment(w http.ResponseWriter, r *http.Request, _ httproute
 	json.NewDecoder(r.Body).Decode(&deployment)
 
 	msg, _ := json.Marshal(deployment)
-	log.Println("PostMigrationDeployment", string(msg))
+	log.Println(r.RemoteAddr, "PostMigrationDeployment", string(msg))
 
 	_, ok := MigrationProfiles[deployment.Deployment.ProfileName]
 	if !ok {
@@ -79,7 +79,7 @@ func GetMigrationDeployments(w http.ResponseWriter, r *http.Request, _ httproute
 	var deploymentsJSON bytes.Buffer
 	deploymentsJSON.WriteString("{\"MigrationDeployment\":[")
 
-	log.Println("GetMigrationDeployments", strconv.Itoa(len(MigrationDeployments)))
+	log.Println(r.RemoteAddr, "GetMigrationDeployments", strconv.Itoa(len(MigrationDeployments)))
 
 	ok := false
 	for _, deployment := range MigrationDeployments {
@@ -103,7 +103,7 @@ func GetMigrationDeployments(w http.ResponseWriter, r *http.Request, _ httproute
 func GetMigrationDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	deployment, ok := MigrationDeployments[ps.ByName("name")]
 
-	log.Println("GetMigrationDeployment", ps.ByName("name"))
+	log.Println(r.RemoteAddr, "GetMigrationDeployment", ps.ByName("name"))
 
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -122,7 +122,7 @@ func PutMigrationDeployment(w http.ResponseWriter, r *http.Request, ps httproute
 	json.NewDecoder(r.Body).Decode(&deployment)
 
 	msg, _ := json.Marshal(deployment)
-	log.Println("PutMigrationDeployment", string(msg))
+	log.Println(r.RemoteAddr, "PutMigrationDeployment", string(msg))
 
 	_, ok := MigrationProfiles[deployment.Deployment.ProfileName]
 	if !ok {
@@ -161,7 +161,7 @@ func PutMigrationDeployment(w http.ResponseWriter, r *http.Request, ps httproute
 func DeleteMigrationDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	deploymentName := ps.ByName("name")
 
-	log.Println("DeleteMigrationDeployment", deploymentName)
+	log.Println(r.RemoteAddr, "DeleteMigrationDeployment", deploymentName)
 
 	deployment, ok := MigrationDeployments[deploymentName]
 	if ok {

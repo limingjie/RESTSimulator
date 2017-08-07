@@ -42,7 +42,7 @@ func PostGatewayClusterDeployment(w http.ResponseWriter, r *http.Request, _ http
 	json.NewDecoder(r.Body).Decode(&deployment)
 
 	msg, _ := json.Marshal(deployment)
-	log.Println("PostGatewayClusterDeployment", string(msg))
+	log.Println(r.RemoteAddr, "PostGatewayClusterDeployment", string(msg))
 
 	_, ok := GatewayClusterProfiles[deployment.Deployment.ProfileName]
 	if !ok {
@@ -74,7 +74,7 @@ func GetGatewayClusterDeployments(w http.ResponseWriter, r *http.Request, _ http
 	var deploymentsJSON bytes.Buffer
 	deploymentsJSON.WriteString("{\"GatewayClusterDeployment\":[")
 
-	log.Println("GetGatewayClusterDeployments", strconv.Itoa(len(GatewayClusterDeployments)))
+	log.Println(r.RemoteAddr, "GetGatewayClusterDeployments", strconv.Itoa(len(GatewayClusterDeployments)))
 
 	ok := false
 	for _, deployment := range GatewayClusterDeployments {
@@ -100,7 +100,7 @@ func PutGatewayClusterDeployment(w http.ResponseWriter, r *http.Request, _ httpr
 	json.NewDecoder(r.Body).Decode(&deployment)
 
 	msg, _ := json.Marshal(deployment)
-	log.Println("PutGatewayClusterDeployment", string(msg))
+	log.Println(r.RemoteAddr, "PutGatewayClusterDeployment", string(msg))
 
 	_, ok := GatewayClusterProfiles[deployment.Deployment.ProfileName]
 	if !ok {
@@ -131,7 +131,7 @@ func PutGatewayClusterDeployment(w http.ResponseWriter, r *http.Request, _ httpr
 func DeleteGatewayClusterDeployment(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	deploymentName := "GatewayCluster"
 
-	log.Println("DeleteGatewayClusterDeployment", deploymentName)
+	log.Println(r.RemoteAddr, "DeleteGatewayClusterDeployment", deploymentName)
 
 	deployment, ok := GatewayClusterDeployments[deploymentName]
 	if ok {

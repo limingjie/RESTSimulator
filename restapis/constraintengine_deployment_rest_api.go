@@ -42,7 +42,7 @@ func PostConstraintEngineDeployment(w http.ResponseWriter, r *http.Request, _ ht
 	json.NewDecoder(r.Body).Decode(&deployment)
 
 	msg, _ := json.Marshal(deployment)
-	log.Println("PostConstraintEngineDeployment", string(msg))
+	log.Println(r.RemoteAddr, "PostConstraintEngineDeployment", string(msg))
 
 	_, ok := ConstraintEngineProfiles[deployment.Deployment.ProfileName]
 	if !ok {
@@ -79,7 +79,7 @@ func GetConstraintEngineDeployments(w http.ResponseWriter, r *http.Request, _ ht
 	var deploymentsJSON bytes.Buffer
 	deploymentsJSON.WriteString("{\"ConstraintEngineDeployment\":[")
 
-	log.Println("GetConstraintEngineDeployments", strconv.Itoa(len(ConstraintEngineDeployments)))
+	log.Println(r.RemoteAddr, "GetConstraintEngineDeployments", strconv.Itoa(len(ConstraintEngineDeployments)))
 
 	ok := false
 	for _, deployment := range ConstraintEngineDeployments {
@@ -103,7 +103,7 @@ func GetConstraintEngineDeployments(w http.ResponseWriter, r *http.Request, _ ht
 func GetConstraintEngineDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	deployment, ok := ConstraintEngineDeployments[ps.ByName("name")]
 
-	log.Println("GetConstraintEngineDeployment", ps.ByName("name"))
+	log.Println(r.RemoteAddr, "GetConstraintEngineDeployment", ps.ByName("name"))
 
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -122,7 +122,7 @@ func PutConstraintEngineDeployment(w http.ResponseWriter, r *http.Request, ps ht
 	json.NewDecoder(r.Body).Decode(&deployment)
 
 	msg, _ := json.Marshal(deployment)
-	log.Println("PutConstraintEngineDeployment", string(msg))
+	log.Println(r.RemoteAddr, "PutConstraintEngineDeployment", string(msg))
 
 	_, ok := ConstraintEngineProfiles[deployment.Deployment.ProfileName]
 	if !ok {
@@ -161,7 +161,7 @@ func PutConstraintEngineDeployment(w http.ResponseWriter, r *http.Request, ps ht
 func DeleteConstraintEngineDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	deploymentName := ps.ByName("name")
 
-	log.Println("DeleteConstraintEngineDeployment", deploymentName)
+	log.Println(r.RemoteAddr, "DeleteConstraintEngineDeployment", deploymentName)
 
 	deployment, ok := ConstraintEngineDeployments[deploymentName]
 	if ok {

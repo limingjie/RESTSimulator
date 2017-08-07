@@ -28,7 +28,7 @@ func PostCacheServerProfile(w http.ResponseWriter, r *http.Request, _ httprouter
 	json.NewDecoder(r.Body).Decode(&profile)
 
 	msg, _ := json.Marshal(profile)
-	log.Println("PostCacheServerProfile", string(msg))
+	log.Println(r.RemoteAddr, "PostCacheServerProfile", string(msg))
 
 	profileName := profile.Profile.ProfileName
 	if len(profileName) > 0 {
@@ -59,7 +59,7 @@ func GetCacheServerProfiles(w http.ResponseWriter, r *http.Request, _ httprouter
 	var profilesJSON bytes.Buffer
 	profilesJSON.WriteString("{\"CacheServerProfile\":[")
 
-	log.Println("GetCacheServerProfiles", strconv.Itoa(len(CacheServerProfiles)))
+	log.Println(r.RemoteAddr, "GetCacheServerProfiles", strconv.Itoa(len(CacheServerProfiles)))
 
 	ok := false
 	for _, profile := range CacheServerProfiles {
@@ -83,7 +83,7 @@ func GetCacheServerProfiles(w http.ResponseWriter, r *http.Request, _ httprouter
 func GetCacheServerProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profile, ok := CacheServerProfiles[ps.ByName("name")]
 
-	log.Println("GetCacheServerProfiles", ps.ByName("name"))
+	log.Println(r.RemoteAddr, "GetCacheServerProfiles", ps.ByName("name"))
 
 	if ok {
 		w.Header().Set("Content-Type", "application/json")
@@ -103,7 +103,7 @@ func PutCacheServerProfile(w http.ResponseWriter, r *http.Request, ps httprouter
 	json.NewDecoder(r.Body).Decode(&profile)
 
 	msg, _ := json.Marshal(profile)
-	log.Println("PutCacheServerProfile", string(msg))
+	log.Println(r.RemoteAddr, "PutCacheServerProfile", string(msg))
 
 	profileName := ps.ByName("name")
 	_, ok := CacheServerProfiles[profileName]
@@ -132,7 +132,7 @@ func PutCacheServerProfile(w http.ResponseWriter, r *http.Request, ps httprouter
 func DeleteCacheServerProfile(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	profileName := ps.ByName("name")
 
-	log.Println("DeleteCacheServerProfile", profileName)
+	log.Println(r.RemoteAddr, "DeleteCacheServerProfile", profileName)
 
 	_, ok := CacheServerProfiles[profileName]
 	if ok {
