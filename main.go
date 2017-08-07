@@ -156,6 +156,7 @@ func main() {
 
 	// Log APIs
 	router.GET("/siebel/v1.0/cloudgateway/deployments/logs/:type/:name", restapis.GetDeploymentLog)
+	router.GET("/siebel/v1.0/cloudgateway/deployments/logs/:type/:name/:ip", restapis.GetDeploymentLog)
 
 	// Seed Cache Generator
 	rand.Seed(time.Now().UTC().UnixNano())
