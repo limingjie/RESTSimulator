@@ -67,6 +67,19 @@ func main() {
 	router.PUT("/siebel/v1.0/cloudgateway/deployments/servers/:name", restapis.PutServerDeployment)
 	router.DELETE("/siebel/v1.0/cloudgateway/deployments/servers/:name", restapis.DeleteServerDeployment)
 
+	// Gateway Cluster Profile APIs
+	router.POST("/siebel/v1.0/cloudgateway/profiles/gatewaycluster", restapis.PostGatewayClusterProfile)
+	router.GET("/siebel/v1.0/cloudgateway/profiles/gatewaycluster", restapis.GetGatewayClusterProfiles)
+	router.GET("/siebel/v1.0/cloudgateway/profiles/gatewaycluster/:name", restapis.GetGatewayClusterProfile)
+	router.PUT("/siebel/v1.0/cloudgateway/profiles/gatewaycluster/:name", restapis.PutGatewayClusterProfile)
+	router.DELETE("/siebel/v1.0/cloudgateway/profiles/gatewaycluster/:name", restapis.DeleteGatewayClusterProfile)
+
+	// Gateway Cluster Deployment APIs
+	router.POST("/siebel/v1.0/cloudgateway/deployments/gatewaycluster", restapis.PostGatewayClusterDeployment)
+	router.GET("/siebel/v1.0/cloudgateway/deployments/gatewaycluster", restapis.GetGatewayClusterDeployments)
+	router.PUT("/siebel/v1.0/cloudgateway/deployments/gatewaycluster", restapis.PutGatewayClusterDeployment)
+	router.DELETE("/siebel/v1.0/cloudgateway/deployments/gatewaycluster", restapis.DeleteGatewayClusterDeployment)
+
 	// SWSM Profile APIs
 	router.POST("/siebel/v1.0/cloudgateway/profiles/swsm", restapis.PostSWSMProfile)
 	router.GET("/siebel/v1.0/cloudgateway/profiles/swsm", restapis.GetSWSMProfiles)

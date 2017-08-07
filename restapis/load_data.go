@@ -34,6 +34,8 @@ func LoadAll() {
 	loadDataFromFile(filepath.Clean("GatewayData/CacheServerDeployments.json"), &CacheServerDeployments)
 	loadDataFromFile(filepath.Clean("GatewayData/ConstraintEngineProfiles.json"), &ConstraintEngineProfiles)
 	loadDataFromFile(filepath.Clean("GatewayData/ConstraintEngineDeployments.json"), &ConstraintEngineDeployments)
+	loadDataFromFile(filepath.Clean("GatewayData/GatewayClusterProfiles.json"), &GatewayClusterProfiles)
+	loadDataFromFile(filepath.Clean("GatewayData/GatewayClusterDeployments.json"), &GatewayClusterDevelopments)
 	loadDataFromFile(filepath.Clean("GatewayData/EnterpriseProfiles.json"), &EnterpriseProfiles)
 	loadDataFromFile(filepath.Clean("GatewayData/EnterpriseDeployments.json"), &EnterpriseDeployments)
 	loadDataFromFile(filepath.Clean("GatewayData/MigrationProfiles.json"), &MigrationProfiles)
