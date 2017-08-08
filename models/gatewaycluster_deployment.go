@@ -4,13 +4,13 @@ type (
 	// GatewayClusterNodeRegistryList struct
 	GatewayClusterNodeRegistryList struct {
 		PhysicalHostIP string `json:"PhysicalHostIP"`
-		RegistryStatus string `json:"RegistryStatus"`
+		Status string `json:"Status"`
 	}
 
 	// GatewayClusterNodeServiceList struct
 	GatewayClusterNodeServiceList struct {
 		PhysicalHostIP string `json:"PhysicalHostIP"`
-		ServiceStatus  string `json:"ServiceStatus"`
+		Status  string `json:"Status"`
 	}
 
 	// GatewayClusterDeployment struct
