@@ -9,29 +9,29 @@
     "GatewayClusterNodeRegistryList": [
       {
         "PhysicalHostIP": "192.168.0.10",
-        "RegistryStatus": "DeployFailed"
+        "Status": "DeployFailed"
       },
       {
         "PhysicalHostIP": "192.168.0.11",
-        "RegistryStatus": "Deployed"
+        "Status": "Deployed"
       },
       {
         "PhysicalHostIP": "192.168.0.12",
-        "RegistryStatus": "Deployed"
+        "Status": "Deployed"
       }
     ],
     "GatewayClusterNodeServiceList": [
       {
         "PhysicalHostIP": "192.168.10.211",
-        "ServiceStatus": "Deployed"
+        "Status": "Deployed"
       },
       {
         "PhysicalHostIP": "192.168.10.222",
-        "ServiceStatus": "DeployFailed"
+        "Status": "DeployFailed"
       },
       {
         "PhysicalHostIP": "192.168.10.233",
-        "ServiceStatus": "Deployed"
+        "Status": "Deployed"
       }
     ]
   }
