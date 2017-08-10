@@ -118,6 +118,7 @@ func PutGatewayClusterDeployment(w http.ResponseWriter, r *http.Request, _ httpr
 			undeployGatewayClusterProfile(oldProfileName)
 		}
 
+		deployment.Deployment.Check()
 		GatewayClusterDeployments[deploymentName] = deployment
 
 		w.WriteHeader(200)

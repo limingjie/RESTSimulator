@@ -141,6 +141,7 @@ func PutSWSMDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.Par
 				undeploySWSMProfile(oldProfileName)
 			}
 
+			deployment.Deployment.Check()
 			SWSMDeployments[deploymentName] = deployment
 
 			w.WriteHeader(200)

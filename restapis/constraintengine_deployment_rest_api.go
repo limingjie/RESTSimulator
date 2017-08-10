@@ -141,6 +141,7 @@ func PutConstraintEngineDeployment(w http.ResponseWriter, r *http.Request, ps ht
 				undeployConstraintEngineProfile(oldProfileName)
 			}
 
+			deployment.Deployment.Check()
 			ConstraintEngineDeployments[deploymentName] = deployment
 
 			w.WriteHeader(200)

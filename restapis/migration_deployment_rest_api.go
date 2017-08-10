@@ -141,6 +141,7 @@ func PutMigrationDeployment(w http.ResponseWriter, r *http.Request, ps httproute
 				undeployMigrationProfile(oldProfileName)
 			}
 
+			deployment.Deployment.Check()
 			MigrationDeployments[deploymentName] = deployment
 
 			w.WriteHeader(200)

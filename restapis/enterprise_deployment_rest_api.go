@@ -141,6 +141,7 @@ func PutEnterpriseDeployment(w http.ResponseWriter, r *http.Request, ps httprout
 				undeployEnterpriseProfile(oldProfileName)
 			}
 
+			deployment.Deployment.Check()
 			EnterpriseDeployments[deploymentName] = deployment
 
 			w.WriteHeader(200)

@@ -141,6 +141,7 @@ func PutCacheServerDeployment(w http.ResponseWriter, r *http.Request, ps httprou
 				undeployCacheServerProfile(oldProfileName)
 			}
 
+			deployment.Deployment.Check()
 			CacheServerDeployments[deploymentName] = deployment
 
 			w.WriteHeader(200)

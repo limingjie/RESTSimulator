@@ -141,6 +141,7 @@ func PutServerDeployment(w http.ResponseWriter, r *http.Request, ps httprouter.P
 				undeployServerProfile(oldProfileName)
 			}
 
+			deployment.Deployment.Check()
 			ServerDeployments[deploymentName] = deployment
 
 			w.WriteHeader(200)

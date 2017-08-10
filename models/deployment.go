@@ -16,9 +16,14 @@ type (
 
 // Check Deployment
 func (deployment *Deployment) Check() {
-	if deployment.Status == "" {
+	switch deployment.Action {
+	case "Save":
+		deployment.Status = "Saved"
+	case "Deployed":
+		fallthrough
+	default:
 		deployment.Status = "Deployed"
 	}
 
-	log.Println("Deployment.Check", "Deployed")
+	log.Println("Deployment.Check", deployment.Status)
 }
